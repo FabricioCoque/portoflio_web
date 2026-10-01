@@ -53,14 +53,6 @@ export function Hero() {
             </a>
           </div>
 
-          <dl className="mt-12 grid w-full max-w-xl grid-cols-3 divide-x divide-border border-y border-border">
-            {h.metrics.map((m) => (
-              <div key={m.value} className="flex flex-col gap-1 px-3 py-4 first:pl-0">
-                <dt className="order-2 text-xs leading-snug text-muted-foreground">{m.label}</dt>
-                <dd className="order-1 font-mono text-2xl font-medium tracking-tight">{m.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
 
         <CodePanel code={h.code} />
@@ -100,8 +92,7 @@ function CodePanel({ code }: { code: { comment: string; processed: string; match
           <Check className="inline size-3.5 -translate-y-px text-success" aria-hidden="true" /> {code.processed}
         </p>
         <p className="text-muted-foreground">
-          <Check className="inline size-3.5 -translate-y-px text-success" aria-hidden="true" /> {code.matched}{' '}
-          <span className="text-foreground">(99.7%)</span>
+          <Check className="inline size-3.5 -translate-y-px text-success" aria-hidden="true" /> {code.matched}
         </p>
         <p className="text-muted-foreground">
           <span className="text-brand">→</span> {code.flagged}

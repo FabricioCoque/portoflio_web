@@ -58,10 +58,10 @@ const en = {
   },
   hero: {
     badge: 'Available for freelance projects',
-    titleLead: 'Automating financial processes and turning data into ',
-    titleAccent: 'decisions.',
+    titleLead: 'Finance, Automation, and',
+    titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
-      `I'm ${name}. I optimize financial reporting cycles: I automate accounting and financial processes, integrate data from multiple sources, and build executive reports that replace manual data processing. Focus: less operational time and fewer human errors.`,
+      `I'm ${name}. I streamline accounting and finance reporting by automating workflows, integrating data from multiple sources, and building reports and dashboards that replace manual work.`,
     ctaProjects: 'View Projects',
     ctaContact: 'Get in Touch',
     metrics: [
@@ -80,7 +80,7 @@ const en = {
     eyebrow: 'Technical & Business Focus',
     title: 'Business and finance, powered by data analytics and automation.',
     description:
-      'A toolkit built at the intersection of accounting practice, financial rigor, and modern data stacks.',
+      'Accounting expertise and financial rigor, combined with the data tools to automate and analyze.',
     skillsSuffix: 'skills',
     categories: [
       {
@@ -252,10 +252,10 @@ const en = {
   },
   about: {
     eyebrow: 'Professional Background',
-    title: 'Financial expertise, enhanced with automation and analytics.',
+    title: 'From reconciliations to automated reporting.',
     paragraphs: [
-      'I spent more than 8 years in accounting, financial control, and day-to-day reconciliations before bringing development and data analytics tools into my work.',
-      'That combination shapes how I work: data systems, scripts, and models designed with business judgment, accounting insight, and operational rigor.',
+      'I spent more than 8 years in accounting, financial control, and day-to-day reconciliations before I started automating that work with code and data analytics.',
+      'That combination shapes how I work: data systems, scripts, and models built with a business mindset, an accountants eye for detail, and operational discipline.',
     ],
     principles: [
       { k: 'accuracy', v: 'Every number traceable to its source' },
@@ -307,10 +307,10 @@ const es: Dictionary = {
   },
   hero: {
     badge: 'Disponible para proyectos freelance',
-    titleLead: 'Automatizando procesos financieros y transformando datos en',
-    titleAccent: 'decisiones.',
+    titleLead: 'Finanzas, automatizacion y ',
+    titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
-      `Soy ${name},Optimizo los ciclos de elaboración de informes financieros: automatizo procesos contables y financieros, integro datos de diversas fuentes y genero informes ejecutivos que sustituyen el procesamiento manual de datos. Enfoque: reducción del tiempo operativo y disminución de errores humanos.`,
+      `Soy ${name}. Optimizo la elaboración de reportes contables y financieros mediante la automatización de flujos de trabajo, la integración de datos de múltiples fuentes, la creación de informes y paneles de control que sustituyen el trabajo manual.`,
     ctaProjects: 'Ver proyectos',
     ctaContact: 'Contactar',
     metrics: [
@@ -327,9 +327,9 @@ const es: Dictionary = {
   },
   expertise: {
     eyebrow: 'Enfoque técnico y de negocio',
-    title: 'El negocio y las finanzas potenciados con analítica de datos y automatización.',
+    title: 'Negocios y finanzas impulsados ​​por el análisis de datos y la automatización.',
     description:
-      'Un conjunto de herramientas construido en la intersección entre la práctica contable, rigor fianciero y los stacks de datos modernos.',
+      'Experiencia contable y rigor financiero, combinados con herramientas de datos para automatizar y analizar.',
     skillsSuffix: 'habilidades',
     categories: [
       {
@@ -506,10 +506,10 @@ const es: Dictionary = {
   },
   about: {
     eyebrow: 'Trayectoria Profesional',
-    title: 'Experiencia financiera potenciada con automatización y analítica.',
+    title: 'De las conciliaciones a la reportería automatizada.',
     paragraphs: [
-      'Más de 8 años en procesos contables, control financiero y conciliaciones en el día a día operativo antes de integrar herramientas de desarrollo y analítica de datos.',
-      'Esa combinación define el enfoque con el que trabajo: sistemas de datos, scripts y modelos diseñados con criterio de negocio, entendimiento contable y rigor operativo.',
+      'Pasé más de 8 años en contabilidad, control financiero y conciliaciones del día a día antes de empezar a automatizar ese trabajo con código y analítica de datos.',
+      'Esa combinación define mi forma de trabajo: sistemas de datos, scripts y modelos construidos con mentalidad de negocio, ojo contable para el detalle y rigor operativo.',
     ],
     principles: [
       { k: 'precisión', v: 'Cada cifra trazable hasta su origen' },

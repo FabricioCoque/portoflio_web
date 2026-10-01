@@ -34,12 +34,6 @@ export function SiteHeader() {
             ))}
           </nav>
           <LanguageToggle />
-          <a
-            href={`mailto:${site.email}`}
-            className="rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
-          >
-            {t.nav.hire}
-          </a>
         </div>
       </div>
     </header>
