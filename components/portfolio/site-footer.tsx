@@ -6,8 +6,8 @@ import { useLanguage } from './language-provider'
 
 const contacts = [
   { icon: Mail, label: 'Email', value: site.email, href: `mailto:${site.email}`, external: false },
-  { icon: UserRound, label: 'LinkedIn', value: 'in/fabricio-bi', href: site.linkedin, external: true },
-  { icon: Code2, label: 'GitHub', value: 'Fabricio-BI', href: site.github, external: true },
+  { icon: UserRound, label: 'LinkedIn', value: null, href: site.linkedin, external: true },
+  { icon: Code2, label: 'GitHub', value: null, href: site.github, external: true },
 ]
 
 export function SiteFooter() {
@@ -28,30 +28,19 @@ export function SiteFooter() {
         </h2>
         <p className="mt-5 max-w-xl leading-relaxed text-background/60">{c.description}</p>
 
-        <a
-          href={`mailto:${site.email}`}
-          className="group mt-8 inline-flex h-12 items-center gap-2 rounded-lg bg-background px-6 text-sm font-medium text-foreground transition-opacity hover:opacity-90"
-        >
-          {site.email}
-          <ArrowUpRight
-            className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </a>
-
         <ul className="mt-16 grid gap-3 sm:grid-cols-3">
           {contacts.map(({ icon: Icon, label, value, href, external }) => (
             <li key={label}>
               <a
                 href={href}
                 {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                className="group flex items-center justify-between rounded-xl border border-background/10 px-5 py-4 transition-colors hover:border-background/30 hover:bg-background/5"
+                className="group flex h-full items-center justify-between rounded-xl border border-background/10 px-5 py-4 transition-colors hover:border-background/30 hover:bg-background/5"
               >
                 <span className="flex items-center gap-3">
                   <Icon className="size-4 text-background/60" aria-hidden="true" />
                   <span className="flex flex-col">
-                    <span className="text-xs text-background/50">{label}</span>
-                    <span className="font-mono text-sm">{value}</span>
+                    {value ? <span className="text-xs text-background/50">{label}</span> : null}
+                    <span className="font-mono text-sm">{value ?? label}</span>
                   </span>
                 </span>
                 <ArrowUpRight

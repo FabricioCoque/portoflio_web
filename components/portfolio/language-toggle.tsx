@@ -1,5 +1,6 @@
 'use client'
 
+import { Globe } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Locale } from '@/lib/i18n'
 import { useLanguage } from './language-provider'
@@ -18,6 +19,7 @@ export function LanguageToggle() {
       aria-label={t.nav.switchLabel}
       className="flex items-center gap-0.5 rounded-md border border-border bg-card p-0.5 font-mono text-xs transition-colors hover:border-foreground/25"
     >
+      <Globe className="mr-0.5 ml-1.5 size-3.5 text-muted-foreground" aria-hidden="true" />
       {options.map((opt) => {
         const active = locale === opt.value
         return (

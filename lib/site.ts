@@ -1,7 +1,7 @@
 export const site = {
   name: 'Fabricio',
-  role: 'Data Scientist & Financial Analyst',
-  email: 'hello@fabricio.dev',
-  linkedin: 'https://www.linkedin.com/in/fabricio-bi',
+  role: 'Business & Financial Analyst',
+  email: 'fabdevelop@outlook.com',
+  linkedin: 'https://www.linkedin.com/in/fabriciocoque/',
   github: 'https://github.com/Fabricio-BI',
 }
