@@ -124,11 +124,11 @@ const en = {
         stack: ['Python', 'SQL', 'Power BI', 'DAX', 'Star Schema'],
       },
       {
-        title: 'PDF Invoice Data Extraction Tool',
+        title: 'Automated PDF Invoice Extraction to Excel',
         description:
-          'Parses supplier invoices using deterministic regex patterns first, falling back to an AI model for unstructured layouts, then exports validated records for AP processing.',
-        metric: { value: '96%', label: 'fields extracted without manual entry' },
-        stack: ['Python', 'Regex', 'AI Fallback', 'pdfplumber'],
+          'Python workflow that reads electronic PDF invoices, extracts their data using supplier-specific templates with an AI model as a fallback, validates the amounts, and delivers an Excel report ready for the tax transactional annex and accounting entry.',
+        metric: { value: '12', label: 'synthetic invoices processed' },
+        stack: ['Python', 'Regex', 'Gemini API', 'Excel'],
       },
       {
         title: 'Automated Bank Reconciliation',
@@ -223,28 +223,29 @@ const en = {
       },
       {
         problem:
-          'The accounts payable team typed invoice details from hundreds of supplier PDFs into the ERP each week. Every supplier used a different layout, and manual entry caused duplicate payments and posting errors.',
+          'The accounting team spends many hours downloading invoices from recurring suppliers and manually typing 49-digit authorization numbers, taxpayer IDs (RUC), issue dates, and tax breakdowns. The volume delays the close, and manual entry increases the risk of errors.',
         challenges: [
-          'Dozens of invoice layouts with no common template',
-          'Scanned and low-quality PDFs mixed with digital ones',
-          'Strict validation required before anything reaches the ERP',
+          'Invoice formats that differ by issuer',
+          'New suppliers that are not in the catalog',
+          'Inconsistent data that must not reach the accounting records',
+          'Corrupt PDFs or locked reports that must not stop the batch',
         ],
         solution:
-          'I built a hybrid extraction tool: deterministic regex patterns handle known layouts quickly and cheaply, and an AI model is called only as a fallback for fields the patterns miss. Every record is validated against totals, dates, and supplier master data before export.',
+          'I built a hybrid Python workflow. It converts each PDF to Markdown to preserve table structure. If the supplier is in the catalog, it applies a regular-expression template tailored to that format; if the supplier is new, it sends the text to an AI model with a strict JSON schema. Every record goes through an arithmetic check (taxable base + VAT = total), and the Excel report highlights rows with errors in red.',
         architecture: [
-          { title: 'Supplier PDFs', detail: 'inbox folder' },
-          { title: 'Text Extraction', detail: 'pdfplumber' },
-          { title: 'Regex Parser', detail: 'known layouts' },
-          { title: 'AI Fallback', detail: 'missing fields' },
-          { title: 'Validated Export', detail: 'AP / ERP' },
+          { title: 'PDF Invoices', detail: 'input folder' },
+          { title: 'Conversion', detail: 'PDF to Markdown' },
+          { title: 'Extraction', detail: 'template or AI' },
+          { title: 'Validation', detail: 'base + VAT = total' },
+          { title: 'Excel Report', detail: 'errors in red' },
         ],
         results: [
-          { value: '96%', label: 'Fields extracted without manual entry' },
-          { value: '-70%', label: 'AP processing time' },
-          { value: '0', label: 'Duplicate payments since launch' },
+          { value: '12', label: 'Synthetic invoices processed in testing' },
+          { value: '2', label: 'Extraction routes: template and AI fallback' },
+          { value: '1', label: 'Template file to extend when adding a supplier' },
         ],
         outcome:
-          'AP staff moved from data entry to exception review, and AI costs stay low because the model is only used for a small fraction of documents.',
+          'The workflow lets reviewers focus on the rows flagged in red instead of typing every invoice, and adding a new supplier only takes a new template, with no changes to the main flow. Tested with 12 synthetic invoices that follow the real structure.',
       },
       enPlaceholderStudy,
       enPlaceholderStudy,
@@ -382,11 +383,11 @@ const es: Dictionary = {
         stack: ['Python', 'SQL', 'Power BI', 'DAX', 'Star Schema'],
       },
       {
-        title: 'Herramienta de Extracción de Datos de Facturas PDF',
+        title: 'Extracción Automatizada de Facturas PDF a Excel',
         description:
-          'Procesa facturas de proveedores primero con patrones regex deterministas y recurre a un modelo de IA para formatos no estructurados; luego exporta registros validados para cuentas por pagar.',
-        metric: { value: '96%', label: 'campos extraídos sin captura manual' },
-        stack: ['Python', 'Regex', 'IA de respaldo', 'pdfplumber'],
+          'Flujo en Python que lee facturas electrónicas en PDF, extrae sus datos con plantillas por proveedor y un modelo de IA como respaldo, valida los montos y entrega un Excel listo para el anexo transaccional y el registro contable.',
+        metric: { value: '12', label: 'facturas sintéticas procesadas' },
+        stack: ['Python', 'Regex', 'Gemini API', 'Excel'],
       },
       {
         title: 'Conciliacion Bancaria Automatizada',
@@ -478,28 +479,29 @@ const es: Dictionary = {
       },
       {
         problem:
-          'El equipo de cuentas por pagar capturaba cada semana en el ERP los datos de cientos de facturas PDF de proveedores. Cada proveedor usaba un formato distinto y la captura manual provocaba pagos duplicados y errores de registro.',
+          'El equipo contable dedica muchas horas a descargar las facturas de proveedores recurrentes y a transcribir a mano números de autorización de 49 dígitos, RUC, fechas de emisión y desgloses de impuestos. El volumen retrasa el cierre y la digitación manual aumenta el riesgo de errores.',
         challenges: [
-          'Decenas de formatos de factura sin una plantilla común',
-          'PDFs escaneados y de baja calidad mezclados con documentos digitales',
-          'Validación estricta requerida antes de que algo llegue al ERP',
+          'Formatos de factura distintos según el emisor',
+          'Proveedores nuevos que no están en el catálogo',
+          'Datos inconsistentes que no deben llegar al registro contable',
+          'PDFs dañados o reportes bloqueados que no deben detener el lote',
         ],
         solution:
-          'Construí una herramienta de extracción híbrida: patrones regex deterministas procesan los formatos conocidos de forma rápida y económica, y un modelo de IA se invoca solo como respaldo para los campos que los patrones no detectan. Cada registro se valida contra totales, fechas y el maestro de proveedores antes de exportarse.',
+          'Desarrollé un flujo híbrido en Python. Convierte cada PDF a Markdown para conservar la estructura de las tablas. Si el proveedor está en el catálogo, aplica una plantilla de expresiones regulares propia de su formato; si es nuevo, envía el texto a un modelo de IA con un esquema JSON estricto. Todos los registros pasan por una validación aritmética (base imponible + IVA = total), y el reporte en Excel marca en rojo las filas con errores.',
         architecture: [
-          { title: 'PDFs de proveedores', detail: 'carpeta de entrada' },
-          { title: 'Extracción de texto', detail: 'pdfplumber' },
-          { title: 'Parser regex', detail: 'formatos conocidos' },
-          { title: 'IA de respaldo', detail: 'campos faltantes' },
-          { title: 'Exportación validada', detail: 'CxP / ERP' },
+          { title: 'Facturas PDF', detail: 'carpeta de entrada' },
+          { title: 'Conversión', detail: 'PDF a Markdown' },
+          { title: 'Extracción', detail: 'plantilla o IA' },
+          { title: 'Validación', detail: 'base + IVA = total' },
+          { title: 'Reporte Excel', detail: 'errores en rojo' },
         ],
         results: [
-          { value: '96%', label: 'Campos extraídos sin captura manual' },
-          { value: '-70%', label: 'Tiempo de procesamiento de CxP' },
-          { value: '0', label: 'Pagos duplicados desde el lanzamiento' },
+          { value: '12', label: 'Facturas sintéticas procesadas en la prueba' },
+          { value: '2', label: 'Rutas de extracción: plantilla y respaldo con IA' },
+          { value: '1', label: 'Archivo de plantillas a ampliar para sumar un proveedor' },
         ],
         outcome:
-          'El equipo de CxP pasó de capturar datos a revisar excepciones, y el costo de IA se mantiene bajo porque el modelo solo se usa en una pequeña fracción de documentos.',
+          'El flujo permite concentrar la revisión en las filas marcadas en rojo en lugar de digitar cada factura, y sumar un proveedor nuevo solo requiere agregar una plantilla, sin modificar el flujo principal. Probado con 12 facturas sintéticas que siguen la estructura real.',
       },
       esPlaceholderStudy,
       esPlaceholderStudy,
