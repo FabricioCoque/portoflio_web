@@ -5,6 +5,12 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 import { PROJECT_COUNT, projectLinks, projectSlug, projectSnippets } from '@/lib/projects'
 import { useLanguage } from './language-provider'
 
+// Acepta el enlace completo de YouTube (youtu.be/..., watch?v=..., embed/...) o solo el identificador
+function youtubeId(value: string): string {
+  const match = value.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/)
+  return match ? match[1] : value.trim()
+}
+
 function Eyebrow({ index, children }: { index: string; children: React.ReactNode }) {
   return (
     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
@@ -132,7 +138,7 @@ export function CaseStudy({ index }: { index: number }) {
             <figure className="mt-12 border border-border bg-card">
               <div className="aspect-video w-full">
                 <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${links.video}?rel=0`}
+                  src={`https://www.youtube-nocookie.com/embed/${youtubeId(links.video)}?rel=0`}
                   title={project.title}
                   loading="lazy"
                   allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
