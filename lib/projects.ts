@@ -110,3 +110,21 @@ def extract(path: str) -> dict:
   placeholderSnippet,
   placeholderSnippet,
 ]
+
+// Enlaces por proyecto (mismo orden que los proyectos: 1 al 6).
+// repo:  dirección completa del repositorio en GitHub (si no hay, el botón "View Code" no se muestra)
+// video: solo el identificador del video de YouTube, o sea lo que va después de youtu.be/
+export type ProjectLinks = { repo?: string; video?: string }
+
+export const projectLinks: ProjectLinks[] = [
+  {}, // 1
+  {}, // 2
+  {
+    // 3 - Extracción de facturas PDF a Excel
+    repo: 'https://github.com/Fabricio-BI/Ingesta_y_Registro_Automatico_de_Facturas_PDF_a_Excel',
+    video: 'https://youtu.be/st_ghVMpDYo',
+  },
+  {}, // 4
+  {}, // 5
+  {}, // 6
+]

@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from 'lucide-react'
-import { PROJECT_COUNT, projectSlug, projectSnippets } from '@/lib/projects'
-import { site } from '@/lib/site'
+import { PROJECT_COUNT, projectLinks, projectSlug, projectSnippets } from '@/lib/projects'
 import { useLanguage } from './language-provider'
 
 function Eyebrow({ index, children }: { index: string; children: React.ReactNode }) {
@@ -20,6 +19,7 @@ export function CaseStudy({ index }: { index: number }) {
   const project = t.projects.items[index]
   const study = cs.items[index]
   const snippet = projectSnippets[index]
+  const links = projectLinks[index] ?? {}
   const prevIndex = (index - 1 + PROJECT_COUNT) % PROJECT_COUNT
   const nextIndex = (index + 1) % PROJECT_COUNT
   const code = `project_0${index + 1}`
@@ -54,18 +54,20 @@ export function CaseStudy({ index }: { index: number }) {
             ))}
           </ul>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-10 items-center gap-1.5 bg-foreground px-4 text-sm font-medium text-background transition-opacity hover:opacity-90"
-            >
-              {t.projects.viewCode}
-              <ArrowUpRight className="size-3.5" aria-hidden="true" />
-              <span className="sr-only">{t.contact.newTab}</span>
-            </a>
-          </div>
+          {links.repo ? (
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={links.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 items-center gap-1.5 bg-foreground px-4 text-sm font-medium text-background transition-opacity hover:opacity-90"
+              >
+                {t.projects.viewCode}
+                <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                <span className="sr-only">{t.contact.newTab}</span>
+              </a>
+            </div>
+          ) : null}
         </div>
       </header>
 
@@ -126,17 +128,33 @@ export function CaseStudy({ index }: { index: number }) {
             </ol>
           </figure>
 
-          <figure className="mt-12 border border-foreground bg-foreground text-background">
-            <figcaption className="flex items-center justify-between border-b border-background/10 px-5 py-3">
-              <span className="font-mono text-xs text-background/60">{snippet.file}</span>
-              <span className="font-mono text-[11px] uppercase tracking-widest text-background/40">
-                {cs.codeLabel}
-              </span>
-            </figcaption>
-            <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed text-background/85">
-              <code>{snippet.code}</code>
-            </pre>
-          </figure>
+          {links.video ? (
+            <figure className="mt-12 border border-border bg-card">
+              <div className="aspect-video w-full">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${links.video}?rel=0`}
+                  title={project.title}
+                  loading="lazy"
+                  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  className="size-full"
+                />
+              </div>
+            </figure>
+          ) : (
+            <figure className="mt-12 border border-foreground bg-foreground text-background">
+              <figcaption className="flex items-center justify-between border-b border-background/10 px-5 py-3">
+                <span className="font-mono text-xs text-background/60">{snippet.file}</span>
+                <span className="font-mono text-[11px] uppercase tracking-widest text-background/40">
+                  {cs.codeLabel}
+                </span>
+              </figcaption>
+              <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed text-background/85">
+                <code>{snippet.code}</code>
+              </pre>
+            </figure>
+          )}
         </div>
       </section>
 

@@ -179,7 +179,7 @@ const en = {
           'No history of who resolved which exception, or why',
         ],
         solution:
-          'I built a scheduled Python pipeline that normalizes every source into a common schema, applies configurable matching rules with amount and date tolerances, and persists each run to SQLite for full traceability. GitHub Actions runs it daily and exceptions flow directly into a Power BI review page.',
+          'I built a scheduled Python pipeline that normalizes every source into a common schema, applies configurable matching rules with amount and date tolerances, and persists each run to SQLite for full traceability. A scheduled script runs daily, pushing results straight to a Power BI review report.',
         architecture: [
           { title: 'Bank · ERP · Gateway', detail: 'CSV / XLSX' },
           { title: 'Normalize', detail: 'pandas' },
@@ -188,9 +188,10 @@ const en = {
           { title: 'Exception Review', detail: 'Power BI' },
         ],
         results: [
-          { value: '-85%', label: 'Reconciliation time at close' },
-          { value: '99.7%', label: 'Automatic match rate' },
-          { value: '120h', label: 'Manual work saved per month' },
+          { value: '3024', label: 'Transactions analyzed' },
+          { value: '96.7%', label: 'Automatic match rate' },
+          { value: '$5,060.69 at risk', label: ' 24 Unregistered chargebacks' },
+          { value: '$100.70 recoverable', label: ' 45 Overcharged commissions' },
         ],
         outcome:
           'The close cycle shortened by two working days, and auditors now receive a complete, queryable history of every match and exception.',
@@ -433,7 +434,7 @@ const es: Dictionary = {
           'Sin historial de quién resolvió cada excepción ni por qué',
         ],
         solution:
-          'Construí un pipeline programado en Python que normaliza cada fuente a un esquema común, aplica reglas de conciliación configurables con tolerancias de importe y fecha, y guarda cada ejecución en SQLite para una trazabilidad completa. GitHub Actions lo ejecuta a diario y las excepciones llegan directamente a una página de revisión en Power BI.',
+          'Construí un pipeline programado en Python que normaliza cada fuente a un esquema común, aplica reglas de conciliación configurables con tolerancias de importe y fecha, y guarda cada ejecución en SQLite para una trazabilidad completa. Script programado se ejecuta a diario y los resultados llegan directamente a un informe de revisión en Power BI.',
         architecture: [
           { title: 'Banco · ERP · Pasarela', detail: 'CSV / XLSX' },
           { title: 'Normalización', detail: 'pandas' },
@@ -442,9 +443,10 @@ const es: Dictionary = {
           { title: 'Revisión de excepciones', detail: 'Power BI' },
         ],
         results: [
-          { value: '-85%', label: 'Tiempo de conciliación en el cierre' },
-          { value: '99.7%', label: 'Tasa de conciliación automática' },
-          { value: '120h', label: 'Trabajo manual ahorrado al mes' },
+          { value: '3,024', label: 'Transacciones analizadas' },
+          { value: '96.7%', label: 'Transacciones conciliadas' },
+          { value: '$100.70 recuperables', label: '45 comisiones cobradas de más' },
+          { value: '$5,060.69 en riesgo', label: '24 chargebacks no registrados' },
         ],
         outcome:
           'El cierre se redujo en dos días hábiles y los auditores ahora reciben un historial completo y consultable de cada conciliación y excepción.',
