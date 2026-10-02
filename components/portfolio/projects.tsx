@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight, FileSearch, FolderOpen, GitMerge, ShoppingCart } from 'lucide-react'
-import { projectSlug } from '@/lib/projects'
-import { site } from '@/lib/site'
+import { projectLinks, projectSlug } from '@/lib/projects'
 import { useLanguage } from './language-provider'
 import { SectionHeading } from './section-heading'
 
@@ -24,8 +23,9 @@ export function Projects() {
           description={p.description}
         />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {p.items.map(({ title, description, metric, stack }, i) => {
+          {p.items.map(({ title, description, stack }, i) => {
             const Icon = icons[i] ?? FolderOpen
+            const repo = projectLinks[i]?.repo
             return (
               <article
                 key={i}
@@ -39,11 +39,6 @@ export function Projects() {
                   <h3 className="text-lg leading-snug font-semibold tracking-tight text-balance">{title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
 
-                  <div className="mt-6 rounded-none border border-border bg-card px-4 py-3">
-                    <p className="font-mono text-2xl font-medium tracking-tight text-brand">{metric.value}</p>
-                    <p className="text-xs text-muted-foreground">{metric.label}</p>
-                  </div>
-
                   <ul className="mt-6 flex flex-wrap gap-1.5" aria-label={p.stackLabel}>
                     {stack.map((tag) => (
                       <li
@@ -56,16 +51,18 @@ export function Projects() {
                   </ul>
 
                   <div className="mt-auto flex items-center gap-2 pt-8">
-                    <a
-                      href={site.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-none bg-foreground px-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
-                    >
-                      {p.viewCode}
-                      <ArrowUpRight className="size-3.5" aria-hidden="true" />
-                      <span className="sr-only">{p.viewCodeSr(title)}</span>
-                    </a>
+                    {repo ? (
+                      <a
+                        href={repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-none bg-foreground px-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                      >
+                        {p.viewCode}
+                        <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                        <span className="sr-only">{p.viewCodeSr(title)}</span>
+                      </a>
+                    ) : null}
                     <Link
                       href={`/projects/${projectSlug(i)}`}
                       className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-card px-3 text-sm font-medium transition-colors hover:border-foreground/30"

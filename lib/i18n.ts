@@ -145,11 +145,11 @@ const en = {
         stack: ['Power Query', 'Power BI', 'DAX', 'Financial Modeling'],
       },
       {
-        title: 'Accounts Receivable Control',
+        title: 'Accounts Receivable and Delinquency Risk',
         description:
-          'In-depth analysis of receivables, segmentation by risk profile, and tracking of the collections gap.',
-        metric: { value: '00%', label: 'key result metric' },
-        stack: ['Power BI', 'DAX', 'Star Schema'],
+          'Power BI dashboard built on a star schema that calculates delinquency aging, a risk score, and balance variances. It shows the gap between billed and collected amounts in a waterfall chart, with customer-level detail. Inspired by a real-world problem; built and tested with synthetic data.',
+        metric: { value: '3', label: 'analyses combined in one dashboard' },
+        stack: ['Power BI', 'Power Query', 'DAX', 'Star Schema'],
       },
     ],
   },
@@ -299,7 +299,32 @@ const en = {
         outcome:
           'Readers can go from net income to its causes with the waterfall chart and assess solvency without switching tools. The report was developed with synthetic data that simulates the financial statements of a company.',
       },
-      enPlaceholderStudy,
+      {
+        problem:
+          'Traditional accounts receivable management does not give a structured view of the gap between what was billed and what was actually collected. It is hard to reconcile billed, collected, and outstanding balances in real time; collection is reactive because the portfolio is not classified by delinquency risk, and continuous payment delays erode cash flow and working capital. This is a real and common problem in accounts receivable management; to develop the solution I used synthetic data that simulates a customer portfolio.',
+        challenges: [
+          'Reconciling billed, collected, and outstanding balances in one place',
+          'Classifying the portfolio by delinquency risk based on its aging',
+          'Moving from the overall state of the portfolio to each customer without losing context',
+          'Designing a dashboard that reduces cognitive load and speeds up decisions',
+        ],
+        solution:
+          'I built the dashboard in three stages. First, I cleaned and standardized the transactional billing and payments data with Power Query. Then I designed a star-schema dimensional model and wrote the delinquency aging, risk scoring, and balance variance calculations in DAX. Finally, I laid out the dashboard in Figma with a fast analytical read in mind. The dashboard includes a waterfall chart with the gap between billed, collected, and outstanding amounts; a risk segmentation by days-past-due bucket; and a customer view with the pending invoices, due dates, and credit status of each account.',
+        architecture: [
+          { title: 'Billing & Payments', detail: 'transactional data' },
+          { title: 'Power Query', detail: 'cleaning and standardization' },
+          { title: 'Star Schema', detail: 'DAX: aging, score, variances' },
+          { title: 'Figma Design', detail: 'analytical dashboard' },
+          { title: 'Power BI Dashboard', detail: 'waterfall, risk, customer detail' },
+        ],
+        results: [
+          { value: '3', label: 'Combined analyses: collection gap, delinquency risk, and customer detail' },
+          { value: 'Aging', label: 'Risk segmentation by days-past-due bucket' },
+          { value: '2', label: 'Reading levels: overall portfolio and customer or invoice detail' },
+        ],
+        outcome:
+          'The dashboard helps direct collection efforts to the accounts with the greatest financial impact and supports decisions on credit policies and provisions for uncollectible accounts. Developed with synthetic data that simulates a customer portfolio.',
+      },
     ],
   },
   about: {
@@ -454,10 +479,11 @@ const es: Dictionary = {
         stack: ['Power Query', 'Power BI', 'DAX', 'Modelado financiero'],
       },
       {
-        title: 'Control de Cartera',
-        description: 'Análisis analítico de cuentas por cobrar, segmentación por perfil de riesgo y seguimiento de la brecha de recaudación.',
-        metric: { value: '00%', label: 'métrica de resultado clave' },
-        stack: ['Power BI', 'DAX','Star Schema'],
+        title: 'Control de Cartera y Riesgo de Mora',
+        description:
+          'Tablero en Power BI sobre un modelo en estrella que calcula la antigüedad de la mora, un score de riesgo y las variaciones de saldo. Muestra la brecha entre lo facturado y lo cobrado en un gráfico de cascada, con detalle por cliente. Inspirado en un problema real; desarrollado con datos sintéticos.',
+        metric: { value: '3', label: 'análisis integrados en un solo tablero' },
+        stack: ['Power BI', 'Power Query', 'DAX', 'Star Schema'],
       },
     ],
   },
@@ -607,7 +633,32 @@ const es: Dictionary = {
         outcome:
           'El lector puede ir de la utilidad neta a sus causas con el gráfico de cascada y evaluar la solvencia sin cambiar de herramienta. El reporte se desarrolló con datos sintéticos que simulan los estados financieros de una empresa.',
       },
-      esPlaceholderStudy,
+      {
+        problem:
+          'La gestión tradicional de cuentas por cobrar no ofrece una visión estructurada de la brecha entre lo facturado y lo realmente cobrado. Es difícil reconciliar en tiempo real los saldos facturados, cobrados y pendientes; la cobranza es reactiva porque la cartera no se clasifica por riesgo de morosidad, y los retrasos continuos en los cobros deterioran el flujo de caja y el capital de trabajo. Es un problema real y frecuente en la gestión de cuentas por cobrar; para desarrollar la solución usé datos sintéticos que simulan una cartera de clientes.',
+        challenges: [
+          'Reconciliar saldos facturados, cobrados y pendientes en un mismo lugar',
+          'Clasificar la cartera por riesgo de morosidad según su antigüedad',
+          'Pasar del estado global de la cartera al detalle de cada cliente sin perder contexto',
+          'Diseñar un tablero que reduzca la carga cognitiva y acelere la decisión',
+        ],
+        solution:
+          'Construí el tablero en tres etapas. Primero limpié y estandaricé la base transaccional de facturación y abonos con Power Query. Luego diseñé un modelo dimensional en estrella y escribí en DAX los cálculos de antigüedad de mora, scoring de riesgo y variaciones de saldo. Por último maqueté el dashboard en Figma, pensando en una lectura analítica rápida. El tablero incluye un gráfico de cascada con la brecha entre lo facturado, lo cobrado y lo pendiente; una segmentación de riesgo por tramos de días de mora; y una vista por cliente con sus facturas pendientes, fechas de vencimiento y estado crediticio.',
+        architecture: [
+          { title: 'Facturación y abonos', detail: 'base transaccional' },
+          { title: 'Power Query', detail: 'limpieza y estandarización' },
+          { title: 'Modelo en estrella', detail: 'DAX: mora, score, variaciones' },
+          { title: 'Diseño en Figma', detail: 'dashboard analítico' },
+          { title: 'Tablero Power BI', detail: 'cascada, riesgo, detalle por cliente' },
+        ],
+        results: [
+          { value: '3', label: 'Análisis integrados: brecha de cobranza, riesgo por mora y detalle por cliente' },
+          { value: 'Aging', label: 'Segmentación de riesgo por tramos de días de mora' },
+          { value: '2', label: 'Niveles de lectura: visión global de la cartera y detalle por cliente y factura' },
+        ],
+        outcome:
+          'El tablero permite orientar la cobranza hacia las cuentas de mayor impacto económico y sirve de apoyo para definir políticas de crédito y anticipar provisiones por cuentas incobrables. Desarrollado con datos sintéticos que simulan una cartera de clientes.',
+      },
     ],
   },
   about: {

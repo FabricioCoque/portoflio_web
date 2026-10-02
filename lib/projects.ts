@@ -137,5 +137,9 @@ export const projectLinks: ProjectLinks[] = [
     dashboard:
       'https://app.powerbi.com/view?r=eyJrIjoiNWJjOWYzMWEtMmZiMC00NDc2LWFkOTEtYjVhZTRiNDE3NjJkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
   },
-  {}, // 6
+  {
+    // 6 - Control de cartera y riesgo de mora en Power BI
+    dashboard:
+      'https://app.powerbi.com/view?r=eyJrIjoiMjQ5NTk1YmYtNmQxYi00MzYzLThjNzYtNGRjYzAwNTQwY2I1IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
+  },
 ]

@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
 import { SectionHeading } from './section-heading'
 
@@ -13,22 +15,18 @@ export function About() {
         <SectionHeading id="about-title" index="03" eyebrow={a.eyebrow} title={a.title} />
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div className="flex flex-col gap-5 leading-relaxed text-muted-foreground">
+            <Image
+              src="/images/perfil.jpg"
+              alt={site.name}
+              width={640}
+              height={640}
+              className="size-36 rounded-full border border-border object-cover object-top sm:size-40"
+            />
             {a.paragraphs.map((text, i) => (
               <p key={i} className="text-pretty">
                 {text}
               </p>
             ))}
-            <dl className="mt-4 overflow-hidden rounded-xl border border-border bg-card font-mono text-sm">
-              {a.principles.map((p) => (
-                <div
-                  key={p.k}
-                  className="flex flex-col gap-1 border-b border-border px-5 py-3 last:border-b-0 sm:flex-row sm:gap-4"
-                >
-                  <dt className="w-24 shrink-0 text-brand">{p.k}:</dt>
-                  <dd className="text-foreground/80">{p.v}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
           <ol className="relative flex flex-col gap-8 border-l border-border pl-8">
