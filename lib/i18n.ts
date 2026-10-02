@@ -110,11 +110,11 @@ const en = {
     caseStudy: 'Case Study',
     items: [
       {
-        title: 'Automated Multi-source Financial Reconciliation',
+        title: 'Automated Payment Gateway Reconciliation',
         description:
-          'Scheduled pipeline that ingests bank statements, ERP ledgers, and payment gateway exports, matches transactions with tolerance rules, and surfaces exceptions for review.',
-        metric: { value: '-85%', label: 'close-cycle reconciliation time' },
-        stack: ['Python', 'Pandas', 'SQLite', 'GitHub Actions'],
+          'Python pipeline that cross-checks the ERP, the payment gateway, and the bank, applies gateway commissions and SRI tax withholdings to separate expected differences from genuine errors, and publishes the results to a historical database and a Power BI dashboard.',
+        metric: { value: '3,024', label: 'synthetic transactions classified' },
+        stack: ['Python', 'Pandas', 'SQLite', 'Power BI'],
       },
       {
         title: 'Retail Data Analysis & Star-Schema Pipeline',
@@ -131,10 +131,10 @@ const en = {
         stack: ['Python', 'Regex', 'Gemini API', 'Excel'],
       },
       {
-        title: 'Automated Bank Reconciliation',
+        title: 'Bank Reconciliation with Exact and Fuzzy Matching',
         description:
-          'Scalable, Python-based automated reconciliation that combines exact matching with fuzzy logic to streamline accounting processes with high transaction volumes.',
-        metric: { value: '00%', label: 'key result metric' },
+          'Reconciles the general ledger against the bank statement and finds the transactions that an exact match leaves pending because of formatting differences in the reference, flagging every approximate match for review. Inspired by a real-world problem; built and tested with synthetic data.',
+        metric: { value: '356/466', label: 'ledger records reconciled (synthetic data)' },
         stack: ['Python', 'RapidFuzz', 'Pandas', 'Openpyxl'],
       },
       {
@@ -172,29 +172,29 @@ const en = {
     items: [
       {
         problem:
-          'Every month-end, the finance team manually reconciled thousands of transactions across bank statements, the ERP general ledger, and payment gateway exports in Excel. The process took days, relied on fragile VLOOKUPs, and left little audit trail.',
+          'At month-end, the ERP, the payment gateway (Datafast, Medianet, PayPhone), and the bank have to agree, but they are not connected to each other. The ERP bills the gross amount, the gateway deducts its commission, and the bank deposits the net amount after Ecuadorian tax withholdings (SRI), so no two figures match at first glance. The accounting team ends up cross-checking the reports by hand, and errors slip through along the way.',
         challenges: [
-          'Three sources with inconsistent formats, references, and posting dates',
-          'Timing differences and FX rounding causing false mismatches',
-          'No history of who resolved which exception, or why',
+          'Three sources with different formats and no guaranteed common identifier',
+          'Normal differences (commission and withholdings) mixed in with real errors',
+          'Cumulative reports that repeat on every run without duplicating the history',
+          'A process that someone without programming knowledge must be able to run',
         ],
         solution:
-          'I built a scheduled Python pipeline that normalizes every source into a common schema, applies configurable matching rules with amount and date tolerances, and persists each run to SQLite for full traceability. A scheduled script runs daily, pushing results straight to a Power BI review report.',
+          'I built a three-stage pipeline. First, it cleans and normalizes the three reports, applying SRI tax withholdings and each payment gateway commission rate. Next, it cross-matches the transactions and classifies each one by status and type of exception. Finally, it loads the results into SQLite, updating by transaction ID, so a sale that was pending one week becomes reconciled the next without being duplicated. It runs with a single command or a .bat file, and Power BI reads the output.',
         architecture: [
-          { title: 'Bank · ERP · Gateway', detail: 'CSV / XLSX' },
-          { title: 'Normalize', detail: 'pandas' },
-          { title: 'Match Engine', detail: 'tolerance rules' },
-          { title: 'Audit Store', detail: 'SQLite' },
-          { title: 'Exception Review', detail: 'Power BI' },
+          { title: 'Source Reports', detail: 'bank · gateway · ERP' },
+          { title: 'Cleaning (ETL)', detail: 'SRI withholdings' },
+          { title: 'Matching', detail: 'exception classification' },
+          { title: 'Historical Store', detail: 'SQLite · by tx_id' },
+          { title: 'Dashboard', detail: 'Power BI' },
         ],
         results: [
-          { value: '3024', label: 'Transactions analyzed' },
-          { value: '96.7%', label: 'Automatic match rate' },
-          { value: '$5,060.69 at risk', label: ' 24 Unregistered chargebacks' },
-          { value: '$100.70 recoverable', label: ' 45 Overcharged commissions' },
+          { value: '3,024', label: 'Synthetic transactions classified' },
+          { value: '99', label: 'Exceptions detected in the test data' },
+          { value: '3', label: 'Exception types: overcharged commission, unrecorded chargeback, missing from gateway' },
         ],
         outcome:
-          'The close cycle shortened by two working days, and auditors now receive a complete, queryable history of every match and exception.',
+          'In the synthetic-data test (3,024 transactions, July to December 2024), the system flagged 45 overcharged commissions ($100.70 recoverable), 24 chargebacks not recorded in the ERP ($5,060.69 at risk), and 30 sales with no gateway confirmation ($12,872.18 untraceable). The amounts come from test data and illustrate the kind of finding the system produces.',
       },
       {
         problem:
@@ -247,7 +247,32 @@ const en = {
         outcome:
           'The workflow lets reviewers focus on the rows flagged in red instead of typing every invoice, and adding a new supplier only takes a new template, with no changes to the main flow. Tested with 12 synthetic invoices that follow the real structure.',
       },
-      enPlaceholderStudy,
+      {
+        problem:
+          'At month-end, the accounting team has to confirm that every ledger entry has its matching bank credit and vice versa. When the references do not match exactly, because of a typo, a hyphen, or an extra zero, the system leaves them as pending even though the transaction exists, and someone has to review them one by one. This is a real and common problem in high-volume businesses; to develop the solution I used synthetic data that simulates that scenario.',
+        challenges: [
+          'The same transaction written differently in the ledger and in the bank',
+          'False pending items that force row-by-row review',
+          'Knowing which approximate matches can be trusted',
+          'Telling what is missing from the bank apart from what is missing from the books',
+        ],
+        solution:
+          'The process first matches what agrees exactly, then looks, only among the pending items, for transactions with the same amount and similar references. Each approximate match is flagged with its similarity percentage so the accountant can decide whether to accept it. Whatever remains unmatched is split into two lists: ledger items with no bank credit, and bank deposits with no accounting entry. Everything is delivered in a 6-sheet Excel workbook, with a summary of the reconciliation status.',
+        architecture: [
+          { title: 'Ledger & Banks', detail: 'Excel' },
+          { title: 'Exact Match', detail: 'reference + amount' },
+          { title: 'Fuzzy Match', detail: 'similarity ≥ 80' },
+          { title: 'Exceptions', detail: 'pending and surplus' },
+          { title: 'Excel Report', detail: '6 sheets' },
+        ],
+        results: [
+          { value: '356/466', label: 'Ledger records reconciled (350 exact and 6 by fuzzy matching)' },
+          { value: '6', label: 'Matches found only by fuzzy matching ($8,694.63)' },
+          { value: '128', label: 'Items for review: 110 pending entries and 18 unmatched deposits' },
+        ],
+        outcome:
+          'In the test with synthetic data that simulates a real operating scenario, 356 of 466 ledger records were reconciled: 350 by exact match and 6 that only fuzzy matching could identify ($8,694.63). 110 pending entries ($167,731.45) and 18 bank deposits with no accounting entry ($747,664.25) remained, separated into two sheets for review. The team reviews only what truly does not add up and validates approximate matches using their similarity score.',
+      },
       enPlaceholderStudy,
       enPlaceholderStudy,
     ],
@@ -369,11 +394,11 @@ const es: Dictionary = {
     caseStudy: 'Caso de estudio',
     items: [
       {
-        title: 'Conciliación Financiera Automatizada Multi-fuente',
+        title: 'Conciliación Automatizada de Pasarelas de Pago',
         description:
-          'Pipeline programado que ingiere extractos bancarios, mayores del ERP y exportaciones de pasarelas de pago, concilia transacciones con reglas de tolerancia y presenta las excepciones para su revisión.',
-        metric: { value: '-85%', label: 'tiempo de conciliación en el cierre' },
-        stack: ['Python', 'Pandas', 'SQLite', 'GitHub Actions'],
+          'Pipeline en Python que cruza el ERP, la pasarela de pago y el banco, aplica las comisiones y retenciones del SRI para separar diferencias esperadas de errores reales, y publica los resultados en una base histórica y un dashboard de Power BI.',
+        metric: { value: '3,024', label: 'transacciones sintéticas clasificadas' },
+        stack: ['Python', 'Pandas', 'SQLite', 'Power BI'],
       },
       {
         title: 'Análisis de Datos Retail y Pipeline con Modelo Estrella',
@@ -390,9 +415,10 @@ const es: Dictionary = {
         stack: ['Python', 'Regex', 'Gemini API', 'Excel'],
       },
       {
-        title: 'Conciliacion Bancaria Automatizada',
-        description: 'Concilacion automatizada escalable con Python que combina cruce exacto y lógica difusa para optimizar procesos contables con alta transaccionalidad.',
-        metric: { value: '00%', label: 'métrica de resultado clave' },
+        title: 'Conciliación Bancaria con Cruce Exacto y Difuso',
+        description:
+          'Concilia el mayor contable contra el estado de cuenta bancario y encuentra los movimientos que un cruce exacto deja como pendientes por diferencias de formato en la referencia, marcando cada coincidencia aproximada para su revisión. Inspirado en un problema real; desarrollado con datos sintéticos.',
+        metric: { value: '356/466', label: 'registros del mayor conciliados (datos sintéticos)' },
         stack: ['Python', 'RapidFuzz', 'Pandas', 'Openpyxl'],
       },
       {
@@ -428,29 +454,29 @@ const es: Dictionary = {
     items: [
       {
         problem:
-          'Cada cierre de mes, el equipo financiero conciliaba manualmente miles de transacciones entre extractos bancarios, el libro mayor del ERP y las exportaciones de la pasarela de pagos en Excel. El proceso tomaba días, dependía de BUSCARV frágiles y dejaba poca pista de auditoría.',
+          'Al cierre del mes, el ERP, la pasarela (Datafast, Medianet, PayPhone) y el banco deben coincidir, pero no se comunican entre sí. El ERP factura el valor bruto, la pasarela descuenta su comisión y el banco deposita el neto tras las retenciones del SRI, así que ninguna cifra coincide a primera vista. El equipo contable termina cruzando los reportes a mano, y en ese proceso se escapan errores.',
         challenges: [
-          'Tres fuentes con formatos, referencias y fechas de registro inconsistentes',
-          'Diferencias temporales y redondeos de tipo de cambio que generaban falsos descuadres',
-          'Sin historial de quién resolvió cada excepción ni por qué',
+          'Tres fuentes con formatos distintos y sin identificador común garantizado',
+          'Diferencias normales (comisión y retenciones) mezcladas con errores reales',
+          'Reportes acumulados que se repiten en cada corrida sin duplicar el histórico',
+          'Un proceso que debe poder operar una persona sin conocimientos de programación',
         ],
         solution:
-          'Construí un pipeline programado en Python que normaliza cada fuente a un esquema común, aplica reglas de conciliación configurables con tolerancias de importe y fecha, y guarda cada ejecución en SQLite para una trazabilidad completa. Script programado se ejecuta a diario y los resultados llegan directamente a un informe de revisión en Power BI.',
+          'Construí un pipeline en tres etapas. Primero limpia y normaliza los tres reportes, aplicando las retenciones del SRI y las comisiones de cada pasarela. Luego cruza las transacciones y clasifica cada una según su estado y tipo de novedad. Por último, carga el resultado en SQLite actualizando por identificador de transacción, de modo que una venta pendiente una semana pase a conciliada la siguiente sin duplicarse. Se ejecuta con un solo comando o con un archivo .bat, y Power BI lee el resultado.',
         architecture: [
-          { title: 'Banco · ERP · Pasarela', detail: 'CSV / XLSX' },
-          { title: 'Normalización', detail: 'pandas' },
-          { title: 'Motor de conciliación', detail: 'reglas de tolerancia' },
-          { title: 'Registro de auditoría', detail: 'SQLite' },
-          { title: 'Revisión de excepciones', detail: 'Power BI' },
+          { title: 'Reportes fuente', detail: 'banco · pasarela · ERP' },
+          { title: 'Limpieza (ETL)', detail: 'retenciones SRI' },
+          { title: 'Cruce', detail: 'clasificación de novedades' },
+          { title: 'Base histórica', detail: 'SQLite · por tx_id' },
+          { title: 'Dashboard', detail: 'Power BI' },
         ],
         results: [
-          { value: '3,024', label: 'Transacciones analizadas' },
-          { value: '96.7%', label: 'Transacciones conciliadas' },
-          { value: '$100.70 recuperables', label: '45 comisiones cobradas de más' },
-          { value: '$5,060.69 en riesgo', label: '24 chargebacks no registrados' },
+          { value: '3,024', label: 'Transacciones sintéticas clasificadas' },
+          { value: '99', label: 'Novedades detectadas en los datos de prueba' },
+          { value: '3', label: 'Tipos de novedad: comisión de más, chargeback no registrado, sin pasarela' },
         ],
         outcome:
-          'El cierre se redujo en dos días hábiles y los auditores ahora reciben un historial completo y consultable de cada conciliación y excepción.',
+          'En la prueba con datos sintéticos (3,024 transacciones, de julio a diciembre de 2024), el sistema identificó 45 comisiones cobradas de más ($100.70 recuperables), 24 chargebacks no registrados en el ERP ($5,060.69 en riesgo) y 30 ventas sin confirmación de la pasarela ($12,872.18 sin trazabilidad). Los montos corresponden a datos de prueba e ilustran el tipo de hallazgo que produce el sistema.',
       },
       {
         problem:
@@ -503,7 +529,32 @@ const es: Dictionary = {
         outcome:
           'El flujo permite concentrar la revisión en las filas marcadas en rojo en lugar de digitar cada factura, y sumar un proveedor nuevo solo requiere agregar una plantilla, sin modificar el flujo principal. Probado con 12 facturas sintéticas que siguen la estructura real.',
       },
-      esPlaceholderStudy,
+      {
+        problem:
+          'Al cerrar el mes, el equipo contable debe confirmar que cada movimiento del mayor tenga su acreditación en el banco y viceversa. Cuando las referencias no coinciden exactamente, por una digitación errónea, un guion o un cero de más, el sistema las deja como pendientes aunque el movimiento exista, y alguien debe revisarlas una por una. Es un problema real y frecuente en empresas con alta transaccionalidad; para desarrollar la solución usé datos sintéticos que simulan ese escenario.',
+        challenges: [
+          'Referencias escritas distinto en el mayor y en el banco para el mismo movimiento',
+          'Falsos pendientes que obligan a revisar fila por fila',
+          'Saber en qué coincidencias aproximadas se puede confiar',
+          'Distinguir lo que falta en el banco de lo que falta en la contabilidad',
+        ],
+        solution:
+          'El proceso cruza primero lo que coincide de forma exacta y luego busca, solo entre lo pendiente, movimientos con el mismo importe y referencias parecidas. Cada coincidencia aproximada queda marcada y con su porcentaje de similitud, para que el contador decida si la acepta. Lo que sigue sin cruzar se separa en dos listas: partidas del mayor sin acreditación en el banco y depósitos del banco sin registro contable. Todo se entrega en un Excel de 6 hojas, con un resumen del estado de la conciliación.',
+        architecture: [
+          { title: 'Mayor y bancos', detail: 'Excel' },
+          { title: 'Cruce exacto', detail: 'referencia + importe' },
+          { title: 'Cruce difuso', detail: 'similitud ≥ 80' },
+          { title: 'Excepciones', detail: 'pendientes y sobrantes' },
+          { title: 'Reporte Excel', detail: '6 hojas' },
+        ],
+        results: [
+          { value: '356/466', label: 'Registros del mayor conciliados (350 exactos y 6 por cruce difuso)' },
+          { value: '6', label: 'Coincidencias que solo detectó el cruce difuso ($8,694.63)' },
+          { value: '128', label: 'Movimientos para revisión: 110 partidas pendientes y 18 depósitos sobrantes' },
+        ],
+        outcome:
+          'En la prueba con datos sintéticos que simulan un escenario operativo real, de 466 registros del mayor se conciliaron 356: 350 por cruce exacto y 6 que solo el cruce difuso pudo identificar ($8,694.63). Quedaron 110 partidas pendientes ($167,731.45) y 18 depósitos del banco sin registro contable ($747,664.25), separados en dos hojas para su revisión. El equipo revisa solo lo que realmente no cuadra y valida las coincidencias aproximadas con su puntaje.',
+      },
       esPlaceholderStudy,
       esPlaceholderStudy,
     ],

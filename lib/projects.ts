@@ -117,14 +117,20 @@ def extract(path: str) -> dict:
 export type ProjectLinks = { repo?: string; video?: string }
 
 export const projectLinks: ProjectLinks[] = [
-  {}, // 1
+  {
+    // 1 - Conciliación de pasarelas de pago
+    repo: 'https://github.com/Fabricio-BI/Payment_Reconcilier',
+  },
   {}, // 2
   {
     // 3 - Extracción de facturas PDF a Excel
     repo: 'https://github.com/Fabricio-BI/Ingesta_y_Registro_Automatico_de_Facturas_PDF_a_Excel',
-    video: 'https://youtu.be/st_ghVMpDYo',
+    video: 'st_ghVMpDYo',
   },
-  {}, // 4
+  {
+    // 4 - Conciliación bancaria con cruce exacto y difuso
+    repo: 'https://github.com/Fabricio-BI/Depuracion_Masiva_de_Registros_Bancarios',
+  },
   {}, // 5
   {}, // 6
 ]
