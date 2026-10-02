@@ -148,6 +148,18 @@ export function CaseStudy({ index }: { index: number }) {
                 />
               </div>
             </figure>
+          ) : links.dashboard ? (
+            <figure className="mt-12 border border-border bg-card">
+              <div className="h-[480px] w-full sm:aspect-video sm:h-auto">
+                <iframe
+                  src={links.dashboard}
+                  title={project.title}
+                  loading="lazy"
+                  allowFullScreen
+                  className="size-full"
+                />
+              </div>
+            </figure>
           ) : (
             <figure className="mt-12 border border-foreground bg-foreground text-background">
               <figcaption className="flex items-center justify-between border-b border-background/10 px-5 py-3">

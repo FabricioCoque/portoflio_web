@@ -112,7 +112,7 @@ const en = {
       {
         title: 'Automated Payment Gateway Reconciliation',
         description:
-          'Python pipeline that cross-checks the ERP, the payment gateway, and the bank, applies gateway commissions and SRI tax withholdings to separate expected differences from genuine errors, and publishes the results to a historical database and a Power BI dashboard.',
+          'Python pipeline that cross-checks the ERP, the payment gateway, and the bank, applies gateway commissions and SRI tax withholdings to separate expected differences from genuine errors, and publishes the results to a historical database and a Power BI dashboard. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '3,024', label: 'synthetic transactions classified' },
         stack: ['Python', 'Pandas', 'SQLite', 'Power BI'],
       },
@@ -126,7 +126,7 @@ const en = {
       {
         title: 'Automated PDF Invoice Extraction to Excel',
         description:
-          'Python workflow that reads electronic PDF invoices, extracts their data using supplier-specific templates with an AI model as a fallback, validates the amounts, and delivers an Excel report ready for the tax transactional annex and accounting entry.',
+          'Python workflow that reads electronic PDF invoices, extracts their data using supplier-specific templates with an AI model as a fallback, validates the amounts, and delivers an Excel report ready for the tax transactional annex and accounting entry. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '12', label: 'synthetic invoices processed' },
         stack: ['Python', 'Regex', 'Gemini API', 'Excel'],
       },
@@ -138,11 +138,11 @@ const en = {
         stack: ['Python', 'RapidFuzz', 'Pandas', 'Openpyxl'],
       },
       {
-        title: 'P&L & Balance Sheet in Power BI',
+        title: 'P&L and Balance Sheet in Power BI',
         description:
-          'A solution that turns the P&L and Balance Sheet into a dynamic narrative focused on explaining variances and monitoring solvency.',
-        metric: { value: '00%', label: 'key result metric' },
-        stack: ['Power BI', 'DAX', 'Star Schema'],
+          'Power BI report that turns the Income Statement and Balance Sheet into a dynamic narrative: it explains variances against the prior year and monitors solvency with liquidity and leverage indicators, following IBCS standards. Inspired by a real-world problem; built and tested with synthetic data.',
+        metric: { value: '3', label: 'analyses combined in one report' },
+        stack: ['Power Query', 'Power BI', 'DAX', 'Financial Modeling'],
       },
       {
         title: 'Accounts Receivable Control',
@@ -172,7 +172,7 @@ const en = {
     items: [
       {
         problem:
-          'At month-end, the ERP, the payment gateway (Datafast, Medianet, PayPhone), and the bank have to agree, but they are not connected to each other. The ERP bills the gross amount, the gateway deducts its commission, and the bank deposits the net amount after Ecuadorian tax withholdings (SRI), so no two figures match at first glance. The accounting team ends up cross-checking the reports by hand, and errors slip through along the way.',
+          'At month-end, the ERP, the payment gateway (Datafast, Medianet, PayPhone), and the bank have to agree, but they are not connected to each other. The ERP bills the gross amount, the gateway deducts its commission, and the bank deposits the net amount after Ecuadorian tax withholdings (SRI), so no two figures match at first glance. The accounting team ends up cross-checking the reports by hand, and errors slip through along the way. This is a real and common problem for businesses that accept card payments; to develop the solution I used synthetic data that simulates that scenario.',
         challenges: [
           'Three sources with different formats and no guaranteed common identifier',
           'Normal differences (commission and withholdings) mixed in with real errors',
@@ -194,7 +194,7 @@ const en = {
           { value: '3', label: 'Exception types: overcharged commission, unrecorded chargeback, missing from gateway' },
         ],
         outcome:
-          'In the synthetic-data test (3,024 transactions, July to December 2024), the system flagged 45 overcharged commissions ($100.70 recoverable), 24 chargebacks not recorded in the ERP ($5,060.69 at risk), and 30 sales with no gateway confirmation ($12,872.18 untraceable). The amounts come from test data and illustrate the kind of finding the system produces.',
+          'In the test with synthetic data that simulates a real operating scenario (3,024 transactions, July to December 2024), the system flagged 45 overcharged commissions ($100.70 recoverable), 24 chargebacks not recorded in the ERP ($5,060.69 at risk), and 30 sales with no gateway confirmation ($12,872.18 untraceable). The amounts come from test data and illustrate the kind of finding the system produces.',
       },
       {
         problem:
@@ -223,7 +223,7 @@ const en = {
       },
       {
         problem:
-          'The accounting team spends many hours downloading invoices from recurring suppliers and manually typing 49-digit authorization numbers, taxpayer IDs (RUC), issue dates, and tax breakdowns. The volume delays the close, and manual entry increases the risk of errors.',
+          'The accounting team spends many hours downloading invoices from recurring suppliers and manually typing 49-digit authorization numbers, taxpayer IDs (RUC), issue dates, and tax breakdowns. The volume delays the close, and manual entry increases the risk of errors. This is a real and recurring problem for accounting teams; to develop the solution I used synthetic invoices that follow the real structure of electronic invoices.',
         challenges: [
           'Invoice formats that differ by issuer',
           'New suppliers that are not in the catalog',
@@ -273,7 +273,32 @@ const en = {
         outcome:
           'In the test with synthetic data that simulates a real operating scenario, 356 of 466 ledger records were reconciled: 350 by exact match and 6 that only fuzzy matching could identify ($8,694.63). 110 pending entries ($167,731.45) and 18 bank deposits with no accounting entry ($747,664.25) remained, separated into two sheets for review. The team reviews only what truly does not add up and validates approximate matches using their similarity score.',
       },
-      enPlaceholderStudy,
+      {
+        problem:
+          'Traditional financial reports are static and dense. Connecting operating profitability (P&L) with the capital structure (Balance Sheet) is hard; knowing how much was earned or lost is easy, but understanding where it comes from takes hours of manual reconciliation, and liquidity or debt risks take a long time to spot among so much text. This is a real and common problem in financial management; to develop the solution I used synthetic data that simulates the financial statements of a company.',
+        challenges: [
+          'P&L and Balance Sheet kept apart, with no model connecting them',
+          'Explaining variances instead of just showing them',
+          'Spotting liquidity and debt risks at a glance',
+          'Keeping the executive read clear with a consistent visual standard',
+        ],
+        solution:
+          'I built the report in three stages. First, I structured the chart of accounts and standardized the accounting records with Power Query to consolidate the financial statements. Then I modeled in DAX the accumulation matrices, the variances against the prior year, and the liquidity and leverage indicators. Finally, I designed the interface in Figma following IBCS standards. The report includes a waterfall chart showing how the margin erodes from gross revenue to net income, a solvency panel with the capital structure and short- versus long-term debt, and a cross-statement view with ROA and net working capital.',
+        architecture: [
+          { title: 'Financial Statements', detail: 'P&L and Balance Sheet' },
+          { title: 'Power Query', detail: 'standardized chart of accounts' },
+          { title: 'DAX Model', detail: 'variances and KPIs' },
+          { title: 'IBCS Design', detail: 'Figma prototype' },
+          { title: 'Power BI Report', detail: 'waterfall, solvency, ROA' },
+        ],
+        results: [
+          { value: '2', label: 'Financial statements connected in one model (P&L and Balance Sheet)' },
+          { value: '3', label: 'Combined analyses: variances, solvency, and cross-statement view' },
+          { value: 'IBCS', label: 'Standard applied to the report design' },
+        ],
+        outcome:
+          'Readers can go from net income to its causes with the waterfall chart and assess solvency without switching tools. The report was developed with synthetic data that simulates the financial statements of a company.',
+      },
       enPlaceholderStudy,
     ],
   },
@@ -396,7 +421,7 @@ const es: Dictionary = {
       {
         title: 'Conciliación Automatizada de Pasarelas de Pago',
         description:
-          'Pipeline en Python que cruza el ERP, la pasarela de pago y el banco, aplica las comisiones y retenciones del SRI para separar diferencias esperadas de errores reales, y publica los resultados en una base histórica y un dashboard de Power BI.',
+          'Pipeline en Python que cruza el ERP, la pasarela de pago y el banco, aplica las comisiones y retenciones del SRI para separar diferencias esperadas de errores reales, y publica los resultados en una base histórica y un dashboard de Power BI. Inspirado en un problema real; desarrollado con datos sintéticos.',
         metric: { value: '3,024', label: 'transacciones sintéticas clasificadas' },
         stack: ['Python', 'Pandas', 'SQLite', 'Power BI'],
       },
@@ -410,7 +435,7 @@ const es: Dictionary = {
       {
         title: 'Extracción Automatizada de Facturas PDF a Excel',
         description:
-          'Flujo en Python que lee facturas electrónicas en PDF, extrae sus datos con plantillas por proveedor y un modelo de IA como respaldo, valida los montos y entrega un Excel listo para el anexo transaccional y el registro contable.',
+          'Flujo en Python que lee facturas electrónicas en PDF, extrae sus datos con plantillas por proveedor y un modelo de IA como respaldo, valida los montos y entrega un Excel listo para el anexo transaccional y el registro contable. Inspirado en un problema real; desarrollado con datos sintéticos.',
         metric: { value: '12', label: 'facturas sintéticas procesadas' },
         stack: ['Python', 'Regex', 'Gemini API', 'Excel'],
       },
@@ -422,10 +447,11 @@ const es: Dictionary = {
         stack: ['Python', 'RapidFuzz', 'Pandas', 'Openpyxl'],
       },
       {
-        title: 'P&L & Hoja de Balance en Power BI',
-        description: 'Solución que transforma el P&L y la Hoja de Balance en una narrativa dinámica centrada en la explicación de variaciones y el monitoreo de solvencia.',
-        metric: { value: '00%', label: 'métrica de resultado clave' },
-        stack: ['Power BI', 'DAX','Star Schema'],
+        title: 'P&L y Balance General en Power BI',
+        description:
+          'Reporte en Power BI que convierte el Estado de Resultados y el Balance General en una narrativa dinámica: explica las variaciones frente al año anterior y monitorea la solvencia con indicadores de liquidez y apalancamiento, bajo estándares IBCS. Inspirado en un problema real; desarrollado con datos sintéticos.',
+        metric: { value: '3', label: 'análisis integrados en un solo reporte' },
+        stack: ['Power Query', 'Power BI', 'DAX', 'Modelado financiero'],
       },
       {
         title: 'Control de Cartera',
@@ -454,7 +480,7 @@ const es: Dictionary = {
     items: [
       {
         problem:
-          'Al cierre del mes, el ERP, la pasarela (Datafast, Medianet, PayPhone) y el banco deben coincidir, pero no se comunican entre sí. El ERP factura el valor bruto, la pasarela descuenta su comisión y el banco deposita el neto tras las retenciones del SRI, así que ninguna cifra coincide a primera vista. El equipo contable termina cruzando los reportes a mano, y en ese proceso se escapan errores.',
+          'Al cierre del mes, el ERP, la pasarela (Datafast, Medianet, PayPhone) y el banco deben coincidir, pero no se comunican entre sí. El ERP factura el valor bruto, la pasarela descuenta su comisión y el banco deposita el neto tras las retenciones del SRI, así que ninguna cifra coincide a primera vista. El equipo contable termina cruzando los reportes a mano, y en ese proceso se escapan errores. Es un problema real y frecuente en empresas que cobran con tarjeta; para desarrollar la solución usé datos sintéticos que simulan ese escenario.',
         challenges: [
           'Tres fuentes con formatos distintos y sin identificador común garantizado',
           'Diferencias normales (comisión y retenciones) mezcladas con errores reales',
@@ -476,7 +502,7 @@ const es: Dictionary = {
           { value: '3', label: 'Tipos de novedad: comisión de más, chargeback no registrado, sin pasarela' },
         ],
         outcome:
-          'En la prueba con datos sintéticos (3,024 transacciones, de julio a diciembre de 2024), el sistema identificó 45 comisiones cobradas de más ($100.70 recuperables), 24 chargebacks no registrados en el ERP ($5,060.69 en riesgo) y 30 ventas sin confirmación de la pasarela ($12,872.18 sin trazabilidad). Los montos corresponden a datos de prueba e ilustran el tipo de hallazgo que produce el sistema.',
+          'En la prueba con datos sintéticos que simulan un escenario operativo real (3,024 transacciones, de julio a diciembre de 2024), el sistema identificó 45 comisiones cobradas de más ($100.70 recuperables), 24 chargebacks no registrados en el ERP ($5,060.69 en riesgo) y 30 ventas sin confirmación de la pasarela ($12,872.18 sin trazabilidad). Los montos corresponden a datos de prueba e ilustran el tipo de hallazgo que produce el sistema.',
       },
       {
         problem:
@@ -505,7 +531,7 @@ const es: Dictionary = {
       },
       {
         problem:
-          'El equipo contable dedica muchas horas a descargar las facturas de proveedores recurrentes y a transcribir a mano números de autorización de 49 dígitos, RUC, fechas de emisión y desgloses de impuestos. El volumen retrasa el cierre y la digitación manual aumenta el riesgo de errores.',
+          'El equipo contable dedica muchas horas a descargar las facturas de proveedores recurrentes y a transcribir a mano números de autorización de 49 dígitos, RUC, fechas de emisión y desgloses de impuestos. El volumen retrasa el cierre y la digitación manual aumenta el riesgo de errores. Es un problema real y recurrente en los equipos contables; para desarrollar la solución usé facturas sintéticas que siguen la estructura real de las facturas electrónicas.',
         challenges: [
           'Formatos de factura distintos según el emisor',
           'Proveedores nuevos que no están en el catálogo',
@@ -555,7 +581,32 @@ const es: Dictionary = {
         outcome:
           'En la prueba con datos sintéticos que simulan un escenario operativo real, de 466 registros del mayor se conciliaron 356: 350 por cruce exacto y 6 que solo el cruce difuso pudo identificar ($8,694.63). Quedaron 110 partidas pendientes ($167,731.45) y 18 depósitos del banco sin registro contable ($747,664.25), separados en dos hojas para su revisión. El equipo revisa solo lo que realmente no cuadra y valida las coincidencias aproximadas con su puntaje.',
       },
-      esPlaceholderStudy,
+      {
+        problem:
+          'Los reportes financieros tradicionales son estáticos y densos. Conectar la rentabilidad operativa (P&L) con la estructura patrimonial (Balance General) es difícil; saber cuánto se ganó o perdió es sencillo, pero entender de dónde viene exige horas de reconciliación manual, y los riesgos de liquidez o endeudamiento tardan en detectarse entre tanto texto. Es un problema real y frecuente en la gestión financiera; para desarrollar la solución usé datos sintéticos que simulan los estados financieros de una empresa.',
+        challenges: [
+          'P&L y Balance General en archivos separados, sin un modelo que los conecte',
+          'Explicar las variaciones, no solo mostrarlas',
+          'Detectar riesgos de liquidez y endeudamiento de un vistazo',
+          'Mantener una lectura ejecutiva clara con un estándar visual consistente',
+        ],
+        solution:
+          'Construí el reporte en tres etapas. Primero estructuré el plan de cuentas y estandaricé los registros contables con Power Query para consolidar los estados financieros. Luego modelé en DAX las matrices de acumulación, las variaciones frente al año anterior y los indicadores de liquidez y apalancamiento. Por último diseñé la interfaz en Figma bajo normas IBCS. El reporte incluye un gráfico de cascada que muestra cómo se erosiona el margen desde los ingresos brutos hasta la utilidad neta, un panel de solvencia con la estructura de capital y la deuda de corto y largo plazo, y un cruce de ambos estados con ROA y capital de trabajo neto.',
+        architecture: [
+          { title: 'Estados financieros', detail: 'P&L y Balance General' },
+          { title: 'Power Query', detail: 'plan de cuentas estandarizado' },
+          { title: 'Modelo DAX', detail: 'variaciones y KPIs' },
+          { title: 'Diseño IBCS', detail: 'prototipo en Figma' },
+          { title: 'Reporte Power BI', detail: 'cascada, solvencia, ROA' },
+        ],
+        results: [
+          { value: '2', label: 'Estados financieros conectados en un solo modelo (P&L y Balance General)' },
+          { value: '3', label: 'Análisis integrados: variaciones, solvencia y cruce de estados' },
+          { value: 'IBCS', label: 'Estándar aplicado al diseño del reporte' },
+        ],
+        outcome:
+          'El lector puede ir de la utilidad neta a sus causas con el gráfico de cascada y evaluar la solvencia sin cambiar de herramienta. El reporte se desarrolló con datos sintéticos que simulan los estados financieros de una empresa.',
+      },
       esPlaceholderStudy,
     ],
   },

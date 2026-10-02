@@ -114,7 +114,8 @@ def extract(path: str) -> dict:
 // Enlaces por proyecto (mismo orden que los proyectos: 1 al 6).
 // repo:  dirección completa del repositorio en GitHub (si no hay, el botón "View Code" no se muestra)
 // video: solo el identificador del video de YouTube, o sea lo que va después de youtu.be/
-export type ProjectLinks = { repo?: string; video?: string }
+// dashboard: enlace de "Publicar en la Web" de Power BI (https://app.powerbi.com/view?r=...); se usa si no hay video
+export type ProjectLinks = { repo?: string; video?: string; dashboard?: string }
 
 export const projectLinks: ProjectLinks[] = [
   {
@@ -131,6 +132,10 @@ export const projectLinks: ProjectLinks[] = [
     // 4 - Conciliación bancaria con cruce exacto y difuso
     repo: 'https://github.com/Fabricio-BI/Depuracion_Masiva_de_Registros_Bancarios',
   },
-  {}, // 5
+  {
+    // 5 - P&L y Balance General en Power BI
+    dashboard:
+      'https://app.powerbi.com/view?r=eyJrIjoiNWJjOWYzMWEtMmZiMC00NDc2LWFkOTEtYjVhZTRiNDE3NjJkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
+  },
   {}, // 6
 ]
