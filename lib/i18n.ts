@@ -112,7 +112,7 @@ const en = {
       {
         title: 'Automated Payment Gateway Reconciliation',
         description:
-          'Python pipeline that cross-checks the ERP, the payment gateway, and the bank, applies gateway commissions and SRI tax withholdings to separate expected differences from genuine errors, and publishes the results to a historical database and a Power BI dashboard. Inspired by a real-world problem; built and tested with synthetic data.',
+          'Python pipeline that cross-checks the ERP, the payment gateway, and the bank, applies gateway commissions and tax withholdings to separate expected differences from genuine errors, and publishes the results to a historical database and a Power BI dashboard. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '3,024', label: 'synthetic transactions classified' },
         stack: ['Python', 'Pandas', 'SQLite', 'Power BI'],
       },
@@ -126,7 +126,7 @@ const en = {
       {
         title: 'Automated PDF Invoice Extraction to Excel',
         description:
-          'Python workflow that reads electronic PDF invoices, extracts their data using supplier-specific templates with an AI model as a fallback, validates the amounts, and delivers an Excel report ready for the tax transactional annex and accounting entry. Inspired by a real-world problem; built and tested with synthetic data.',
+          'Python workflow that reads electronic PDF invoices, extracts their data using supplier-specific templates with an AI model as a fallback, validates the amounts, and delivers an Excel report ready for tax reporting and accounting entry. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '12', label: 'synthetic invoices processed' },
         stack: ['Python', 'Regex', 'Gemini API', 'Excel'],
       },
@@ -145,9 +145,9 @@ const en = {
         stack: ['Power Query', 'Power BI', 'DAX', 'Financial Modeling'],
       },
       {
-        title: 'Accounts Receivable and Delinquency Risk',
+        title: 'Accounts Receivable and Collection Risk',
         description:
-          'Power BI dashboard built on a star schema that calculates delinquency aging, a risk score, and balance variances. It shows the gap between billed and collected amounts in a waterfall chart, with customer-level detail. Inspired by a real-world problem; built and tested with synthetic data.',
+          'Power BI dashboard built on a star schema that calculates days-past-due aging, a risk score, and balance variances. It shows the gap between billed and collected amounts in a waterfall chart, with customer-level detail. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '3', label: 'analyses combined in one dashboard' },
         stack: ['Power BI', 'Power Query', 'DAX', 'Star Schema'],
       },
@@ -172,7 +172,7 @@ const en = {
     items: [
       {
         problem:
-          'At month-end, the ERP, the payment gateway (Datafast, Medianet, PayPhone), and the bank have to agree, but they are not connected to each other. The ERP bills the gross amount, the gateway deducts its commission, and the bank deposits the net amount after Ecuadorian tax withholdings (SRI), so no two figures match at first glance. The accounting team ends up cross-checking the reports by hand, and errors slip through along the way. This is a real and common problem for businesses that accept card payments; to develop the solution I used synthetic data that simulates that scenario.',
+          'At month-end, the ERP, the payment gateway (Datafast, Medianet, PayPhone), and the bank have to agree, but they are not connected to each other. The ERP bills the gross amount, the gateway deducts its commission, and the bank deposits the net amount after tax withholdings, so no two figures match at first glance. The accounting team ends up cross-checking the reports by hand, and errors slip through along the way. This is a real and common problem for businesses that accept card payments; to develop the solution I used synthetic data that simulates that scenario.',
         challenges: [
           'Three sources with different formats and no guaranteed common identifier',
           'Normal differences (commission and withholdings) mixed in with real errors',
@@ -180,10 +180,10 @@ const en = {
           'A process that someone without programming knowledge must be able to run',
         ],
         solution:
-          'I built a three-stage pipeline. First, it cleans and normalizes the three reports, applying SRI tax withholdings and each payment gateway commission rate. Next, it cross-matches the transactions and classifies each one by status and type of exception. Finally, it loads the results into SQLite, updating by transaction ID, so a sale that was pending one week becomes reconciled the next without being duplicated. It runs with a single command or a .bat file, and Power BI reads the output.',
+          'I built a three-stage pipeline. First, it cleans and normalizes the three reports, applying the tax withholdings and the commission rates of each payment gateway. Next, it cross-matches the transactions and classifies each one by status and type of exception. Finally, it loads the results into SQLite, updating by transaction ID, so a sale that was pending one week becomes reconciled the next without being duplicated. It runs with a single command or a .bat file, and Power BI reads the output.',
         architecture: [
           { title: 'Source Reports', detail: 'bank · gateway · ERP' },
-          { title: 'Cleaning (ETL)', detail: 'SRI withholdings' },
+          { title: 'Cleaning (ETL)', detail: 'tax withholdings' },
           { title: 'Matching', detail: 'exception classification' },
           { title: 'Historical Store', detail: 'SQLite · by tx_id' },
           { title: 'Dashboard', detail: 'Power BI' },
@@ -262,16 +262,16 @@ const en = {
           { title: 'Ledger & Banks', detail: 'Excel' },
           { title: 'Exact Match', detail: 'reference + amount' },
           { title: 'Fuzzy Match', detail: 'similarity ≥ 80' },
-          { title: 'Exceptions', detail: 'pending and surplus' },
+          { title: 'Exceptions', detail: 'unmatched items' },
           { title: 'Excel Report', detail: '6 sheets' },
         ],
         results: [
           { value: '356/466', label: 'Ledger records reconciled (350 exact and 6 by fuzzy matching)' },
           { value: '6', label: 'Matches found only by fuzzy matching ($8,694.63)' },
-          { value: '128', label: 'Items for review: 110 pending entries and 18 unmatched deposits' },
+          { value: '128', label: 'Items for review: 110 unmatched ledger items and 18 unmatched bank deposits' },
         ],
         outcome:
-          'In the test with synthetic data that simulates a real operating scenario, 356 of 466 ledger records were reconciled: 350 by exact match and 6 that only fuzzy matching could identify ($8,694.63). 110 pending entries ($167,731.45) and 18 bank deposits with no accounting entry ($747,664.25) remained, separated into two sheets for review. The team reviews only what truly does not add up and validates approximate matches using their similarity score.',
+          'In the test with synthetic data that simulates a real operating scenario, 356 of 466 ledger records were reconciled: 350 by exact match and 6 that only fuzzy matching could identify ($8,694.63). 110 unmatched ledger items ($167,731.45) and 18 bank deposits with no accounting entry ($747,664.25) remained, separated into two sheets for review. The team reviews only what truly does not add up and validates approximate matches using their similarity score.',
       },
       {
         problem:
@@ -301,15 +301,15 @@ const en = {
       },
       {
         problem:
-          'Traditional accounts receivable management does not give a structured view of the gap between what was billed and what was actually collected. It is hard to reconcile billed, collected, and outstanding balances in real time; collection is reactive because the portfolio is not classified by delinquency risk, and continuous payment delays erode cash flow and working capital. This is a real and common problem in accounts receivable management; to develop the solution I used synthetic data that simulates a customer portfolio.',
+          'Traditional accounts receivable management does not give a structured view of the gap between what was billed and what was actually collected. It is hard to reconcile billed, collected, and outstanding balances in real time; collection is reactive because the portfolio is not classified by risk of late payment, and continuous payment delays erode cash flow and working capital. This is a real and common problem in accounts receivable management; to develop the solution I used synthetic data that simulates a customer receivables portfolio.',
         challenges: [
           'Reconciling billed, collected, and outstanding balances in one place',
-          'Classifying the portfolio by delinquency risk based on its aging',
+          'Classifying receivables by risk of late payment, based on days past due',
           'Moving from the overall state of the portfolio to each customer without losing context',
           'Designing a dashboard that reduces cognitive load and speeds up decisions',
         ],
         solution:
-          'I built the dashboard in three stages. First, I cleaned and standardized the transactional billing and payments data with Power Query. Then I designed a star-schema dimensional model and wrote the delinquency aging, risk scoring, and balance variance calculations in DAX. Finally, I laid out the dashboard in Figma with a fast analytical read in mind. The dashboard includes a waterfall chart with the gap between billed, collected, and outstanding amounts; a risk segmentation by days-past-due bucket; and a customer view with the pending invoices, due dates, and credit status of each account.',
+          'I built the dashboard in three stages. First, I cleaned and standardized the transactional billing and payments data with Power Query. Then I designed a star-schema dimensional model and wrote the aging, risk scoring, and balance variance calculations in DAX. Finally, I laid out the dashboard in Figma with a fast analytical read in mind. The dashboard includes a waterfall chart with the gap between billed, collected, and outstanding amounts; a risk segmentation by days-past-due bucket; and a customer view with the pending invoices, due dates, and credit status of each account.',
         architecture: [
           { title: 'Billing & Payments', detail: 'transactional data' },
           { title: 'Power Query', detail: 'cleaning and standardization' },
@@ -318,12 +318,12 @@ const en = {
           { title: 'Power BI Dashboard', detail: 'waterfall, risk, customer detail' },
         ],
         results: [
-          { value: '3', label: 'Combined analyses: collection gap, delinquency risk, and customer detail' },
+          { value: '3', label: 'Combined analyses: collection gap, late-payment risk, and customer detail' },
           { value: 'Aging', label: 'Risk segmentation by days-past-due bucket' },
           { value: '2', label: 'Reading levels: overall portfolio and customer or invoice detail' },
         ],
         outcome:
-          'The dashboard helps direct collection efforts to the accounts with the greatest financial impact and supports decisions on credit policies and provisions for uncollectible accounts. Developed with synthetic data that simulates a customer portfolio.',
+          'The dashboard helps direct collection efforts to the accounts with the greatest financial impact and supports decisions on credit policies and provisions for uncollectible accounts. Developed with synthetic data that simulates a customer receivables portfolio.',
       },
     ],
   },
@@ -446,7 +446,7 @@ const es: Dictionary = {
       {
         title: 'Conciliación Automatizada de Pasarelas de Pago',
         description:
-          'Pipeline en Python que cruza el ERP, la pasarela de pago y el banco, aplica las comisiones y retenciones del SRI para separar diferencias esperadas de errores reales, y publica los resultados en una base histórica y un dashboard de Power BI. Inspirado en un problema real; desarrollado con datos sintéticos.',
+          'Pipeline en Python que cruza el ERP, la pasarela de pago y el banco, aplica las comisiones y las retenciones de impuestos para separar diferencias esperadas de errores reales, y publica los resultados en una base histórica y un dashboard de Power BI. Inspirado en un problema real; desarrollado con datos sintéticos.',
         metric: { value: '3,024', label: 'transacciones sintéticas clasificadas' },
         stack: ['Python', 'Pandas', 'SQLite', 'Power BI'],
       },
@@ -506,7 +506,7 @@ const es: Dictionary = {
     items: [
       {
         problem:
-          'Al cierre del mes, el ERP, la pasarela (Datafast, Medianet, PayPhone) y el banco deben coincidir, pero no se comunican entre sí. El ERP factura el valor bruto, la pasarela descuenta su comisión y el banco deposita el neto tras las retenciones del SRI, así que ninguna cifra coincide a primera vista. El equipo contable termina cruzando los reportes a mano, y en ese proceso se escapan errores. Es un problema real y frecuente en empresas que cobran con tarjeta; para desarrollar la solución usé datos sintéticos que simulan ese escenario.',
+          'Al cierre del mes, el ERP, la pasarela (Datafast, Medianet, PayPhone) y el banco deben coincidir, pero no se comunican entre sí. El ERP factura el valor bruto, la pasarela descuenta su comisión y el banco deposita el neto tras las retenciones de impuestos, así que ninguna cifra coincide a primera vista. El equipo contable termina cruzando los reportes a mano, y en ese proceso se escapan errores. Es un problema real y frecuente en empresas que cobran con tarjeta; para desarrollar la solución usé datos sintéticos que simulan ese escenario.',
         challenges: [
           'Tres fuentes con formatos distintos y sin identificador común garantizado',
           'Diferencias normales (comisión y retenciones) mezcladas con errores reales',
@@ -514,10 +514,10 @@ const es: Dictionary = {
           'Un proceso que debe poder operar una persona sin conocimientos de programación',
         ],
         solution:
-          'Construí un pipeline en tres etapas. Primero limpia y normaliza los tres reportes, aplicando las retenciones del SRI y las comisiones de cada pasarela. Luego cruza las transacciones y clasifica cada una según su estado y tipo de novedad. Por último, carga el resultado en SQLite actualizando por identificador de transacción, de modo que una venta pendiente una semana pase a conciliada la siguiente sin duplicarse. Se ejecuta con un solo comando o con un archivo .bat, y Power BI lee el resultado.',
+          'Construí un pipeline en tres etapas. Primero limpia y normaliza los tres reportes, aplicando las retenciones de impuestos y las comisiones de cada pasarela. Luego cruza las transacciones y clasifica cada una según su estado y tipo de novedad. Por último, carga el resultado en SQLite actualizando por identificador de transacción, de modo que una venta pendiente una semana pase a conciliada la siguiente sin duplicarse. Se ejecuta con un solo comando o con un archivo .bat, y Power BI lee el resultado.',
         architecture: [
           { title: 'Reportes fuente', detail: 'banco · pasarela · ERP' },
-          { title: 'Limpieza (ETL)', detail: 'retenciones SRI' },
+          { title: 'Limpieza (ETL)', detail: 'retenciones de impuestos' },
           { title: 'Cruce', detail: 'clasificación de novedades' },
           { title: 'Base histórica', detail: 'SQLite · por tx_id' },
           { title: 'Dashboard', detail: 'Power BI' },

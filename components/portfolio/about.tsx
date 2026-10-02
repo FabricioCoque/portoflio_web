@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import perfil from '@/public/images/perfil.jpg'
 import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
 import { SectionHeading } from './section-heading'
@@ -16,11 +17,9 @@ export function About() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div className="flex flex-col gap-5 leading-relaxed text-muted-foreground">
             <Image
-              src="/images/perfil.jpg"
+              src={perfil}
               alt={site.name}
-              width={640}
-              height={640}
-              className="size-36 rounded-full border border-border object-cover object-top sm:size-40"
+              className="size-36 self-center rounded-full border border-border object-cover object-top sm:size-40"
             />
             {a.paragraphs.map((text, i) => (
               <p key={i} className="text-pretty">
