@@ -29,13 +29,15 @@ export function Expertise() {
           description={e.description}
           tone="dark"
         />
-        <div className="grid gap-4 md:grid-cols-3">
+
+        {/* Contenedor de la rejilla unida sin espacios */}
+        <div className="grid grid-cols-1 md:grid-cols-3 border border-background/15 bg-background/15 gap-[1px]">
           {e.categories.map(({ title, description, skills }, i) => {
             const { icon: Icon, code } = visuals[i]
             return (
               <article
                 key={code}
-                className="group flex flex-col rounded-xl border border-background/10 bg-background/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-background/25 hover:bg-background/[0.06] hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.6)]"
+                className="group flex flex-col bg-foreground p-8 transition-colors duration-200 hover:bg-background/[0.03]"
               >
                 <div className="mb-6 flex items-center justify-between">
                   <span className="flex size-10 items-center justify-center rounded-lg border border-background/15 bg-background/5 transition-colors group-hover:border-[#5aa3ea]/40 group-hover:bg-[#5aa3ea]/10">
