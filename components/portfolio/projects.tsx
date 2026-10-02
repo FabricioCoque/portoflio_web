@@ -22,20 +22,22 @@ export function Projects() {
           title={p.title}
           description={p.description}
         />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+
+        {/* Rejilla unida con bordes compartidos (3 columnas, 2 filas para los 6 proyectos) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-border bg-border gap-[1px]">
           {p.items.map(({ title, description, stack }, i) => {
             const Icon = icons[i] ?? FolderOpen
             const repo = projectLinks[i]?.repo
             return (
               <article
                 key={i}
-                className="group relative flex flex-col overflow-hidden rounded-none border border-border bg-background transition-all duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_16px_40px_-16px_rgba(0,0,0,0.18)]"
+                className="group relative flex flex-col overflow-hidden bg-background p-6 transition-colors duration-200 hover:bg-muted/50"
               >
-                <div className="flex items-center justify-between border-b border-border px-6 py-4">
+                <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
                   <span className="font-mono text-xs text-muted-foreground">{`project_0${i + 1}`}</span>
                   <Icon className="size-4 text-muted-foreground transition-colors group-hover:text-brand" aria-hidden="true" />
                 </div>
-                <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-1 flex-col">
                   <h3 className="text-lg leading-snug font-semibold tracking-tight text-balance">{title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
 
