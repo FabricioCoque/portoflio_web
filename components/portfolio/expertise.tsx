@@ -30,14 +30,14 @@ export function Expertise() {
           tone="dark"
         />
 
-        {/* Contenedor de la rejilla unida sin espacios */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border border-background/15 bg-background/15 gap-[1px]">
+        {/* Rejilla con líneas horizontales arriba/abajo y divisores verticales solo entre cuadros */}
+        <div className="grid grid-cols-1 md:grid-cols-3 border-y border-background/15 md:divide-x md:divide-background/15">
           {e.categories.map(({ title, description, skills }, i) => {
             const { icon: Icon, code } = visuals[i]
             return (
               <article
                 key={code}
-                className="group flex flex-col bg-foreground p-8 transition-colors duration-200 hover:bg-background/[0.03]"
+                className="group flex flex-col bg-background/[0.02] p-8 transition-colors duration-200 hover:bg-background/[0.05]"
               >
                 <div className="mb-6 flex items-center justify-between">
                   <span className="flex size-10 items-center justify-center rounded-lg border border-background/15 bg-background/5 transition-colors group-hover:border-[#5aa3ea]/40 group-hover:bg-[#5aa3ea]/10">
