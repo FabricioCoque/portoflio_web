@@ -12,9 +12,9 @@ export function SiteHeader() {
   const isHome = pathname === '/'
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-md">
-      {/* Contenedor Grid: 2 columnas en móvil, 3 columnas exactas a partir de pantallas medianas */}
-      <div className="mx-auto grid h-14 max-w-6xl grid-cols-2 md:grid-cols-3 items-center px-5 md:px-8">
+    <header className="sticky top-4 z-50 px-4 md:px-8">
+      {/* Contenedor flotante ajustado (Ancho máximo controlado, bordes definidos y fondo sólido/semitransparente) */}
+      <div className="mx-auto grid h-14 max-w-5xl grid-cols-2 md:grid-cols-3 items-center rounded-none border border-border/80 bg-background/90 px-5 shadow-lg backdrop-blur-md md:px-8">
 
         {/* Columna 1 (Izquierda): Logotipo y marca */}
         <div className="flex items-center justify-start">
@@ -30,7 +30,7 @@ export function SiteHeader() {
           </Link>
         </div>
 
-        {/* Columna 2 (Centro exacto): Enlaces de navegación (Oculto en móvil, visible en md+) */}
+        {/* Columna 2 (Centro exacto): Enlaces de navegación */}
         <div className="hidden md:flex items-center justify-center">
           <nav aria-label="Primary" className="flex items-center gap-1">
             {t.nav.links.map((link) => {
