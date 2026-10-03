@@ -1,12 +1,32 @@
 'use client'
 
+import Image from 'next/image'
+import type { StaticImageData } from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ArrowUpRight, FileSearch, FolderOpen, GitMerge, ShoppingCart } from 'lucide-react'
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BarChart3,
+  FileSearch,
+  FolderOpen,
+  GitMerge,
+  Landmark,
+  ShoppingCart,
+  Wallet,
+} from 'lucide-react'
 import { projectLinks, projectSlug } from '@/lib/projects'
+import thumb1 from '@/public/images/proyectos/proyecto-1.jpg'
+import thumb3 from '@/public/images/proyectos/proyecto-3.jpg'
+import thumb4 from '@/public/images/proyectos/proyecto-4.jpg'
+import thumb5 from '@/public/images/proyectos/proyecto-5.jpg'
+import thumb6 from '@/public/images/proyectos/proyecto-6.jpg'
 import { useLanguage } from './language-provider'
 import { SectionHeading } from './section-heading'
 
-const icons = [GitMerge, ShoppingCart, FileSearch]
+const icons = [GitMerge, ShoppingCart, FileSearch, Landmark, BarChart3, Wallet]
+
+// Miniatura de cada proyecto, en el mismo orden (1 al 6). null = sin miniatura todavía.
+const thumbs: (StaticImageData | null)[] = [thumb1, null, thumb3, thumb4, thumb5, thumb6]
 
 export function Projects() {
   const { t } = useLanguage()
@@ -28,51 +48,65 @@ export function Projects() {
           {p.items.map(({ title, description, stack }, i) => {
             const Icon = icons[i] ?? FolderOpen
             const repo = projectLinks[i]?.repo
+            const thumb = thumbs[i]
             return (
               <article
                 key={i}
-                className="group relative flex flex-col overflow-hidden bg-background p-6 transition-colors duration-200 hover:bg-muted/50"
+                className="group relative flex flex-col overflow-hidden bg-background transition-colors duration-200 hover:bg-muted/50"
               >
-                <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
-                  <span className="font-mono text-xs text-muted-foreground">{`project_0${i + 1}`}</span>
-                  <Icon className="size-4 text-muted-foreground transition-colors group-hover:text-brand" aria-hidden="true" />
-                </div>
-                <div className="flex flex-1 flex-col">
-                  <h3 className="text-lg leading-snug font-semibold tracking-tight text-balance">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                {thumb ? (
+                  <Image
+                    src={thumb}
+                    alt=""
+                    className="aspect-[4/3] w-full border-b border-border object-cover"
+                  />
+                ) : (
+                  <div className="flex aspect-[4/3] w-full items-center justify-center border-b border-border bg-muted">
+                    <Icon className="size-12 text-muted-foreground/30" aria-hidden="true" />
+                  </div>
+                )}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+                    <span className="font-mono text-xs text-muted-foreground">{`project_0${i + 1}`}</span>
+                    <Icon className="size-4 text-muted-foreground transition-colors group-hover:text-brand" aria-hidden="true" />
+                  </div>
+                  <div className="flex flex-1 flex-col">
+                    <h3 className="text-lg leading-snug font-semibold tracking-tight text-balance">{title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
 
-                  <ul className="mt-6 flex flex-wrap gap-1.5" aria-label={p.stackLabel}>
-                    {stack.map((tag) => (
-                      <li
-                        key={tag}
-                        className="rounded-none bg-brand-soft px-2.5 py-0.5 font-mono text-[11px] font-medium text-brand"
-                      >
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className="mt-6 flex flex-wrap gap-1.5" aria-label={p.stackLabel}>
+                      {stack.map((tag) => (
+                        <li
+                          key={tag}
+                          className="rounded-none bg-brand-soft px-2.5 py-0.5 font-mono text-[11px] font-medium text-brand"
+                        >
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <div className="mt-auto flex items-center gap-2 pt-8">
-                    {repo ? (
-                      <a
-                        href={repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-none bg-foreground px-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                    <div className="mt-auto flex items-center gap-2 pt-8">
+                      {repo ? (
+                        <a
+                          href={repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-none bg-foreground px-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                        >
+                          {p.viewCode}
+                          <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                          <span className="sr-only">{p.viewCodeSr(title)}</span>
+                        </a>
+                      ) : null}
+                      <Link
+                        href={`/projects/${projectSlug(i)}`}
+                        className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-card px-3 text-sm font-medium transition-colors hover:border-foreground/30"
                       >
-                        {p.viewCode}
-                        <ArrowUpRight className="size-3.5" aria-hidden="true" />
-                        <span className="sr-only">{p.viewCodeSr(title)}</span>
-                      </a>
-                    ) : null}
-                    <Link
-                      href={`/projects/${projectSlug(i)}`}
-                      className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-card px-3 text-sm font-medium transition-colors hover:border-foreground/30"
-                    >
-                      {p.caseStudy}
-                      <ArrowRight className="size-3.5" aria-hidden="true" />
-                      <span className="sr-only">{`: ${title}`}</span>
-                    </Link>
+                        {p.caseStudy}
+                        <ArrowRight className="size-3.5" aria-hidden="true" />
+                        <span className="sr-only">{`: ${title}`}</span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </article>
