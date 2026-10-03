@@ -57,7 +57,7 @@ const en = {
     switchLabel: 'Change language',
   },
   hero: {
-    badge: 'Available for freelance projects',
+    badge: 'Open to data & BI roles and freelance projects',
     titleLead: 'Finance, Automation, and',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -68,6 +68,12 @@ const en = {
       { value: '8+', label: 'Years in finance & control' },
       { value: '120h', label: 'Manual work automated / mo' },
       { value: '99.7%', label: 'Reconciliation match rate' },
+    ],
+    slidesNote: 'synthetic data',
+    slides: [
+      { title: 'Payment gateway reconciliation' },
+      { title: 'P&L and Balance Sheet' },
+      { title: 'Accounts receivable and collection risk' },
     ],
     code: {
       comment: '# → push exceptions to Power BI',
@@ -86,17 +92,18 @@ const en = {
       {
         title: 'Automation & Python Scripting',
         description: 'Python scripts that ingest, clean, and validate data from ERPs, banks, and flat files.',
-        skills: ['Python', 'Pandas', 'NumPy', 'SQL', 'SQLite', 'ETL', 'GitHub Actions', 'Regex'],
+        skills: ['Python', 'Pandas', 'NumPy', 'Regex', 'RapidFuzz', 'SQLite', 'GitHub Actions'],
       },
       {
         title: 'Business Intelligence',
-        description: 'Semantic models and dashboards that leadership actually trusts and uses to make decisions.',
-        skills: ['Power BI', 'DAX', 'Power Query', 'Star Schema', 'Data Modeling', 'KPI Design'],
+        description:
+          'Power BI reports built on star-schema models: P&L and balance sheet variances, receivables aging, and payment reconciliations.',
+        skills: ['Power BI', 'DAX', 'Power Query', 'Star Schema', 'IBCS', 'Figma'],
       },
       {
         title: 'Financial Analysis',
-        description: 'Deep domain expertise in close cycles, controls, and turning numbers into actionable insight.',
-        skills: ['Reconciliations', 'P&L Analysis', 'Month-end Close', 'Cost Optimization', 'Budgeting', 'Audit Trails'],
+        description: 'Month-end close, bank and gateway reconciliations, receivables control, and tax withholdings.',
+        skills: ['Reconciliations', 'Receivables Aging', 'P&L Analysis', 'Balance Sheet Analysis', 'Month-end Close', 'Tax Withholdings'],
       },
     ],
   },
@@ -332,7 +339,7 @@ const en = {
     title: 'From reconciliations to automated reporting.',
     paragraphs: [
       'I spent more than 8 years in accounting, financial control, and day-to-day reconciliations before I started automating that work with code and data analytics.',
-      'That combination shapes how I work: data systems, scripts, and models built with a business mindset, an accountants eye for detail, and operational discipline.',
+      "That combination shapes how I work: data systems, scripts, and models built with a business mindset, an accountant's eye for detail, and operational discipline.",
     ],
     principles: [
       { k: 'accuracy', v: 'Every number traceable to its source' },
@@ -383,7 +390,7 @@ const es: Dictionary = {
     switchLabel: 'Cambiar idioma',
   },
   hero: {
-    badge: 'Disponible para proyectos freelance',
+    badge: 'Abierto a roles de datos y BI y a proyectos freelance',
     titleLead: 'Finanzas, automatizacion y ',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -395,6 +402,12 @@ const es: Dictionary = {
       { value: '120h', label: 'Trabajo manual automatizado / mes' },
       { value: '99.7%', label: 'Tasa de conciliación' },
     ],
+    slidesNote: 'datos sintéticos',
+    slides: [
+      { title: 'Conciliación de pasarelas de pago' },
+      { title: 'P&L y Balance General' },
+      { title: 'Cartera y riesgo de mora' },
+    ],
     code: {
       comment: '# → enviar excepciones a Power BI',
       processed: '14,382 transacciones procesadas',
@@ -404,7 +417,7 @@ const es: Dictionary = {
   },
   expertise: {
     eyebrow: 'Enfoque técnico y de negocio',
-    title: 'Negocios y finanzas impulsados ​​por el análisis de datos y la automatización.',
+    title: 'Negocios y finanzas impulsados por el análisis de datos y la automatización.',
     description:
       'Experiencia contable y rigor financiero, combinados con herramientas de datos para automatizar y analizar.',
     skillsSuffix: 'habilidades',
@@ -412,24 +425,24 @@ const es: Dictionary = {
       {
         title: 'Automatización y Scripts en Python',
         description: 'Scripts en Python que ingieren, limpian y validan datos de ERPs, bancos y archivos planos.',
-        skills: ['Python', 'Pandas', 'NumPy', 'SQL', 'SQLite', 'ETL', 'GitHub Actions', 'Regex'],
+        skills: ['Python', 'Pandas', 'NumPy', 'Regex', 'RapidFuzz', 'SQLite', 'GitHub Actions'],
       },
       {
         title: 'Inteligencia de Negocios',
-        description: 'Modelos semánticos y dashboards en los que la dirección realmente confía para tomar decisiones.',
-        skills: ['Power BI', 'DAX', 'Power Query', 'Modelo Estrella', 'Modelado de Datos', 'Diseño de KPIs'],
+        description:
+          'Reportes en Power BI sobre modelos en estrella: variaciones de P&L y balance, antigüedad de cartera y conciliaciones de pagos.',
+        skills: ['Power BI', 'DAX', 'Power Query', 'Modelo Estrella', 'IBCS', 'Figma'],
       },
       {
         title: 'Análisis Financiero',
-        description:
-          'Amplio dominio de cierres contables, controles internos y conversión de cifras en conclusiones accionables.',
+        description: 'Cierre mensual, conciliaciones bancarias y de pasarelas, control de cartera y retenciones de impuestos.',
         skills: [
           'Conciliaciones',
+          'Antigüedad de Cartera',
           'Análisis de P&L',
+          'Análisis de Balance',
           'Cierre Mensual',
-          'Optimización de Costos',
-          'Presupuestos',
-          'Pistas de Auditoría',
+          'Retenciones de Impuestos',
         ],
       },
     ],

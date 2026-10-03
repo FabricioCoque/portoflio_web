@@ -1,8 +1,23 @@
 'use client'
 
-import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import slide1 from '@/public/images/hero/hero-1.jpg'
+import slide2 from '@/public/images/hero/hero-2.jpg'
+import slide3 from '@/public/images/hero/hero-3.jpg'
+import { projectSlug } from '@/lib/projects'
 import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
+
+// Capturas del hero: imagen y proyecto al que corresponde cada una (0 = proyecto 1, 4 = proyecto 5, 5 = proyecto 6).
+// Los nombres que se muestran debajo de cada captura están en lib/i18n.ts (hero.slides), en el mismo orden.
+const slides = [
+  { image: slide1, project: 0 },
+  { image: slide2, project: 4 },
+  { image: slide3, project: 5 },
+]
 
 export function Hero() {
   const { t } = useLanguage()
@@ -55,48 +70,97 @@ export function Hero() {
 
         </div>
 
-        <CodePanel code={h.code} />
+        <Showcase />
       </div>
     </section>
   )
 }
 
-function CodePanel({ code }: { code: { comment: string; processed: string; matched: string; flagged: string } }) {
+// Presentación con fundido suave: cambia sola cada 5 s, se pausa al pasar el mouse o con el teclado,
+// y no rota sola si el dispositivo pide reducir el movimiento.
+function Showcase() {
+  const { t } = useLanguage()
+  const h = t.hero
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const [reduceMotion, setReduceMotion] = useState(false)
+
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduceMotion(query.matches)
+    const onChange = () => setReduceMotion(query.matches)
+    query.addEventListener('change', onChange)
+    return () => query.removeEventListener('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (paused || reduceMotion) return
+    const id = window.setInterval(() => setActive((i) => (i + 1) % slides.length), 5000)
+    return () => window.clearInterval(id)
+  }, [paused, reduceMotion])
+
+  const current = slides[active]
+
   return (
-    <figure className="relative w-full overflow-hidden rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.12)]">
+    <figure
+      className="relative w-full overflow-hidden rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.12)]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
       <div className="flex items-center justify-between border-b border-border px-4 py-3">
         <div className="flex items-center gap-1.5" aria-hidden="true">
           <span className="size-2.5 rounded-full bg-border" />
           <span className="size-2.5 rounded-full bg-border" />
           <span className="size-2.5 rounded-full bg-border" />
         </div>
-        <figcaption className="font-mono text-xs text-muted-foreground">reconcile.py</figcaption>
+        <figcaption className="font-mono text-xs text-muted-foreground">{`Power BI · ${h.slidesNote}`}</figcaption>
         <span className="w-10" aria-hidden="true" />
       </div>
-      <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-6">
-        <code>
-          <span className="text-brand">import</span> pandas <span className="text-brand">as</span> pd{'\n'}
-          <span className="text-brand">from</span> pipeline <span className="text-brand">import</span> load, match
-          {'\n\n'}
-          bank = load(<span className="text-success">{'"bank_statements"'}</span>){'\n'}
-          ledger = load(<span className="text-success">{'"general_ledger"'}</span>){'\n\n'}
-          result = match(bank, ledger,{'\n'}
-          {'    '}keys=[<span className="text-success">{'"amount"'}</span>,{' '}
-          <span className="text-success">{'"date"'}</span>],{'\n'}
-          {'    '}tolerance=<span className="text-brand">0.01</span>){'\n'}
-          <span className="text-muted-foreground">{code.comment}</span>
-        </code>
-      </pre>
-      <div className="border-t border-border bg-background/60 px-5 py-4 font-mono text-xs leading-6">
-        <p className="text-muted-foreground">
-          <Check className="inline size-3.5 -translate-y-px text-success" aria-hidden="true" /> {code.processed}
-        </p>
-        <p className="text-muted-foreground">
-          <Check className="inline size-3.5 -translate-y-px text-success" aria-hidden="true" /> {code.matched}
-        </p>
-        <p className="text-muted-foreground">
-          <span className="text-brand">→</span> {code.flagged}
-        </p>
+
+      <div className="relative aspect-video w-full bg-white">
+        {slides.map((slide, i) => (
+          <Image
+            key={i}
+            src={slide.image}
+            alt={h.slides[i].title}
+            fill
+            sizes="(min-width: 1024px) 520px, 100vw"
+            priority={i === 0}
+            aria-hidden={i !== active}
+            className={`object-contain transition-opacity duration-700 ease-in-out motion-reduce:transition-none ${
+              i === active ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+      </div>
+
+      <div className="flex items-center justify-between gap-3 border-t border-border px-4 py-3">
+        <Link
+          href={`/projects/${projectSlug(current.project)}`}
+          className="group inline-flex min-w-0 items-center gap-1.5 text-sm font-medium"
+        >
+          <span className="truncate">{h.slides[active].title}</span>
+          <ArrowUpRight
+            className="size-3.5 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
+        </Link>
+        <div className="flex shrink-0 items-center">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={h.slides[i].title}
+              aria-current={i === active ? 'true' : undefined}
+              className="flex size-5 items-center justify-center"
+            >
+              <span className={`size-2 rounded-full transition-colors ${i === active ? 'bg-brand' : 'bg-border'}`} />
+            </button>
+          ))}
+        </div>
       </div>
     </figure>
   )
