@@ -33,8 +33,8 @@ export function Projects() {
           description={p.description}
         />
 
-        {/* Rejilla unida con bordes compartidos (2 columnas desde 1024 px, 3 filas para los 6 proyectos) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 border border-border bg-border gap-[1px]">
+        {/* Rejilla con bordes arriba/abajo y divisores internos, sin bordes laterales externos */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-border divide-y divide-border lg:divide-y lg:divide-x lg:divide-border">
           {p.items.map(({ title, description, stack }, i) => {
             const Icon = icons[i] ?? FolderOpen
             const repo = projectLinks[i]?.repo
@@ -78,7 +78,6 @@ export function Projects() {
                         <span className="sr-only">{p.viewCodeSr(title)}</span>
                       </a>
                     ) : null}
-                    {/* El enlace del caso de estudio cubre toda la tarjeta (after:absolute after:inset-0) */}
                     <Link
                       href={`/projects/${projectSlug(i)}`}
                       className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-card px-3 text-sm font-medium transition-colors after:absolute after:inset-0 hover:border-foreground/30"
