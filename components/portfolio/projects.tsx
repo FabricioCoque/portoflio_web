@@ -33,8 +33,8 @@ export function Projects() {
           description={p.description}
         />
 
-        {/* Rejilla con bordes arriba/abajo y divisores internos, sin bordes laterales externos */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-border divide-y divide-border lg:divide-y lg:divide-x lg:divide-border">
+        {/* Rejilla limpia: sin bordes laterales exteriores, usando separación de 1px con el color del borde */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-border bg-border gap-[1px]">
           {p.items.map(({ title, description, stack }, i) => {
             const Icon = icons[i] ?? FolderOpen
             const repo = projectLinks[i]?.repo
