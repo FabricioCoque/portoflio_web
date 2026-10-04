@@ -58,8 +58,9 @@ const en = {
   },
   hero: {
     badge: 'Open to data & BI roles and freelance projects',
-    introLead: "I'm a data and automation analyst with a background in accounting and reconciliations.",
-    introDetail: 'I turn manual reports into automated ones and build data models that help the business get answers faster.',
+    subtitle: 'Finance, automation, and Business Intelligence',
+    intro:
+      "I'm a **data and automation analyst** with a background in **accounting and reconciliations**. I turn manual reports into automated ones and build data models that help the business get answers faster.",
     titleLead: 'Finance, Automation, and',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -88,7 +89,7 @@ const en = {
     eyebrow: 'Solutions',
     title: 'Three areas of work.',
     description:
-      '',
+      'Accounting expertise and financial rigor, combined with the data tools to automate and analyze.',
     skillsSuffix: 'skills',
     categories: [
       {
@@ -338,7 +339,7 @@ const en = {
   },
   about: {
     eyebrow: 'Professional Background',
-    title: '',
+    title: 'From reconciliations to automated reporting.',
     paragraphs: [
       'Most of my career has been in accounting and reconciliations. Working daily with Excel, ERP reports, and scattered data sources showed me how much these areas depend on manual, repetitive processes that consume time that should go to analyzing information.',
       'That experience led me to build my own solutions, particularly around workflow automation and data analysis.',
@@ -393,8 +394,9 @@ const es: Dictionary = {
   },
   hero: {
     badge: 'Abierto a roles de datos y BI y a proyectos freelance',
-    introLead: 'Soy analista de datos y automatización con experiencia en contabilidad y conciliaciones.',
-    introDetail: 'Convierto reportes manuales en informes automatizados y en modelos de datos que aceleran las respuestas del negocio.',
+    subtitle: 'Finanzas, automatización y Business Intelligence',
+    intro:
+      'Soy **analista de datos y automatización** con experiencia en **contabilidad y conciliaciones**. Convierto reportes manuales en informes automatizados y en modelos de datos que aceleran las respuestas del negocio.',
     titleLead: 'Finanzas, automatizacion y ',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -423,7 +425,7 @@ const es: Dictionary = {
     eyebrow: 'Soluciones',
     title: 'Tres áreas de intervención.',
     description:
-      '',
+      'Experiencia contable y rigor financiero, combinados con herramientas de datos para automatizar y analizar.',
     skillsSuffix: 'habilidades',
     categories: [
       {
@@ -680,7 +682,7 @@ const es: Dictionary = {
   },
   about: {
     eyebrow: 'Trayectoria Profesional',
-    title: '',
+    title: 'De las conciliaciones a la reportería automatizada.',
     paragraphs: [
       'Gran parte de mi carrera se desarrolló en las áreas de contabilidad y conciliaciones. Lidiar a diario con Excel, reportes de ERP y fuentes dispersas me mostró cómo estas áreas dependen de procesos manuales y repetitivos que consumen el tiempo que deberían dedicar al análisis de información.',
       'Esta experiencia me llevó a crear mis propias soluciones, particularmente en torno a la automatización de flujos de trabajo y el análisis de información.',
@@ -710,7 +712,7 @@ const es: Dictionary = {
   },
   contact: {
     eyebrow: 'Contacto',
-    title: 'Presencia Online',
+    title: 'Presencia',
     description:
       'Si te interesa intercambiar ideas sobre automatización y análisis de datos o evaluar alguna colaboración profesional, puedes escribirme directamente.',
     newTab: '(se abre en una pestaña nueva)',
