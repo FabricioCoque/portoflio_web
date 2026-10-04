@@ -37,27 +37,30 @@
 
 :root {
   color-scheme: light;
-  --background: #fafafa;
-  --foreground: #111111;
-  --card: #ffffff;
-  --card-foreground: #111111;
-  --popover: #ffffff;
-  --popover-foreground: #111111;
-  --primary: #111111;
-  --primary-foreground: #fafafa;
-  --secondary: #f1f1f1;
-  --secondary-foreground: #111111;
-  --muted: #f1f1f1;
-  --muted-foreground: #555555;
-  --accent: #f1f1f1;
-  --accent-foreground: #111111;
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: #e6e6e6;
-  --input: #e6e6e6;
-  --ring: #10B981;
-  --brand: #10B981;
-  --brand-soft: #e6f2f1;
-  --success: #107c41;
+  --background: #FFFFFF;        /* Canvas / Fondo principal (Blanco puro)[cite: 3] */
+  --foreground: #0F1419;        /* Texto principal (Texto casi negro muy legible)[cite: 3] */
+  --card: #F7F9F9;              /* Superficie 1: Cards y contenedores[cite: 3] */
+  --card-foreground: #0F1419;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F1419;
+  --primary: #0F1419;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EFF3F4;         /* Superficie 2 / Divisores sutiles[cite: 3] */
+  --secondary-foreground: #0F1419;
+  --muted: #EFF3F4;
+  --muted-foreground: #536471;  /* Texto secundario / metadatos[cite: 3] */
+  --accent: #1D9BF0;            /* Acento principal (Twitter Blue para enlaces o llamadas a la acción)[cite: 3] */
+  --accent-foreground: #FFFFFF;
+  --destructive: #F4212E;       /* Error / acciones destructivas[cite: 3] */
+
+  /* Divisores y líneas súper sutiles para evitar bordes negros duros */
+  --border: #EFF3F4;
+  --input: #EFF3F4;
+
+  --ring: #1D9BF0;
+  --brand: #0F1419;
+  --brand-soft: #EFF3F4;
+  --success: #00BA7C;
   --radius: 0rem;
 }
 
