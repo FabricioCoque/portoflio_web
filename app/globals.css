@@ -37,29 +37,26 @@
 
 :root {
   color-scheme: light;
-  --background: #EBEEF5;       /* Nuevo fondo gris-azulado suave */
-  --foreground: #141414;       /* Texto negro carbón principal */
-  --card: #FFFFFF;             /* Blanco puro para tarjetas */
-  --card-foreground: #141414;  /* Texto dentro de las tarjetas */
-  --popover: #FFFFFF;
-  --popover-foreground: #141414;
-  --primary: #141414;
-  --primary-foreground: #EBEEF5;
-  --secondary: #D8DFEE;        /* Un tono secundario armónico con el fondo */
-  --secondary-foreground: #141414;
-  --muted: #D8DFEE;
+  --background: #fafafa;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #111111;
+  --primary-foreground: #fafafa;
+  --secondary: #f1f1f1;
+  --secondary-foreground: #111111;
+  --muted: #f1f1f1;
   --muted-foreground: #555555;
-  --accent: #D8DFEE;
-  --accent-foreground: #141414;
+  --accent: #f1f1f1;
+  --accent-foreground: #111111;
   --destructive: oklch(0.577 0.245 27.325);
-
-  /* Bordes suaves y difuminados para que no contrasten en negro puro */
-  --border: #D1D8E8;
-  --input: #D1D8E8;
-
-  --ring: #141414;
-  --brand: #141414;
-  --brand-soft: #D8DFEE;
+  --border: #e6e6e6;
+  --input: #e6e6e6;
+  --ring: #10B981;
+  --brand: #10B981;
+  --brand-soft: #e6f2f1;
   --success: #107c41;
   --radius: 0rem;
 }
