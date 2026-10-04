@@ -17,10 +17,14 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 })
 
+// Se ejecuta antes de pintar la página: si el idioma que corresponde es inglés, oculta la página un instante
+// para que no se vea primero en español. Si algo falla, a los 2,5 s se muestra igual.
+const languageScript = `(function(){try{var d=document.documentElement;var p=new URLSearchParams(location.search).get('lang');var s=null;try{s=localStorage.getItem('portfolio-locale')}catch(e){}var l=(p==='es'||p==='en')?p:(s==='es'||s==='en')?s:null;if(!l){var n=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();l=(n&&n.indexOf('es')!==0)?'en':'es'}d.lang=l;if(l==='en'){d.classList.add('lang-pending');setTimeout(function(){d.classList.remove('lang-pending')},2500)}}catch(e){}})();`
+
 export const metadata: Metadata = {
   title: 'Fabricio Coque — Financial Data Analyst · BI & Automation',
   description:
-    'Financial data analyst building automated reconciliations, invoice extraction, and Power BI reports for accounting and finance teams.',
+    'Analista de datos financieros: conciliaciones automatizadas, extracción de facturas y reportes en Power BI para equipos de contabilidad y finanzas.',
   icons: {
     icon: [
       { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
@@ -42,7 +46,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="es" className={`${plexSans.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: languageScript }} />
+      </head>
       <body className="antialiased">
         <LanguageProvider>{children}</LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
