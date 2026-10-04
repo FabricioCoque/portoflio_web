@@ -39,19 +39,15 @@ export function Hero() {
               className="size-14 shrink-0 rounded-full border border-border object-cover object-top"
             />
             <div className="min-w-0">
-              <p className="text-base font-semibold tracking-tight">{site.name}</p>
-              <p className="text-sm text-muted-foreground">{h.badge}</p>
+              <h1 id="hero-title" className="text-base font-semibold tracking-tight">
+                {site.name}
+              </h1>
+              <p className="text-sm text-muted-foreground">{h.subtitle}</p>
             </div>
           </div>
 
-          <h1
-            id="hero-title"
-            className="mt-8 max-w-xl text-2xl leading-snug font-semibold tracking-tight text-balance sm:text-3xl lg:text-[2rem]"
-          >
-            {h.introLead}
-          </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground text-pretty md:text-lg">
-            {h.introDetail}
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty md:text-xl">
+            <Highlighted text={h.intro} />
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -79,6 +75,23 @@ export function Hero() {
         <Showcase />
       </div>
     </section>
+  )
+}
+
+// Texto con partes resaltadas: lo que va entre ** ** en lib/i18n.ts se muestra con un marcador de color
+function Highlighted({ text }: { text: string }) {
+  return (
+    <>
+      {text.split('**').map((part, i) =>
+        i % 2 === 1 ? (
+          <mark key={i} className="box-decoration-clone bg-accent/10 px-1 font-semibold text-foreground">
+            {part}
+          </mark>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
   )
 }
 
