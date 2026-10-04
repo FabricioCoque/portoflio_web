@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import perfil from '@/public/images/perfil.jpg'
 import slide1 from '@/public/images/hero/hero-1.jpg'
 import slide2 from '@/public/images/hero/hero-2.jpg'
 import slide3 from '@/public/images/hero/hero-3.jpg'
@@ -31,22 +32,27 @@ export function Hero() {
       />
       <div className="relative mx-auto grid max-w-6xl gap-14 px-5 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
         <div className="flex flex-col items-start">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-none border border-border bg-card px-3 py-1 text-xs font-medium shadow-xs">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
-              <span className="relative inline-flex size-2 rounded-full bg-success" />
-            </span>
-            {h.badge}
+          <div className="flex items-center gap-4">
+            <Image
+              src={perfil}
+              alt={site.name}
+              className="size-14 shrink-0 rounded-full border border-border object-cover object-top"
+            />
+            <div className="min-w-0">
+              <p className="text-base font-semibold tracking-tight">{site.name}</p>
+              <p className="text-sm text-muted-foreground">{h.badge}</p>
+            </div>
           </div>
 
           <h1
             id="hero-title"
-            className="text-3xl leading-[1.12] font-semibold tracking-tight text-balance sm:text-4xl lg:text-[2.75rem]"
+            className="mt-8 max-w-xl text-2xl leading-snug font-semibold tracking-tight text-balance sm:text-3xl lg:text-[2rem]"
           >
-            {h.titleLead} <span className="text-brand">{h.titleAccent}</span>
+            {h.introLead}
           </h1>
-
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">{h.bio(site.name)}</p>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground text-pretty md:text-lg">
+            {h.introDetail}
+          </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a

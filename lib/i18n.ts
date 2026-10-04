@@ -58,6 +58,8 @@ const en = {
   },
   hero: {
     badge: 'Open to data & BI roles and freelance projects',
+    introLead: "I'm a data and automation analyst with a background in accounting and reconciliations.",
+    introDetail: 'I turn manual reports into automated ones and build data models that help the business get answers faster.',
     titleLead: 'Finance, Automation, and',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -83,8 +85,8 @@ const en = {
     },
   },
   expertise: {
-    eyebrow: 'Technical & Business Focus',
-    title: 'Business and finance, powered by data analytics and automation.',
+    eyebrow: 'Solutions',
+    title: 'Three areas of work.',
     description:
       'Accounting expertise and financial rigor, combined with the data tools to automate and analyze.',
     skillsSuffix: 'skills',
@@ -110,7 +112,7 @@ const en = {
   projects: {
     eyebrow: 'Featured Projects',
     title: 'Reporting automation and data analytics.',
-    description: 'Projects that solve recurring challenges in finance and business analysis.',
+    description: '',
     stackLabel: 'Tech stack',
     viewCode: 'View Code',
     viewCodeSr: (title: string) => `for ${title} (opens in new tab)`,
@@ -338,8 +340,8 @@ const en = {
     eyebrow: 'Professional Background',
     title: 'From reconciliations to automated reporting.',
     paragraphs: [
-      'I spent more than 8 years in accounting, financial control, and day-to-day reconciliations before I started automating that work with code and data analytics.',
-      "That combination shapes how I work: data systems, scripts, and models built with a business mindset, an accountant's eye for detail, and operational discipline.",
+      'Most of my career has been in accounting and reconciliations. Working daily with Excel, ERP reports, and scattered data sources showed me how much these areas depend on manual, repetitive processes that consume time that should go to analyzing information.',
+      'That experience led me to build my own solutions, particularly around workflow automation and data analysis.',
     ],
     principles: [
       { k: 'accuracy', v: 'Every number traceable to its source' },
@@ -366,9 +368,9 @@ const en = {
   },
   contact: {
     eyebrow: 'Contact',
-    title: "Let's talk finance, data, and automation.",
+    title: 'Online presence',
     description:
-      "If you'd like to exchange ideas on automation and financial data analysis, or explore a professional collaboration, feel free to reach out directly or browse my code on GitHub.",
+      "If you'd like to exchange ideas on automation and data analysis, or explore a professional collaboration, feel free to write to me directly.",
     newTab: '(opens in new tab)',
     rights: 'All rights reserved.',
     built: 'Built with Next.js',
@@ -391,6 +393,8 @@ const es: Dictionary = {
   },
   hero: {
     badge: 'Abierto a roles de datos y BI y a proyectos freelance',
+    introLead: 'Soy analista de datos y automatización con experiencia en contabilidad y conciliaciones.',
+    introDetail: 'Convierto reportes manuales en informes automatizados y en modelos de datos que aceleran las respuestas del negocio.',
     titleLead: 'Finanzas, automatizacion y ',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -416,8 +420,8 @@ const es: Dictionary = {
     },
   },
   expertise: {
-    eyebrow: 'Enfoque técnico y de negocio',
-    title: 'Negocios y finanzas impulsados por el análisis de datos y la automatización.',
+    eyebrow: 'Soluciones',
+    title: 'Tres áreas de intervención.',
     description:
       'Experiencia contable y rigor financiero, combinados con herramientas de datos para automatizar y analizar.',
     skillsSuffix: 'habilidades',
@@ -450,7 +454,7 @@ const es: Dictionary = {
   projects: {
     eyebrow: 'Proyectos Destacados',
     title: 'Automatización de reportería y analítica de datos.',
-    description: 'Proyectos que resuelven problemas recurrentes en finanzas y análisis de negocio.',
+    description: '',
     stackLabel: 'Stack tecnológico',
     viewCode: 'Ver código',
     viewCodeSr: (title: string) => `de ${title} (se abre en una pestaña nueva)`,
@@ -678,8 +682,8 @@ const es: Dictionary = {
     eyebrow: 'Trayectoria Profesional',
     title: 'De las conciliaciones a la reportería automatizada.',
     paragraphs: [
-      'Pasé más de 8 años en contabilidad, control financiero y conciliaciones del día a día antes de empezar a automatizar ese trabajo con código y analítica de datos.',
-      'Esa combinación define mi forma de trabajo: sistemas de datos, scripts y modelos construidos con mentalidad de negocio, ojo contable para el detalle y rigor operativo.',
+      'Gran parte de mi carrera se desarrolló en las áreas de contabilidad y conciliaciones. Lidiar a diario con Excel, reportes de ERP y fuentes dispersas me mostró cómo estas áreas dependen de procesos manuales y repetitivos que consumen el tiempo que deberían dedicar al análisis de información.',
+      'Esta experiencia me llevó a crear mis propias soluciones, particularmente en torno a la automatización de flujos de trabajo y el análisis de información.',
     ],
     principles: [
       { k: 'precisión', v: 'Cada cifra trazable hasta su origen' },
@@ -706,9 +710,9 @@ const es: Dictionary = {
   },
   contact: {
     eyebrow: 'Contacto',
-    title: 'Hablemos de finanzas, datos y automatización.',
+    title: 'Presencia',
     description:
-      'Si te interesa intercambiar ideas sobre automatizacion y analisis de datos financieros o evaluar alguna colaboración profesional, puedes escribirme directamente o revisar mi código en GitHub.',
+      'Si te interesa intercambiar ideas sobre automatización y análisis de datos o evaluar alguna colaboración profesional, puedes escribirme directamente.',
     newTab: '(se abre en una pestaña nueva)',
     rights: 'Todos los derechos reservados.',
     built: 'Hecho con Next.js ',

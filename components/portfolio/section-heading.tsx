@@ -19,7 +19,7 @@ export function SectionHeading({
       <p
         className={`font-mono text-xs uppercase tracking-widest ${dark ? 'text-background/60' : 'text-muted-foreground'}`}
       >
-        <span className={dark ? 'text-[#5aa3ea]' : 'text-brand'}>{index}</span> <span aria-hidden="true">—</span>{' '}
+        <span className={dark ? 'text-accent' : 'text-brand'}>{index}</span> <span aria-hidden="true">—</span>{' '}
         {eyebrow}
       </p>
       <h2
