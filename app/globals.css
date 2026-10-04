@@ -37,28 +37,28 @@
 
 :root {
   color-scheme: light;
-  --background: #fafafa;
-  --foreground: #111111;
-  --card: #ffffff;
-  --card-foreground: #111111;
-  --popover: #ffffff;
-  --popover-foreground: #111111;
-  --primary: #111111;
-  --primary-foreground: #fafafa;
-  --secondary: #f1f1f1;
-  --secondary-foreground: #111111;
-  --muted: #f1f1f1;
-  --muted-foreground: #555555;
-  --accent: #f1f1f1;
-  --accent-foreground: #111111;
+  --background: #F5F2EB;       /* Fondo crema claro / papel */
+  --foreground: #141414;       /* Texto negro carbón principal */
+  --card: #FFFFFF;             /* Blanco puro para tarjetas y bloques de contraste */
+  --card-foreground: #141414;  /* Texto dentro de las tarjetas */
+  --popover: #FFFFFF;
+  --popover-foreground: #141414;
+  --primary: #141414;          /* Elementos principales oscuros */
+  --primary-foreground: #F5F2EB;
+  --secondary: #EBE6DC;        /* Un tono crema un poco más subido para estados secundarios */
+  --secondary-foreground: #141414;
+  --muted: #EBE6DC;
+  --muted-foreground: #555555; /* Gris equilibrado para textos secundarios */
+  --accent: #EBE6DC;
+  --accent-foreground: #141414;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e6e6e6;
-  --input: #e6e6e6;
-  --ring: #10B981;
-  --brand: #10B981;
-  --brand-soft: #e6f2f1;
+  --border: #141414;           /* Bordes definidos en negro carbón para mantener el estilo editorial */
+  --input: #D9D4CB;            /* Contornos de inputs sutiles pero acordes a la paleta */
+  --ring: #141414;
+  --brand: #141414;            /* Ajustado a la paleta monocromática estricta */
+  --brand-soft: #EBE6DC;
   --success: #107c41;
-  --radius: 0rem;
+  --radius: 0rem;              /* Conserva tus bordes rectos de estilo editorial */
 }
 
 @layer base {
