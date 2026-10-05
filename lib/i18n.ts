@@ -60,7 +60,7 @@ const en = {
     badge: 'Open to data & BI roles and freelance projects',
     subtitle: 'Finance, automation, and Business Intelligence',
     intro:
-      "I'm a **data and automation analyst** with a background in **accounting and reconciliations**. I turn manual reports into automated ones and build data models that help the business get answers faster.",
+      "I'm a data and automation analyst with a background in accounting and reconciliations. I turn manual reports into **automated** ones and build data models that help the business get answers **faster.**",
     titleLead: 'Finance, Automation, and',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -89,7 +89,7 @@ const en = {
     eyebrow: 'Solutions',
     title: 'Three areas of work.',
     description:
-      'Accounting expertise and financial rigor, combined with the data tools to automate and analyze.',
+      '',
     skillsSuffix: 'skills',
     categories: [
       {
@@ -339,7 +339,7 @@ const en = {
   },
   about: {
     eyebrow: 'Professional Background',
-    title: 'From reconciliations to automated reporting.',
+    title: '',
     paragraphs: [
       'Most of my career has been in accounting and reconciliations. Working daily with Excel, ERP reports, and scattered data sources showed me how much these areas depend on manual, repetitive processes that consume time that should go to analyzing information.',
       'That experience led me to build my own solutions, particularly around workflow automation and data analysis.',
@@ -425,7 +425,7 @@ const es: Dictionary = {
     eyebrow: 'Soluciones',
     title: 'Tres áreas de intervención.',
     description:
-      'Experiencia contable y rigor financiero, combinados con herramientas de datos para automatizar y analizar.',
+      '',
     skillsSuffix: 'habilidades',
     categories: [
       {
@@ -682,7 +682,7 @@ const es: Dictionary = {
   },
   about: {
     eyebrow: 'Trayectoria Profesional',
-    title: 'De las conciliaciones a la reportería automatizada.',
+    title: '',
     paragraphs: [
       'Gran parte de mi carrera se desarrolló en las áreas de contabilidad y conciliaciones. Lidiar a diario con Excel, reportes de ERP y fuentes dispersas me mostró cómo estas áreas dependen de procesos manuales y repetitivos que consumen el tiempo que deberían dedicar al análisis de información.',
       'Esta experiencia me llevó a crear mis propias soluciones, particularmente en torno a la automatización de flujos de trabajo y el análisis de información.',
