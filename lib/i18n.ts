@@ -53,7 +53,7 @@ const en = {
       { href: '#contact', label: 'Contact' },
     ],
     hire: 'Hire me',
-    tagline: '/ data · finance',
+    tagline: '',
     switchLabel: 'Change language',
   },
   hero: {
@@ -389,14 +389,14 @@ const es: Dictionary = {
       { href: '#contact', label: 'Contacto' },
     ],
     hire: 'Contrátame',
-    tagline: '/ datos · finanzas',
+    tagline: '',
     switchLabel: 'Cambiar idioma',
   },
   hero: {
     badge: 'Abierto a roles de datos y BI y a proyectos freelance',
     subtitle: 'Finanzas, automatización y Business Intelligence',
     intro:
-      'Soy **analista de datos y automatización** con experiencia en **contabilidad y conciliaciones**. Convierto reportes manuales en informes automatizados y en modelos de datos que aceleran las respuestas del negocio.',
+      'Soy analista de datos y automatización con experiencia en contabilidad y conciliaciones. Convierto reportes manuales en informes **automatizados** y en modelos de datos que **aceleran** las respuestas del negocio.',
     titleLead: 'Finanzas, automatizacion y ',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
