@@ -23,7 +23,7 @@ export function Projects() {
   const p = t.projects
 
   return (
-    <section id="projects" aria-labelledby="projects-title" className="border-t border-border bg-card">
+    <section id="projects" aria-labelledby="projects-title" className="border-t border-border bg-background">
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
         <SectionHeading
           id="projects-title"
@@ -33,7 +33,6 @@ export function Projects() {
           description={p.description}
         />
 
-        {/* Rejilla limpia: sin bordes laterales exteriores, usando separación de 1px con el color del borde */}
         <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-border bg-border gap-[1px]">
           {p.items.map(({ title, description, stack }, i) => {
             const Icon = icons[i] ?? FolderOpen
@@ -41,7 +40,7 @@ export function Projects() {
             return (
               <article
                 key={i}
-                className="group relative flex flex-col overflow-hidden bg-background p-6 transition-colors duration-200 hover:bg-muted/50 md:p-8"
+                className="group relative flex flex-col overflow-hidden bg-card p-6 transition-colors duration-200 hover:bg-muted/50 md:p-8"
               >
                 <div className="mb-6 flex items-center justify-between border-b border-border pb-4">
                   <span className="font-mono text-xs text-muted-foreground">{`project_0${i + 1}`}</span>
@@ -80,7 +79,7 @@ export function Projects() {
                     ) : null}
                     <Link
                       href={`/projects/${projectSlug(i)}`}
-                      className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-card px-3 text-sm font-medium transition-colors after:absolute after:inset-0 hover:border-foreground/30"
+                      className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-background px-3 text-sm font-medium transition-colors after:absolute after:inset-0 hover:border-foreground/30"
                     >
                       {p.caseStudy}
                       <ArrowRight className="size-3.5" aria-hidden="true" />
