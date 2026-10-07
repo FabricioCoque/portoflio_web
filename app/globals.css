@@ -37,21 +37,21 @@
 
 :root {
   color-scheme: light;
-  --background: #FFFFFF;        /* Canvas / Fondo principal (Blanco puro)[cite: 3] */
-  --foreground: #0F1419;        /* Texto principal (Texto casi negro muy legible)[cite: 3] */
-  --card: #F7F9F9;              /* Superficie 1: Cards y contenedores[cite: 3] */
+  --background: #FFFFFF;        /* Canvas / Fondo principal (Blanco puro) */
+  --foreground: #0F1419;        /* Texto principal (Texto casi negro muy legible) */
+  --card: #F7F9F9;              /* Superficie 1: Cards y contenedores */
   --card-foreground: #0F1419;
   --popover: #FFFFFF;
   --popover-foreground: #0F1419;
   --primary: #0F1419;
   --primary-foreground: #FFFFFF;
-  --secondary: #EFF3F4;         /* Superficie 2 / Divisores sutiles[cite: 3] */
+  --secondary: #EFF3F4;         /* Superficie 2 / Divisores sutiles */
   --secondary-foreground: #0F1419;
   --muted: #EFF3F4;
-  --muted-foreground: #536471;  /* Texto secundario / metadatos[cite: 3] */
-  --accent: #1D9BF0;            /* Acento principal (Twitter Blue para enlaces o llamadas a la acción)[cite: 3] */
+  --muted-foreground: #536471;  /* Texto secundario / metadatos */
+  --accent: #1D9BF0;            /* Acento principal (Twitter Blue para enlaces o llamadas a la acción) */
   --accent-foreground: #FFFFFF;
-  --destructive: #F4212E;       /* Error / acciones destructivas[cite: 3] */
+  --destructive: #F4212E;       /* Error / acciones destructivas */
 
   /* Divisores y líneas súper sutiles para evitar bordes negros duros */
   --border: #EFF3F4;
@@ -80,7 +80,6 @@
 html.lang-pending body {
   visibility: hidden;
 }
-
 
 /* Zonas oscuras: reasigna los colores del sitio solo dentro de las secciones que llevan la clase theme-dark */
 .theme-dark {
