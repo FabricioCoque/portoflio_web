@@ -12,20 +12,20 @@ export function SiteHeader() {
   const isHome = pathname === '/'
 
   return (
-    <header className="sticky top-4 z-50 px-5 md:px-8">
+    <header className="sticky top-0 z-50 bg-background/90 px-5 pt-4 md:px-8 backdrop-blur-md">
       {/* Contenedor flotante ajustado al ancho exacto del contenido (max-w-6xl) y sin sombras */}
       <div className="theme-dark mx-auto grid h-14 max-w-6xl grid-cols-2 md:grid-cols-3 items-center rounded-none border border-border bg-background/90 px-5 backdrop-blur-md md:px-8">
 
         {/* Columna 1 (Izquierda): Logotipo y marca */}
         <div className="flex items-center justify-start">
-          <Link href="/" className="flex items-center gap-2 font-medium tracking-tight">
+          <Link href="/" className="flex items-center gap-2 font-medium tracking-tight text-foreground">
             <span
               aria-hidden="true"
               className="flex size-6 items-center justify-center rounded-md bg-foreground font-mono text-xs text-background"
             >
               F
             </span>
-            <span>{site.name}</span>
+            <span className="text-foreground">{site.name}</span>
             <span className="hidden font-mono text-xs text-muted-foreground sm:inline">{t.nav.tagline}</span>
           </Link>
         </div>
