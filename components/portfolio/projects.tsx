@@ -48,7 +48,7 @@ export function Projects() {
                 </div>
 
                 <div className="flex flex-1 flex-col">
-                  <h3 className="text-xl leading-snug font-semibold tracking-tight text-balance transition-colors group-hover:text-brand md:text-2xl">
+                  <h3 className="text-xl leading-snug font-semibold tracking-tight text-balance transition-colors group-hover:text-brand md:text-2xl text-foreground">
                     {title}
                   </h3>
                   <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">{description}</p>
@@ -79,7 +79,7 @@ export function Projects() {
                     ) : null}
                     <Link
                       href={`/projects/${projectSlug(i)}`}
-                      className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-background px-3 text-sm font-medium transition-colors after:absolute after:inset-0 hover:border-foreground/30"
+                      className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors after:absolute after:inset-0 hover:border-foreground/30"
                     >
                       {p.caseStudy}
                       <ArrowRight className="size-3.5" aria-hidden="true" />
