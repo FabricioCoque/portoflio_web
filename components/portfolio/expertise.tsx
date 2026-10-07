@@ -18,7 +18,7 @@ export function Expertise() {
     <section
       id="expertise"
       aria-labelledby="expertise-title"
-      className="border-t border-border bg-foreground text-background"
+      className="border-t border-background/15 bg-foreground text-background"
     >
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
         <SectionHeading
@@ -40,9 +40,9 @@ export function Expertise() {
                 className="group flex flex-col bg-background/[0.02] p-8 transition-colors duration-200 hover:bg-background/[0.05]"
               >
                 <div className="mb-6 flex items-center justify-between">
-                  <span className="flex size-10 items-center justify-center rounded-lg border border-background/15 bg-background/5 transition-colors group-hover:border-[#5aa3ea]/40 group-hover:bg-[#5aa3ea]/10">
+                  <span className="flex size-10 items-center justify-center rounded-lg border border-background/15 bg-background/5 transition-colors group-hover:border-accent/40 group-hover:bg-accent/10">
                     <Icon
-                      className="size-5 text-background transition-colors group-hover:text-[#5aa3ea]"
+                      className="size-5 text-background transition-colors group-hover:text-accent"
                       aria-hidden="true"
                     />
                   </span>

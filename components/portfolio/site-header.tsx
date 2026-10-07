@@ -14,7 +14,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-4 z-50 px-5 md:px-8">
       {/* Contenedor flotante ajustado al ancho exacto del contenido (max-w-6xl) y sin sombras */}
-      <div className="mx-auto grid h-14 max-w-6xl grid-cols-2 md:grid-cols-3 items-center rounded-none border border-border bg-background/90 px-5 backdrop-blur-md md:px-8">
+      <div className="theme-dark mx-auto grid h-14 max-w-6xl grid-cols-2 md:grid-cols-3 items-center rounded-none border border-border bg-background/90 px-5 backdrop-blur-md md:px-8">
 
         {/* Columna 1 (Izquierda): Logotipo y marca */}
         <div className="flex items-center justify-start">

@@ -374,7 +374,7 @@ const en = {
       "If you'd like to exchange ideas on automation and data analysis, or explore a professional collaboration, feel free to write to me directly.",
     newTab: '(opens in new tab)',
     rights: 'All rights reserved.',
-    built: 'Built with Next.js',
+    built: '',
   },
 }
 
@@ -717,7 +717,7 @@ const es: Dictionary = {
       'Si te interesa intercambiar ideas sobre automatización y análisis de datos o evaluar alguna colaboración profesional, puedes escribirme directamente.',
     newTab: '(se abre en una pestaña nueva)',
     rights: 'Todos los derechos reservados.',
-    built: 'Hecho con Next.js ',
+    built: '',
   },
 }
 

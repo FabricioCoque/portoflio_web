@@ -25,10 +25,10 @@ export function Hero() {
   const h = t.hero
 
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden">
+    <section id="top" aria-labelledby="hero-title" className="theme-dark relative overflow-hidden bg-background text-foreground">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e6e6e6_1px,transparent_1px),linear-gradient(to_bottom,#e6e6e6_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)] opacity-60"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)] opacity-60"
       />
       <div className="relative mx-auto grid max-w-6xl gap-14 px-5 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
         <div className="flex flex-col items-start">
@@ -84,7 +84,7 @@ function Highlighted({ text }: { text: string }) {
     <>
       {text.split('**').map((part, i) =>
         i % 2 === 1 ? (
-          <mark key={i} className="box-decoration-clone bg-accent/10 px-1 font-semibold text-foreground">
+          <mark key={i} className="box-decoration-clone bg-accent/20 px-1 font-semibold text-foreground">
             {part}
           </mark>
         ) : (
