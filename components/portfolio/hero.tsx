@@ -39,7 +39,7 @@ export function Hero() {
               className="size-14 shrink-0 rounded-full border border-border object-cover object-top"
             />
             <div className="min-w-0">
-              <h1 id="hero-title" className="text-base font-semibold tracking-tight">
+              <h1 id="hero-title" className="text-base font-semibold tracking-tight text-foreground">
                 {site.name}
               </h1>
               <p className="text-sm text-muted-foreground">{h.subtitle}</p>
@@ -60,7 +60,7 @@ export function Hero() {
             </a>
             <a
               href="#contact"
-              className="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium transition-colors hover:border-foreground/30"
+              className="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium text-foreground transition-colors hover:border-foreground/30"
             >
               {h.ctaContact}
               <ArrowUpRight
@@ -158,7 +158,7 @@ function Showcase() {
       <div className="flex items-center justify-between gap-3 border-t border-border px-4 py-3">
         <Link
           href={`/projects/${projectSlug(current.project)}`}
-          className="group inline-flex min-w-0 items-center gap-1.5 text-sm font-medium"
+          className="group inline-flex min-w-0 items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent"
         >
           <span className="truncate">{h.slides[active].title}</span>
           <ArrowUpRight
