@@ -50,7 +50,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: languageScript }} />
       </head>
-      <body className="antialiased">
+      <body className="theme-dark bg-background text-foreground antialiased">
         <LanguageProvider>{children}</LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
