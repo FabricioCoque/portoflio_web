@@ -17,9 +17,9 @@ export function LanguageToggle() {
     <div
       role="group"
       aria-label={t.nav.switchLabel}
-      className="flex items-center gap-0.5 rounded-md border border-border bg-card p-0.5 font-mono text-xs transition-colors hover:border-foreground/25"
+      className="flex items-center gap-0.5 rounded-md border border-foreground/10 bg-white p-0.5 font-mono text-xs transition-colors hover:border-foreground/30"
     >
-      <Globe className="mr-0.5 ml-1.5 size-3.5 text-muted-foreground" aria-hidden="true" />
+      <Globe className="mr-0.5 ml-1.5 size-3.5 text-foreground" aria-hidden="true" />
       {options.map((opt) => {
         const active = locale === opt.value
         return (
@@ -32,7 +32,7 @@ export function LanguageToggle() {
             onClick={() => setLocale(opt.value)}
             className={cn(
               'rounded-none px-2.5 py-1 font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand',
-              active ? 'bg-foreground text-background' : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+              active ? 'bg-foreground text-background' : 'text-foreground/70 hover:bg-muted hover:text-foreground',
             )}
           >
             {opt.label}
