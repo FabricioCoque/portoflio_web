@@ -12,8 +12,11 @@ export function SiteHeader() {
   const isHome = pathname === '/'
 
   return (
-    <header className="relative z-50 bg-accent px-5 text-foreground md:px-8">
-      <div className="mx-auto grid h-16 max-w-6xl grid-cols-2 items-center md:grid-cols-3">
+    <header
+      className={`sticky top-4 z-50 px-5 md:px-8 ${isHome ? '-mb-16' : ''}`}
+    >
+      {/* Barra flotante azul, del ancho exacto del contenido (max-w-6xl) */}
+      <div className="mx-auto grid h-16 max-w-6xl grid-cols-2 items-center bg-accent px-5 text-foreground md:grid-cols-3 md:px-8">
 
         {/* Izquierda: logotipo y marca */}
         <div className="flex items-center justify-start">

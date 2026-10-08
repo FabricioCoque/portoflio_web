@@ -28,7 +28,7 @@ export function Hero() {
     <section
       id="top"
       aria-labelledby="hero-title"
-      className="theme-dark relative bg-background px-5 pt-10 text-foreground md:px-8 md:pt-16"
+      className="theme-dark relative bg-background px-5 pt-[6.5rem] text-foreground md:px-8 md:pt-32"
     >
       {/* Banda azul de fondo: se ve a los lados y arriba del panel. Termina antes del final del Hero (bottom-24) */}
       <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent" />
