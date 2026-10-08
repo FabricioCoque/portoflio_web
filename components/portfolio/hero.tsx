@@ -34,7 +34,7 @@ export function Hero() {
       <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-40 bg-accent" />
 
       {/* Panel oscuro al ancho del contenido */}
-      <div className="relative mx-auto max-w-7xl overflow-hidden bg-background">
+      <div className="relative mx-auto max-w-6xl overflow-hidden bg-background">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)]"
