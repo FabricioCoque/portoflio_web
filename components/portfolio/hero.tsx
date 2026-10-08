@@ -25,7 +25,7 @@ export function Hero() {
   const h = t.hero
 
   return (
-    <section id="top" aria-labelledby="hero-title" className="theme-dark relative overflow-hidden bg-background text-foreground">
+    <section id="top" aria-labelledby="hero-title" className="theme-dark relative -mt-14 overflow-hidden bg-background pt-14 text-foreground">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)] opacity-60"
@@ -39,7 +39,7 @@ export function Hero() {
               className="size-14 shrink-0 rounded-full border border-border object-cover object-top"
             />
             <div className="min-w-0">
-              <h1 id="hero-title" className="text-base font-semibold tracking-tight text-foreground">
+              <h1 id="hero-title" className="text-base font-semibold tracking-tight">
                 {site.name}
               </h1>
               <p className="text-sm text-muted-foreground">{h.subtitle}</p>
@@ -60,7 +60,7 @@ export function Hero() {
             </a>
             <a
               href="#contact"
-              className="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium text-foreground transition-colors hover:border-foreground/30"
+              className="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium transition-colors hover:border-foreground/30"
             >
               {h.ctaContact}
               <ArrowUpRight
@@ -158,7 +158,7 @@ function Showcase() {
       <div className="flex items-center justify-between gap-3 border-t border-border px-4 py-3">
         <Link
           href={`/projects/${projectSlug(current.project)}`}
-          className="group inline-flex min-w-0 items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent"
+          className="group inline-flex min-w-0 items-center gap-1.5 text-sm font-medium"
         >
           <span className="truncate">{h.slides[active].title}</span>
           <ArrowUpRight

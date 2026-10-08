@@ -18,7 +18,7 @@ export function Expertise() {
     <section
       id="expertise"
       aria-labelledby="expertise-title"
-      className="border-t border-border bg-card text-card-foreground"
+      className="border-t border-background/15 bg-foreground text-background"
     >
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
         <SectionHeading
@@ -27,33 +27,34 @@ export function Expertise() {
           eyebrow={e.eyebrow}
           title={e.title}
           description={e.description}
+          tone="dark"
         />
 
-        {/* Rejilla con líneas horizontales arriba/abajo y divisores verticales */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border-y border-border bg-border gap-[1px]">
+        {/* Rejilla con líneas horizontales arriba/abajo y divisores verticales solo entre cuadros */}
+        <div className="grid grid-cols-1 md:grid-cols-3 border-y border-background/15 md:divide-x md:divide-background/15">
           {e.categories.map(({ title, description, skills }, i) => {
             const { icon: Icon, code } = visuals[i]
             return (
               <article
                 key={code}
-                className="group flex flex-col bg-background p-8 transition-colors duration-200 hover:bg-muted/50"
+                className="group flex flex-col bg-background/[0.02] p-8 transition-colors duration-200 hover:bg-background/[0.05]"
               >
                 <div className="mb-6 flex items-center justify-between">
-                  <span className="flex size-10 items-center justify-center rounded-lg border border-border bg-card transition-colors group-hover:border-accent/40 group-hover:bg-accent/10">
+                  <span className="flex size-10 items-center justify-center rounded-lg border border-background/15 bg-background/5 transition-colors group-hover:border-accent/40 group-hover:bg-accent/10">
                     <Icon
-                      className="size-5 text-foreground transition-colors group-hover:text-accent"
+                      className="size-5 text-background transition-colors group-hover:text-accent"
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="font-mono text-xs text-muted-foreground">{code}</span>
+                  <span className="font-mono text-xs text-background/50">{code}</span>
                 </div>
-                <h3 className="text-lg font-semibold tracking-tight text-foreground">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                <h3 className="text-lg font-semibold tracking-tight text-background">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-background/70">{description}</p>
                 <ul className="mt-6 flex flex-wrap gap-1.5" aria-label={`${title} ${e.skillsSuffix}`}>
                   {skills.map((skill) => (
                     <li
                       key={skill}
-                      className="rounded-md border border-border bg-card px-2 py-1 font-mono text-xs text-foreground/90"
+                      className="rounded-md border border-background/15 bg-background/5 px-2 py-1 font-mono text-xs text-background/90"
                     >
                       {skill}
                     </li>
