@@ -17,10 +17,13 @@ export function LanguageToggle() {
     <div
       role="group"
       aria-label={t.nav.switchLabel}
-      className="flex items-center gap-0.5 rounded-md border border-foreground/10 bg-white p-0.5 font-mono text-xs transition-colors hover:border-foreground/30"
+      className="flex items-stretch border border-foreground font-mono text-xs"
     >
-      <Globe className="mr-0.5 ml-1.5 size-3.5 text-foreground" aria-hidden="true" />
-      {options.map((opt) => {
+      {/* Celda del icono: indica al visitante que aquí se cambia el idioma */}
+      <span className="flex h-9 w-9 items-center justify-center border-r border-foreground" aria-hidden="true">
+        <Globe className="size-4 text-foreground" />
+      </span>
+      {options.map((opt, i) => {
         const active = locale === opt.value
         return (
           <button
@@ -31,8 +34,9 @@ export function LanguageToggle() {
             aria-label={opt.name}
             onClick={() => setLocale(opt.value)}
             className={cn(
-              'rounded-none px-2.5 py-1 font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand',
-              active ? 'bg-foreground text-background' : 'text-foreground/70 hover:bg-muted hover:text-foreground',
+              'flex h-9 w-11 items-center justify-center font-medium tracking-widest transition-colors duration-200 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-background',
+              i > 0 && 'border-l border-foreground',
+              active ? 'bg-foreground text-background' : 'bg-transparent text-foreground hover:bg-foreground/10',
             )}
           >
             {opt.label}
