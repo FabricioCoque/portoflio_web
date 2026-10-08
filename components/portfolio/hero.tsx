@@ -31,7 +31,7 @@ export function Hero() {
       className="theme-dark relative bg-background px-5 pt-[6.5rem] text-foreground md:px-8 md:pt-32"
     >
       {/* Banda azul de fondo: se ve a los lados y arriba del panel. Termina antes del final del Hero (bottom-24) */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent" />
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-32 bg-accent" />
 
       {/* Panel oscuro al ancho del contenido */}
       <div className="relative mx-auto max-w-6xl overflow-hidden bg-background">
