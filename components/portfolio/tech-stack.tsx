@@ -1,5 +1,8 @@
+'use client'
+
 import { SiPython } from "react-icons/si"
 import { Database, BarChart3 } from "lucide-react"
+import { useLanguage } from './language-provider'
 
 const technologies = [
   {
@@ -17,13 +20,18 @@ const technologies = [
 ]
 
 export function TechStack() {
+  const { t } = useLanguage()
+
   return (
     <section
       id="tecnologias"
-      aria-label="Tecnologías que uso"
+      aria-label={t.techStack.eyebrow}
       className="theme-dark bg-background px-5 pt-10 pb-0 text-foreground md:px-8"
     >
       <div className="mx-auto max-w-6xl border-y border-border">
+        <p className="px-7 pt-4 text-right font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          {t.techStack.eyebrow}
+        </p>
         <ul className="grid grid-cols-1 divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
           {technologies.map((tech) => (
             <li key={tech.name}>

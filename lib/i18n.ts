@@ -85,6 +85,9 @@ const en = {
       flagged: '43 exceptions flagged for review',
     },
   },
+  techStack: {
+    eyebrow: 'Technologies',
+  },
   expertise: {
     eyebrow: 'Solutions',
     title: 'Three areas of work.',
@@ -420,6 +423,9 @@ const es: Dictionary = {
       matched: '14,339 conciliadas',
       flagged: '43 excepciones marcadas para revisión',
     },
+  },
+  techStack: {
+    eyebrow: 'Tecnologías',
   },
   expertise: {
     eyebrow: 'Soluciones',
