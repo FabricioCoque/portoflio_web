@@ -18,7 +18,7 @@ export function SiteFooter() {
     <footer id="contact" aria-labelledby="contact-title" className="bg-foreground text-background">
       {/* Línea divisoria azul: solo el ancho del contenido */}
       <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <div className="border-t-[0.5px] border-[#1D9BF0]/60" />
+        <div className="border-t-[0.5px] border-[#536471]/60" />
       </div>
 
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
