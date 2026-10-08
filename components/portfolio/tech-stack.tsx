@@ -28,11 +28,17 @@ export function TechStack() {
       aria-label={t.techStack.eyebrow}
       className="theme-dark bg-background px-5 pt-10 pb-0 text-foreground md:px-8"
     >
-      <div className="mx-auto max-w-6xl border-y border-border">
-        <p className="px-7 pt-4 text-right font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          {t.techStack.eyebrow}
-        </p>
-        <ul className="grid grid-cols-1 divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
+      <div className="mx-auto max-w-6xl">
+        {/* Encabezado igual al de las otras secciones: línea + etiqueta en la columna izquierda */}
+        <div className="mb-6 grid gap-6 md:grid-cols-[1fr_2fr] md:gap-10 lg:gap-16">
+          <div className="flex h-fit items-center justify-end border-t border-border pt-3 font-mono text-xs">
+            <span className="uppercase tracking-widest text-muted-foreground">
+              {t.techStack.eyebrow}
+            </span>
+          </div>
+        </div>
+
+        <ul className="grid grid-cols-1 divide-y divide-border border-y border-border md:grid-cols-3 md:divide-x md:divide-y-0">
           {technologies.map((tech) => (
             <li key={tech.name}>
               <div className="group flex items-center px-7 py-6 transition-colors hover:bg-card">
