@@ -15,10 +15,10 @@ export function SectionHeading({
   const dark = tone === 'dark'
   return (
     <div className="mb-10 grid gap-6 md:mb-14 md:grid-cols-[1fr_2fr] md:gap-10 lg:gap-16">
-      {/* Columna izquierda: línea fina con la etiqueta */}
+      {/* Columna izquierda: línea con la etiqueta (gris en oscuro, azul en claro) */}
       <div
         className={`flex h-fit items-center justify-end border-t pt-3 font-mono text-xs ${
-          dark ? 'border-background/15' : 'border-border'
+          dark ? 'border-background/15' : 'border-accent'
         }`}
       >
         <span
@@ -34,7 +34,7 @@ export function SectionHeading({
       <div className="flex flex-col gap-3">
         <h2
           id={id}
-          className={`max-w-2xl text-3xl font-semibold tracking-tight text-balance md:text-4xl ${dark ? 'text-background' : ''}`}
+          className={`max-w-md text-3xl font-semibold tracking-tight text-balance md:text-4xl ${dark ? 'text-background' : ''}`}
         >
           {title}
         </h2>
