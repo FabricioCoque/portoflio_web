@@ -15,7 +15,7 @@ export function SiteFooter() {
   const c = t.contact
 
   return (
-    <footer id="contact" aria-labelledby="contact-title" className="border-t border-background/15 bg-foreground text-background">
+    <footer id="contact" aria-labelledby="contact-title" className="border-t border-border bg-foreground text-background">
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
         <p className="font-mono text-xs uppercase tracking-widest text-background/50">
           <span className="text-accent">04</span> <span aria-hidden="true">—</span> {c.eyebrow}
