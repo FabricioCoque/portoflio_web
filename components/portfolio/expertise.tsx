@@ -30,39 +30,41 @@ export function Expertise() {
           tone="dark"
         />
 
-        {/* Rejilla con líneas horizontales arriba/abajo y divisores verticales solo entre cuadros */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border-y border-background/15 md:divide-x md:divide-background/15">
-          {e.categories.map(({ title, description, skills }, i) => {
-            const { icon: Icon, code } = visuals[i]
-            return (
-              <article
-                key={code}
-                className="group flex flex-col bg-background/[0.02] p-8 transition-colors duration-200 hover:bg-background/[0.05]"
-              >
-                <div className="mb-6 flex items-center justify-between">
-                  <span className="flex size-10 items-center justify-center rounded-lg border border-background/15 bg-background/5 transition-colors group-hover:border-accent/40 group-hover:bg-accent/10">
-                    <Icon
-                      className="size-5 text-background transition-colors group-hover:text-accent"
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <span className="font-mono text-xs text-background/50">{code}</span>
-                </div>
-                <h3 className="text-lg font-semibold tracking-tight text-background">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-background/70">{description}</p>
-                <ul className="mt-6 flex flex-wrap gap-1.5" aria-label={`${title} ${e.skillsSuffix}`}>
-                  {skills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="rounded-md border border-background/15 bg-background/5 px-2 py-1 font-mono text-xs text-background/90"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )
-          })}
+        {/* Contenedor que limita las líneas horizontales únicamente al ancho del max-w-6xl */}
+        <div className="border-y border-background/15">
+          <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x md:divide-background/15">
+            {e.categories.map(({ title, description, skills }, i) => {
+              const { icon: Icon, code } = visuals[i]
+              return (
+                <article
+                  key={code}
+                  className="group flex flex-col bg-background/[0.02] p-8 transition-colors duration-200 hover:bg-background/[0.05]"
+                >
+                  <div className="mb-6 flex items-center justify-between">
+                    <span className="flex size-10 items-center justify-center rounded-lg border border-background/15 bg-background/5 transition-colors group-hover:border-accent/40 group-hover:bg-accent/10">
+                      <Icon
+                        className="size-5 text-background transition-colors group-hover:text-accent"
+                        aria-hidden="true"
+                      />
+                    </span>
+                    <span className="font-mono text-xs text-background/50">{code}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold tracking-tight text-background">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-background/70">{description}</p>
+                  <ul className="mt-6 flex flex-wrap gap-1.5" aria-label={`${title} ${e.skillsSuffix}`}>
+                    {skills.map((skill) => (
+                      <li
+                        key={skill}
+                        className="rounded-md border border-background/15 bg-background/5 px-2 py-1 font-mono text-xs text-background/90"
+                      >
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
