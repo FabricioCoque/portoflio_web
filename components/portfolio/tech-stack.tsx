@@ -24,9 +24,9 @@ export function TechStack() {
     <section
       id="tecnologias"
       aria-label="Tecnologías que uso"
-      className="theme-dark bg-background px-5 py-10 text-foreground md:px-8"
+      className="theme-dark bg-background px-5 pt-10 pb-0 text-foreground md:px-8"
     >
-      <div className="mx-auto max-w-6xl border-y border-border">
+      <div className="mx-auto max-w-6xl border-y border-accent">
         <ul className="grid grid-cols-1 divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
           {technologies.map((tech) => (
             <li key={tech.name}>
