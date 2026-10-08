@@ -31,7 +31,7 @@ export function Hero() {
       className="theme-dark relative bg-background px-5 pt-[6.5rem] text-foreground md:px-8 md:pt-32"
     >
       {/* Banda azul de fondo: se ve a los lados y arriba del panel. Termina antes del final del Hero (bottom-24) */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-40 bg-accent" />
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent" />
 
       {/* Panel oscuro al ancho del contenido */}
       <div className="relative mx-auto max-w-6xl overflow-hidden bg-background">
@@ -55,21 +55,21 @@ export function Hero() {
               </div>
             </div>
 
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty md:text-xl">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground text-pretty md:text-lg">
               <Highlighted text={h.intro} />
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="group inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background transition-all hover:opacity-90"
+                className="group inline-flex h-10 items-center gap-2 rounded-lg bg-foreground px-4 text-sm font-medium text-background transition-all hover:opacity-90"
               >
                 {h.ctaProjects}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </a>
               <a
                 href="#contact"
-                className="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium transition-colors hover:border-foreground/30"
+                className="group inline-flex h-10 items-center gap-2 rounded-lg border border-border bg-card px-4 text-sm font-medium transition-colors hover:border-foreground/30"
               >
                 {h.ctaContact}
                 <ArrowUpRight
@@ -131,7 +131,7 @@ function Showcase() {
 
   return (
     <figure
-      className="relative w-full overflow-hidden rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.12)]"
+      className="relative w-full overflow-hidden rounded-xl border border-border bg-card lg:max-w-[26rem] lg:justify-self-end shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.12)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
