@@ -25,54 +25,56 @@ export function Hero() {
   const h = t.hero
 
   return (
-    <section id="top" aria-labelledby="hero-title" className="theme-dark relative -mt-14 overflow-hidden bg-background pt-14 text-foreground">
+    <section id="top" aria-labelledby="hero-title" className="relative -mt-14 overflow-hidden bg-card pt-14 text-card-foreground">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)] opacity-60"
       />
-      <div className="relative mx-auto grid max-w-6xl gap-14 px-5 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
-        <div className="flex flex-col items-start">
-          <div className="flex items-center gap-4">
-            <Image
-              src={perfil}
-              alt={site.name}
-              className="size-14 shrink-0 rounded-full border border-border object-cover object-top"
-            />
-            <div className="min-w-0">
-              <h1 id="hero-title" className="text-base font-semibold tracking-tight">
-                {site.name}
-              </h1>
-              <p className="text-sm text-muted-foreground">{h.subtitle}</p>
-            </div>
-          </div>
-
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty md:text-xl">
-            <Highlighted text={h.intro} />
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href="#projects"
-              className="group inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background transition-all hover:opacity-90"
-            >
-              {h.ctaProjects}
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-            </a>
-            <a
-              href="#contact"
-              className="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium transition-colors hover:border-foreground/30"
-            >
-              {h.ctaContact}
-              <ArrowUpRight
-                className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                aria-hidden="true"
+      <div className="relative mx-auto max-w-6xl">
+        <div className="grid gap-14 px-5 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+          <div className="flex flex-col items-start">
+            <div className="flex items-center gap-4">
+              <Image
+                src={perfil}
+                alt={site.name}
+                className="size-14 shrink-0 rounded-full border border-border object-cover object-top"
               />
-            </a>
+              <div className="min-w-0">
+                <h1 id="hero-title" className="text-base font-semibold tracking-tight text-foreground">
+                  {site.name}
+                </h1>
+                <p className="text-sm text-muted-foreground">{h.subtitle}</p>
+              </div>
+            </div>
+
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty md:text-xl">
+              <Highlighted text={h.intro} />
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href="#projects"
+                className="group inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-5 text-sm font-medium text-background transition-all hover:opacity-90"
+              >
+                {h.ctaProjects}
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+              </a>
+              <a
+                href="#contact"
+                className="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-background px-5 text-sm font-medium transition-colors hover:border-foreground/30 text-foreground"
+              >
+                {h.ctaContact}
+                <ArrowUpRight
+                  className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
+
           </div>
 
+          <Showcase />
         </div>
-
-        <Showcase />
       </div>
     </section>
   )
@@ -122,7 +124,7 @@ function Showcase() {
 
   return (
     <figure
-      className="relative w-full overflow-hidden rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.12)]"
+      className="relative w-full overflow-hidden rounded-xl border border-border bg-background shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.12)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -155,7 +157,7 @@ function Showcase() {
         ))}
       </div>
 
-      <div className="flex items-center justify-between gap-3 border-t border-border px-4 py-3">
+      <div className="flex items-center justify-between gap-3 border-t border-border px-4 py-3 text-foreground">
         <Link
           href={`/projects/${projectSlug(current.project)}`}
           className="group inline-flex min-w-0 items-center gap-1.5 text-sm font-medium"
