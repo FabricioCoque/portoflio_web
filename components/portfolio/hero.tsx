@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import perfil from '@/public/images/perfil.jpg'
 import slide1 from '@/public/images/hero/hero-1.jpg'
 import slide2 from '@/public/images/hero/hero-2.jpg'
@@ -31,7 +31,7 @@ export function Hero() {
       className="theme-dark relative bg-background px-5 pt-[6.5rem] text-foreground md:px-8 md:pt-32"
     >
       {/* Banda azul de fondo: se ve a los lados y arriba del panel. Termina antes del final del Hero (bottom-24) */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-50 bg-accent" />
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent" />
 
       {/* Panel oscuro al ancho del contenido */}
       <div className="relative mx-auto max-w-6xl overflow-hidden bg-background">
@@ -62,20 +62,15 @@ export function Hero() {
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="group inline-flex h-10 items-center gap-2 rounded-lg bg-foreground px-4 text-sm font-medium text-background transition-all hover:opacity-90"
+                className="group inline-flex h-10 items-center gap-2 rounded-lg bg-accent px-4 text-sm font-medium text-background transition-all hover:opacity-90"
               >
                 {h.ctaProjects}
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </a>
               <a
                 href="#contact"
                 className="group inline-flex h-10 items-center gap-2 rounded-lg border border-border bg-card px-4 text-sm font-medium transition-colors hover:border-foreground/30"
               >
                 {h.ctaContact}
-                <ArrowUpRight
-                  className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
               </a>
             </div>
           </div>
