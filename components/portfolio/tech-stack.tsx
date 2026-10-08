@@ -1,5 +1,5 @@
-import { SiPython, SiPowerbi } from "react-icons/si"
-import { Database } from "lucide-react"
+import { SiPython } from "react-icons/si"
+import { Database, BarChart3 } from "lucide-react"
 
 const technologies = [
   {
@@ -10,7 +10,7 @@ const technologies = [
   {
     name: "Power BI",
     href: "#",
-    icon: <SiPowerbi className="h-6 w-6 text-[#F2C811]" aria-hidden="true" />,
+    icon: <BarChart3 className="h-6 w-6 text-[#F2C811]" aria-hidden="true" />,
   },
   {
     name: "Python",
@@ -22,6 +22,7 @@ const technologies = [
 export function TechStack() {
   return (
     <section
+      id="tecnologias"
       aria-label="Tecnologías que uso"
       className="theme-dark bg-background px-6 py-16 text-foreground"
     >
