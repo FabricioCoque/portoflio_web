@@ -24,15 +24,15 @@ export function TechStack() {
     <section
       id="tecnologias"
       aria-label="Tecnologías que uso"
-      className="theme-dark bg-background px-6 py-16 text-foreground"
+      className="theme-dark bg-background px-5 py-10 text-foreground md:px-8"
     >
-      <div className="mx-auto max-w-6xl border-t border-border">
+      <div className="mx-auto max-w-6xl border-y border-border">
         <ul className="grid grid-cols-1 divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
           {technologies.map((tech) => (
             <li key={tech.name}>
               <a
                 href={tech.href}
-                className="group flex items-center justify-between px-7 py-10 transition-colors hover:bg-card focus-visible:bg-card focus-visible:outline-2 focus-visible:-outline-offset-2"
+                className="group flex items-center justify-between px-7 py-6 transition-colors hover:bg-card focus-visible:bg-card focus-visible:outline-2 focus-visible:-outline-offset-2"
               >
                 <div className="flex items-center gap-5">
                   <div className="flex h-12 w-12 items-center justify-center border border-border bg-card transition-colors group-hover:border-accent/50">

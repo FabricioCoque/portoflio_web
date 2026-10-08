@@ -30,7 +30,7 @@ export function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)]"
       />
-      <div className="relative mx-auto grid max-w-6xl gap-14 px-5 pt-24 pb-20 md:px-8 md:pt-40 md:pb-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+      <div className="relative mx-auto grid max-w-6xl gap-14 px-5 pt-24 pb-20 md:px-8 md:pt-44 md:pb-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
         <div className="flex flex-col items-start">
           <div className="flex items-center gap-4">
             <Image
