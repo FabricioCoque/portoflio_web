@@ -14,35 +14,35 @@ export function LanguageToggle() {
   const { locale, setLocale, t } = useLanguage()
 
   return (
-    <div
-      role="group"
-      aria-label={t.nav.switchLabel}
-      className="flex items-stretch border border-foreground font-mono text-xs"
-    >
-      {/* Celda del icono: indica al visitante que aquí se cambia el idioma */}
-      <span className="flex h-7 w-7 items-center justify-center border-r border-foreground" aria-hidden="true">
-        <Globe className="size-3.5 text-foreground" />
-      </span>
-      {options.map((opt, i) => {
-        const active = locale === opt.value
-        return (
-          <button
-            key={opt.value}
-            type="button"
-            lang={opt.value}
-            aria-pressed={active}
-            aria-label={opt.name}
-            onClick={() => setLocale(opt.value)}
-            className={cn(
-              'flex h-7 w-9 items-center justify-center font-medium tracking-widest transition-colors duration-200 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-background',
-              i > 0 && 'border-l border-foreground',
-              active ? 'bg-foreground text-background' : 'bg-transparent text-foreground hover:bg-foreground/10',
-            )}
-          >
-            {opt.label}
-          </button>
-        )
-      })}
+    <div className="flex items-center gap-2">
+      {/* Icono suelto, fuera del marco: indica al visitante que aquí se cambia el idioma */}
+      <Globe className="size-3.5 text-foreground" aria-hidden="true" />
+      <div
+        role="group"
+        aria-label={t.nav.switchLabel}
+        className="flex items-stretch border border-foreground font-mono text-[11px]"
+      >
+        {options.map((opt, i) => {
+          const active = locale === opt.value
+          return (
+            <button
+              key={opt.value}
+              type="button"
+              lang={opt.value}
+              aria-pressed={active}
+              aria-label={opt.name}
+              onClick={() => setLocale(opt.value)}
+              className={cn(
+                'flex h-6 items-center justify-center px-2 font-medium tracking-widest transition-colors duration-200 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-background',
+                i > 0 && 'border-l border-foreground',
+                active ? 'bg-foreground text-background' : 'bg-transparent text-foreground hover:bg-foreground/10',
+              )}
+            >
+              {opt.label}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }
