@@ -26,7 +26,7 @@ export function TechStack() {
     <section
       id="tecnologias"
       aria-label={t.techStack.eyebrow}
-      className="theme-dark bg-background px-5 pt-10 pb-0 text-foreground md:px-8"
+      className="theme-dark bg-background px-5 pt-6 pb-8 text-foreground md:px-8"
     >
       <div className="mx-auto max-w-6xl">
         {/* Encabezado igual al de las otras secciones: línea + etiqueta en la columna izquierda */}
