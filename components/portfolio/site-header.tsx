@@ -22,10 +22,9 @@ export function SiteHeader() {
 
         {/* Izquierda: logotipo y marca */}
         <div className="flex items-center justify-start">
-          <Link href="/" className="flex items-center gap-2 font-medium tracking-tight">
-            <Image src={logo} alt="" className="size-6 shrink-0 object-contain" />
-            <span>{site.name}</span>
-            <span className="hidden font-mono text-xs text-foreground/80 sm:inline">{t.nav.tagline}</span>
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image src={logo} alt="" className="h-6 w-auto shrink-0 object-contain" />
+            <span className="text-base font-medium tracking-tight text-black">{site.name}</span>
           </Link>
         </div>
 
