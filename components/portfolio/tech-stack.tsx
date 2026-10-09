@@ -7,15 +7,15 @@ import { useLanguage } from './language-provider'
 const technologies = [
   {
     name: "SQL",
-    icon: <Database className="h-6 w-6 text-brand" aria-hidden="true" />,
+    icon: <Database className="h-5 w-5 text-brand" aria-hidden="true" />,
   },
   {
     name: "Power BI",
-    icon: <BarChart3 className="h-6 w-6 text-[#F2C811]" aria-hidden="true" />,
+    icon: <BarChart3 className="h-5 w-5 text-[#F2C811]" aria-hidden="true" />,
   },
   {
     name: "Python",
-    icon: <SiPython className="h-6 w-6 text-[#4B8BBE]" aria-hidden="true" />,
+    icon: <SiPython className="h-5 w-5 text-[#4B8BBE]" aria-hidden="true" />,
   },
 ]
 
@@ -30,7 +30,7 @@ export function TechStack() {
     >
       <div className="mx-auto max-w-6xl">
         {/* Encabezado igual al de las otras secciones: línea + etiqueta en la columna izquierda */}
-        <div className="mb-6 grid gap-6 md:grid-cols-[1fr_2fr] md:gap-10 lg:gap-16">
+        <div className="mb-10 grid gap-6 md:grid-cols-[1fr_2fr] md:gap-10 lg:gap-16">
           <div className="flex h-fit items-center justify-end border-t border-border pt-3 font-mono text-xs">
             <span className="uppercase tracking-widest text-muted-foreground">
               {t.techStack.eyebrow}
@@ -43,10 +43,10 @@ export function TechStack() {
             <li key={tech.name}>
               <div className="group flex items-center px-7 py-6 transition-colors hover:bg-card">
                 <div className="flex items-center gap-5">
-                  <div className="flex h-12 w-12 items-center justify-center border border-border bg-card transition-colors group-hover:border-accent/50">
+                  <div className="flex h-10 w-10 items-center justify-center border border-border bg-card transition-colors group-hover:border-accent/50">
                     {tech.icon}
                   </div>
-                  <span className="text-2xl font-semibold tracking-tight">
+                  <span className="text-xl font-semibold tracking-tight">
                     {tech.name}
                   </span>
                 </div>
