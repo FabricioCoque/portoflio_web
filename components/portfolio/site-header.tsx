@@ -37,7 +37,7 @@ export function SiteHeader() {
           <nav aria-label="Primary" className="flex items-center gap-1">
             {t.nav.links.map((link) => {
               const className =
-                'px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-foreground transition-colors hover:underline hover:underline-offset-4'
+                'px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-black transition-colors hover:underline hover:underline-offset-4'
               return isHome ? (
                 <a key={link.href} href={link.href.replace('/#', '#')} className={className}>
                   {link.label}
