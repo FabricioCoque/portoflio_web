@@ -49,7 +49,7 @@
   --secondary-foreground: #0F1419;
   --muted: #EFF3F4;
   --muted-foreground: #536471;  /* Texto secundario / metadatos */
-  --accent: #1D7FF0;            /* Acento principal (Twitter Blue para enlaces o llamadas a la acción) */
+  --accent: #3B82F6;            /* Acento principal (Twitter Blue para enlaces o llamadas a la acción) */
   --accent-foreground: #FFFFFF;
   --destructive: #F4212E;       /* Error / acciones destructivas */
 
