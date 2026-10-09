@@ -1,7 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import logo from '@/public/images/Logo.png'
 import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
 import { LanguageToggle } from './language-toggle'
@@ -21,12 +23,7 @@ export function SiteHeader() {
         {/* Izquierda: logotipo y marca */}
         <div className="flex items-center justify-start">
           <Link href="/" className="flex items-center gap-2 font-medium tracking-tight">
-            <span
-              aria-hidden="true"
-              className="flex size-6 items-center justify-center rounded-md bg-foreground font-mono text-xs text-background"
-            >
-              F
-            </span>
+            <Image src={logo} alt="" className="size-6 shrink-0 object-contain" />
             <span>{site.name}</span>
             <span className="hidden font-mono text-xs text-foreground/80 sm:inline">{t.nav.tagline}</span>
           </Link>
