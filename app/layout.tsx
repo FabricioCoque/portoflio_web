@@ -27,9 +27,7 @@ export const metadata: Metadata = {
     'Analista de datos financieros: conciliaciones automatizadas, extracción de facturas y reportes en Power BI para equipos de contabilidad y finanzas.',
   icons: {
     icon: [
-      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/images/fabvicon.svg', type: 'image/svg+xml' },
     ],
     apple: '/apple-icon.png',
   },
