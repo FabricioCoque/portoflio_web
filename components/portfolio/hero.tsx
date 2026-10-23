@@ -11,11 +11,8 @@ import slide3 from '@/public/images/hero/hero-3.jpg'
 import { projectSlug } from '@/lib/projects'
 import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
-import { GridPattern } from '@/registry/magicui/grid-pattern'
-import { cn } from '@/lib/utils'
 
 // Capturas del hero: imagen y proyecto al que corresponde cada una (0 = proyecto 1, 4 = proyecto 5, 5 = proyecto 6).
-// Los nombres que se muestran debajo de cada captura están en lib/i18n.ts (hero.slides), en el mismo orden.
 const slides = [
   { image: slide1, project: 0 },
   { image: slide2, project: 4 },
@@ -32,16 +29,19 @@ export function Hero() {
       aria-labelledby="hero-title"
       className="theme-dark relative bg-background px-5 pt-[6.5rem] text-foreground md:px-8 md:pt-32"
     >
-      {/* Banda azul de fondo con la cuadrícula integrada */}
+      {/* Banda azul de fondo con la cuadrícula integrada mediante CSS nativo */}
       <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent overflow-hidden">
-        <GridPattern
-          width={20}
-          height={20}
-          x={-1}
-          y={-1}
-          className={cn(
-            "absolute inset-0 size-full stroke-white/15 [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"
-          )}
+        <div
+          className="absolute inset-0 size-full opacity-20"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '24px 24px',
+            maskImage: 'linear-gradient(to bottom right, white, transparent, transparent)',
+            WebkitMaskImage: 'linear-gradient(to bottom right, white, transparent, transparent)'
+          }}
         />
       </div>
 
@@ -51,7 +51,7 @@ export function Hero() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)]"
         />
-        {/* Franja de líneas diagonales en el borde superior del panel (solo al ancho del contenido) */}
+        {/* Franja de líneas diagonales en el borde superior del panel */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-0 h-3 bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.3)_0px,rgba(255,255,255,0.3)_1px,transparent_1px,transparent_6px)]"
@@ -99,7 +99,6 @@ export function Hero() {
   )
 }
 
-// Texto con partes resaltadas: lo que va entre ** ** en lib/i18n.ts se muestra con un marcador de color
 function Highlighted({ text }: { text: string }) {
   return (
     <>
@@ -116,8 +115,6 @@ function Highlighted({ text }: { text: string }) {
   )
 }
 
-// Presentación con fundido suave: cambia sola cada 5 s, se pausa al pasar el mouse o con el teclado,
-// y no rota sola si el dispositivo pide reducir el movimiento.
 function Showcase() {
   const { t } = useLanguage()
   const h = t.hero
