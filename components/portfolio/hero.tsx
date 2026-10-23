@@ -11,6 +11,8 @@ import slide3 from '@/public/images/hero/hero-3.jpg'
 import { projectSlug } from '@/lib/projects'
 import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
+import { GridPattern } from '@/registry/magicui/grid-pattern'
+import { cn } from '@/lib/utils'
 
 // Capturas del hero: imagen y proyecto al que corresponde cada una (0 = proyecto 1, 4 = proyecto 5, 5 = proyecto 6).
 // Los nombres que se muestran debajo de cada captura están en lib/i18n.ts (hero.slides), en el mismo orden.
@@ -30,8 +32,18 @@ export function Hero() {
       aria-labelledby="hero-title"
       className="theme-dark relative bg-background px-5 pt-[6.5rem] text-foreground md:px-8 md:pt-32"
     >
-      {/* Banda azul de fondo: se ve a los lados y arriba del panel. Termina antes del final del Hero (bottom-24) */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent" />
+      {/* Banda azul de fondo con la cuadrícula integrada */}
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent overflow-hidden">
+        <GridPattern
+          width={20}
+          height={20}
+          x={-1}
+          y={-1}
+          className={cn(
+            "absolute inset-0 size-full stroke-white/15 [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"
+          )}
+        />
+      </div>
 
       {/* Panel oscuro al ancho del contenido */}
       <div className="relative mx-auto max-w-6xl overflow-hidden bg-background">
