@@ -29,14 +29,14 @@ export function Hero() {
       aria-labelledby="hero-title"
       className="theme-dark relative bg-background px-5 pt-[6.5rem] text-foreground md:px-8 md:pt-32"
     >
-      {/* Banda azul de fondo con la cuadrícula integrada mediante CSS nativo */}
+      {/* Banda azul de fondo con la cuadrícula visible y contrastada */}
       <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent overflow-hidden">
         <div
-          className="absolute inset-0 size-full opacity-20"
+          className="absolute inset-0 size-full"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px)
+              linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 1px)
             `,
             backgroundSize: '24px 24px',
             maskImage: 'linear-gradient(to bottom right, white, transparent, transparent)',
