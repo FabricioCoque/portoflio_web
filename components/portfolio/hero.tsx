@@ -39,7 +39,11 @@ export function Hero() {
             lightMode
             glowColor="#0F1419"
             secondaryColor="#0B3B63"
-            layers={2}
+            rotation={0}
+            perspective={0.25}
+            scale={1.6}
+            spread={1.6}
+            layers={3}
             threads={44}
             density={0.7}
             particles={0.25}
