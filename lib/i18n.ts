@@ -60,7 +60,7 @@ const en = {
     badge: 'Open to data & BI roles and freelance projects',
     subtitle: 'Finance, automation, and Business Intelligence',
     intro:
-      "I'm a data and automation analyst with a background in accounting and reconciliations. I turn manual reports into **automated** ones and build data models that help the business get answers **faster.**",
+      "I help turn **manual** reports into **automated** reporting and **data models** that get your business answers **faster.**",
     titleLead: 'Finance, Automation, and',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -399,7 +399,7 @@ const es: Dictionary = {
     badge: 'Abierto a roles de datos y BI y a proyectos freelance',
     subtitle: 'Finanzas, automatización y Business Intelligence',
     intro:
-      'Soy analista de datos y automatización con experiencia en contabilidad y conciliaciones. Convierto reportes manuales en informes **automatizados** y en modelos de datos que **aceleran** las respuestas del negocio.',
+      'Te ayudo a convertir reportes manuales en informes **automatizados** y en **modelos de datos** que **aceleran** las respuestas del negocio.',
     titleLead: 'Finanzas, automatizacion y ',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
