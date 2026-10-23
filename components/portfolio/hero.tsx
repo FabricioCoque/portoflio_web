@@ -11,7 +11,7 @@ import slide3 from '@/public/images/hero/hero-3.jpg'
 import { projectSlug } from '@/lib/projects'
 import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
-import GhostFibers from './GhostFibers'
+import DarkVeil from './DarkVeil'
 
 // Capturas del hero: imagen y proyecto al que corresponde cada una (0 = proyecto 1, 4 = proyecto 5, 5 = proyecto 6).
 // Los nombres que se muestran debajo de cada captura están en lib/i18n.ts (hero.slides), en el mismo orden.
@@ -32,33 +32,14 @@ export function Hero() {
       className="theme-dark relative bg-background px-5 pt-[6.5rem] text-foreground md:px-8 md:pt-32"
     >
       {/* Banda azul de fondo: se ve a los lados y arriba del panel. Termina antes del final del Hero (bottom-24) */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 overflow-hidden bg-accent">
-        {/* Fondo animado (WebGL) sobre el azul. Solo en pantallas medianas o más grandes; no intercepta clics */}
-        <div className="pointer-events-none absolute inset-0 hidden opacity-60 md:block">
-          <GhostFibers
-            lightMode
-            glowColor="#0F1419"
-            secondaryColor="#0B3B63"
-            rotation={0}
-            perspective={0.25}
-            scale={1.6}
-            spread={1.6}
-            layers={3}
-            threads={44}
-            density={0.7}
-            particles={0.25}
-            fiberStyle="dots"
-            depthOfField={0.6}
-            hoverEffect="focus"
-            vignette={0.2}
-            pulseOnClick={false}
-            dpr={1}
-          />
-        </div>
-      </div>
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 bottom-24 bg-accent" />
 
       {/* Panel oscuro al ancho del contenido */}
       <div className="relative mx-auto max-w-6xl overflow-hidden bg-background">
+        {/* Fondo animado (WebGL) dentro del panel oscuro. Solo en pantallas medianas o más grandes; no intercepta clics */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden opacity-60 md:block">
+          <DarkVeil color="#1D9BF0" quality={0.5} fade={0.2} dpr={1} />
+        </div>
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)]"
