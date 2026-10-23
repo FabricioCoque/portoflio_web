@@ -40,10 +40,8 @@ export function Hero() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden opacity-60 md:block">
           <DarkVeil color="#1D9BF0" quality={0.5} fade={0.2} dpr={1} />
         </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)]"
-        />
+        {/* Velo oscuro: atenúa el efecto bajo el texto (izquierda) para mejorar la lectura */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/85 via-background/50 to-transparent" />
         {/* Franja de líneas diagonales en el borde superior del panel (solo al ancho del contenido) */}
         <div
           aria-hidden="true"
@@ -61,11 +59,11 @@ export function Hero() {
                 <h1 id="hero-title" className="text-base font-semibold tracking-tight">
                   {site.name}
                 </h1>
-                <p className="text-sm text-muted-foreground">{h.subtitle}</p>
+                <p className="text-sm text-foreground/75">{h.subtitle}</p>
               </div>
             </div>
 
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground text-pretty md:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/85 text-pretty md:text-lg">
               <Highlighted text={h.intro} />
             </p>
 
