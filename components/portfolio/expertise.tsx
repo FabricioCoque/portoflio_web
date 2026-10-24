@@ -1,11 +1,15 @@
 'use client'
 
+import { useState } from 'react'
+import { Plus } from 'lucide-react'
 import { useLanguage } from './language-provider'
 import { SectionHeading } from './section-heading'
 
 export function Expertise() {
   const { t } = useLanguage()
   const e = t.expertise
+  // Fila abierta: la primera al cargar; cambia al pasar el mouse, al enfocar con teclado o al tocar
+  const [open, setOpen] = useState(0)
 
   return (
     <section
@@ -23,31 +27,77 @@ export function Expertise() {
           tone="dark"
         />
 
-        {/* Columnas abiertas: una línea arriba y divisores verticales finos entre columnas, sin tarjetas */}
-        <div className="grid grid-cols-1 divide-y divide-background/15 border-t border-background/15 md:grid-cols-3 md:divide-x md:divide-y-0">
-          {e.categories.map(({ title, description, skills }, i) => (
-            <article
-              key={i}
-              className="flex flex-col py-8 md:px-8 md:pt-12 md:pb-4 md:first:pl-0 md:last:pr-0"
-            >
-              <h3 className="text-lg font-medium tracking-tight text-background">{title}</h3>
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-background/60">{description}</p>
-              <ul
-                className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5"
-                aria-label={`${title} ${e.skillsSuffix}`}
+        {/* Acordeón: el contenido se despliega hacia abajo al pasar el mouse sobre el título */}
+        <ul className="border-y border-background/15">
+          {e.categories.map(({ title, description, skills }, i) => {
+            const isOpen = open === i
+            return (
+              <li
+                key={i}
+                className="border-b border-background/15 last:border-b-0"
+                onMouseEnter={() => setOpen(i)}
               >
-                {skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="font-mono text-[11px] font-medium uppercase tracking-widest text-background/90"
+                <h3>
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={`expertise-panel-${i}`}
+                    onClick={() => setOpen(i)}
+                    onFocus={() => setOpen(i)}
+                    className="group flex w-full items-center gap-5 py-6 text-left md:gap-8 md:py-8"
                   >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
+                    <span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
+                    <span
+                      className={`flex-1 text-2xl font-semibold tracking-tight transition-colors duration-300 md:text-4xl ${
+                        isOpen ? 'text-background' : 'text-background/45 group-hover:text-background/80'
+                      }`}
+                    >
+                      {title}
+                    </span>
+                    <Plus
+                      className={`size-5 shrink-0 text-background/60 transition-transform duration-300 motion-reduce:transition-none ${
+                        isOpen ? 'rotate-45 text-accent' : ''
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                </h3>
+
+                <div
+                  id={`expertise-panel-${i}`}
+                  role="region"
+                  aria-label={title}
+                  className={`grid transition-[grid-template-rows] duration-500 ease-out motion-reduce:transition-none ${
+                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div
+                      className={`pb-8 transition-opacity duration-500 motion-reduce:transition-none md:pb-10 md:pl-[3.25rem] ${
+                        isOpen ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      <p className="max-w-xl text-sm leading-relaxed text-background/60 md:text-base">{description}</p>
+                      <ul
+                        className="mt-5 flex flex-wrap gap-x-5 gap-y-2"
+                        aria-label={`${title} ${e.skillsSuffix}`}
+                      >
+                        {skills.map((skill) => (
+                          <li
+                            key={skill}
+                            className="font-mono text-[11px] font-medium uppercase tracking-widest text-background/90"
+                          >
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </section>
   )

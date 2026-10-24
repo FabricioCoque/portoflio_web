@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import {
   BarChart3,
+  ChevronRight,
   FileSearch,
   FolderOpen,
   GitMerge,
@@ -107,9 +108,10 @@ export function Projects() {
                     ) : null}
                     <Link
                       href={`/projects/${projectSlug(i)}`}
-                      className="inline-flex h-10 items-center justify-center rounded-none border border-border bg-card px-5 font-mono text-[11px] font-medium uppercase tracking-widest transition-colors after:absolute after:inset-0 hover:border-foreground/30"
+                      className="inline-flex h-10 items-center justify-center gap-4 rounded-none border border-foreground bg-transparent px-5 font-mono text-[11px] font-semibold uppercase tracking-widest text-foreground transition-colors after:absolute after:inset-0 hover:bg-foreground/5"
                     >
                       {p.caseStudy}
+                      <ChevronRight className="size-3.5" aria-hidden="true" />
                       <span className="sr-only">{`: ${title}`}</span>
                     </Link>
                   </div>
