@@ -86,7 +86,7 @@ const en = {
     },
   },
   techStack: {
-    eyebrow: 'Technologies',
+    eyebrow: 'Tools',
   },
   expertise: {
     eyebrow: 'Solutions',
@@ -425,19 +425,19 @@ const es: Dictionary = {
     },
   },
   techStack: {
-    eyebrow: 'Tecnologías',
+    eyebrow: 'Herramientas',
   },
   expertise: {
     eyebrow: 'Soluciones',
-    title: 'Tres áreas de intervención.',
+    title: '',
     description:
       '',
     skillsSuffix: 'habilidades',
     categories: [
       {
         title: 'Automatización y Scripts en Python',
-        description: 'Scripts en Python que ingieren, limpian y validan datos de ERPs, bancos y archivos planos.',
-        skills: ['Python', 'Pandas', 'NumPy', 'Regex', 'RapidFuzz', 'SQLite', 'GitHub Actions'],
+        description: 'Integración, limpieza y validación de datos de ERP, bancos y archivos planos. Cruce masivo y automático de transacciones contables.',
+        skills: ['Python', 'Pandas', 'SQL', 'Automatizacion de ETL'],
       },
       {
         title: 'Inteligencia de Negocios',
