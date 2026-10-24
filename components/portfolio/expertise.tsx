@@ -43,7 +43,7 @@ export function Expertise() {
                     aria-controls={`expertise-panel-${i}`}
                     onClick={() => setOpen(i)}
                     onFocus={() => setOpen(i)}
-                    className="block w-full py-4 text-left text-2xl font-bold tracking-tight text-background uppercase md:py-5 md:text-4xl"
+                    className="block w-full py-3 text-left text-xl font-bold tracking-tight text-background uppercase md:py-4 md:text-3xl"
                   >
                     {title}
                   </button>
@@ -63,11 +63,11 @@ export function Expertise() {
                         isOpen ? 'opacity-100' : 'opacity-0'
                       }`}
                     >
-                      <p className="max-w-lg text-sm leading-relaxed font-medium text-background/80 md:text-base">
+                      <p className="max-w-lg text-sm leading-relaxed font-medium text-background/80">
                         {description}
                       </p>
                       <ul
-                        className="flex flex-col gap-1.5 text-sm text-background/90 md:text-base"
+                        className="flex flex-col gap-1.5 text-sm text-background/90"
                         aria-label={`${title} ${e.skillsSuffix}`}
                       >
                         {skills.map((skill) => (
