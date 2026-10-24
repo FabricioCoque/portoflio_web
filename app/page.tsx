@@ -13,8 +13,8 @@ export default function Page() {
       <main>
         <Hero />
         <TechStack />
-        <Expertise />
         <Projects />
+        <Expertise />
         <About />
       </main>
       <SiteFooter />
