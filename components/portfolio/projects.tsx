@@ -57,14 +57,14 @@ export function Projects() {
         />
 
         {/* Rejilla limpia: sin bordes laterales exteriores, usando separación de 1px con el color del borde */}
-        <div className="grid grid-cols-1 gap-[1px] border-y border-background/15 bg-background/15 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-[1px] bg-[#D5DBDF] lg:grid-cols-2">
           {p.items.map(({ title, description, stack }, i) => {
             const Icon = icons[i] ?? FolderOpen
             const repo = projectLinks[i]?.repo
             return (
               <article
                 key={i}
-                className="group relative flex flex-col overflow-hidden bg-background p-6 transition-colors duration-200 hover:bg-muted/50 md:p-8"
+                className="group relative flex flex-col overflow-hidden bg-background p-6 text-foreground transition-colors duration-200 hover:bg-muted md:p-8"
               >
                 <div className="mb-6 flex items-center justify-between border-b border-border pb-4">
                   <span className="font-mono text-xs text-muted-foreground">{`project_0${i + 1}`}</span>
