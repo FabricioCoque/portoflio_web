@@ -27,11 +27,11 @@ export function TechStack() {
     <section
       id="tecnologias"
       aria-label={t.techStack.eyebrow}
-      className="theme-dark bg-background px-5 pt-6 pb-12 text-foreground md:px-8"
+      className="theme-dark bg-background px-5 pt-6 pb-16 text-foreground md:px-8"
     >
       {/* Dos líneas (arriba y abajo) al ancho del contenido, con la fila en medio */}
       <div className="mx-auto max-w-6xl border-y border-border">
-        <div className="grid gap-4 py-5 md:grid-cols-[1fr_2fr] md:items-center md:gap-10 lg:gap-16">
+        <div className="grid gap-4 py-8 md:grid-cols-[1fr_2fr] md:items-center md:gap-10 lg:gap-16">
           <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground md:text-right">
             {t.techStack.eyebrow}
           </span>
