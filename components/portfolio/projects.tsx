@@ -13,7 +13,7 @@ import {
 import { projectLinks, projectSlug } from '@/lib/projects'
 import { useLanguage } from './language-provider'
 import { SectionHeading } from './section-heading'
-import GhostFibers from './GhostFibers'
+import DarkVeil from './DarkVeil'
 
 const icons = [GitMerge, ShoppingCart, FileSearch, Landmark, BarChart3, Wallet]
 
@@ -29,21 +29,7 @@ export function Projects() {
     >
       {/* Fondo animado (WebGL) detrás de la sección. Solo en pantallas medianas o más grandes; no intercepta clics */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden opacity-50 md:block">
-        <GhostFibers
-          glowColor="#1D9BF0"
-          secondaryColor="#5aa3ea"
-          layers={2}
-          threads={44}
-          density={0.7}
-          particles={0.25}
-          fiberStyle="dots"
-          depthOfField={0.6}
-          hoverEffect="focus"
-          glow={0.7}
-          brightness={0.9}
-          pulseOnClick={false}
-          dpr={1}
-        />
+        <DarkVeil color="#1D9BF0" quality={0.5} fade={0.2} dpr={1} />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
