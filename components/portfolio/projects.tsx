@@ -2,8 +2,6 @@
 
 import Link from 'next/link'
 import {
-  ArrowRight,
-  ArrowUpRight,
   BarChart3,
   FileSearch,
   FolderOpen,
@@ -71,19 +69,17 @@ export function Projects() {
                         href={repo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative z-10 inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-none bg-foreground px-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                        className="relative z-10 inline-flex h-10 flex-1 items-center justify-center rounded-none bg-accent px-5 font-mono text-xs font-medium uppercase tracking-widest text-foreground transition-opacity hover:opacity-90"
                       >
                         {p.viewCode}
-                        <ArrowUpRight className="size-3.5" aria-hidden="true" />
                         <span className="sr-only">{p.viewCodeSr(title)}</span>
                       </a>
                     ) : null}
                     <Link
                       href={`/projects/${projectSlug(i)}`}
-                      className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-none border border-border bg-card px-3 text-sm font-medium transition-colors after:absolute after:inset-0 hover:border-foreground/30"
+                      className="inline-flex h-10 flex-1 items-center justify-center rounded-none border border-border bg-card px-5 font-mono text-xs font-medium uppercase tracking-widest transition-colors after:absolute after:inset-0 hover:border-foreground/30"
                     >
                       {p.caseStudy}
-                      <ArrowRight className="size-3.5" aria-hidden="true" />
                       <span className="sr-only">{`: ${title}`}</span>
                     </Link>
                   </div>
