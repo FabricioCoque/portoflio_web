@@ -29,31 +29,23 @@ export function TechStack() {
       className="theme-dark bg-background px-5 pt-6 pb-8 text-foreground md:px-8"
     >
       <div className="mx-auto max-w-6xl">
-        {/* Encabezado igual al de las otras secciones: línea + etiqueta en la columna izquierda */}
-        <div className="mb-10 grid gap-6 md:grid-cols-[1fr_2fr] md:gap-10 lg:gap-16">
+        {/* Misma estructura que las otras secciones: línea + etiqueta a la izquierda, tecnologías a la derecha */}
+        <div className="grid gap-6 md:grid-cols-[1fr_2fr] md:gap-10 lg:gap-16">
           <div className="flex h-fit items-center justify-end border-t border-border pt-3 font-mono text-xs">
             <span className="uppercase tracking-widest text-muted-foreground">
               {t.techStack.eyebrow}
             </span>
           </div>
-        </div>
 
-        <ul className="grid grid-cols-1 divide-y divide-border border-y border-border md:grid-cols-3 md:divide-x md:divide-y-0">
-          {technologies.map((tech) => (
-            <li key={tech.name}>
-              <div className="group flex items-center px-7 py-6 transition-colors hover:bg-card">
-                <div className="flex items-center gap-5">
-                  <div className="flex h-10 w-10 items-center justify-center border border-border bg-card transition-colors group-hover:border-accent/50">
-                    {tech.icon}
-                  </div>
-                  <span className="text-xl font-semibold tracking-tight">
-                    {tech.name}
-                  </span>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+          <ul className="flex flex-wrap items-center gap-x-8 gap-y-3 md:pt-2">
+            {technologies.map((tech) => (
+              <li key={tech.name} className="flex items-center gap-2.5">
+                {tech.icon}
+                <span className="text-base font-medium tracking-tight">{tech.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   )
