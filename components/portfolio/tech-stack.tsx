@@ -31,7 +31,7 @@ export function TechStack() {
     >
       {/* Dos líneas (arriba y abajo) al ancho del contenido, con la fila en medio */}
       <div className="mx-auto max-w-6xl border-y border-border">
-        <div className="grid gap-4 py-8 md:grid-cols-[1fr_2fr] md:items-center md:gap-10 lg:gap-16">
+        <div className="grid gap-4 py-10 md:grid-cols-[1fr_2fr] md:items-center md:gap-10 lg:gap-16">
           <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground md:text-right">
             {t.techStack.eyebrow}
           </span>
