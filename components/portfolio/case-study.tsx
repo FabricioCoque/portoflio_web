@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 import { PROJECT_COUNT, projectLinks, projectSlug, projectSnippets } from '@/lib/projects'
@@ -29,6 +30,23 @@ export function CaseStudy({ index }: { index: number }) {
     { id: 'solution', label: cs.solutionEyebrow },
     { id: 'results', label: cs.resultsEyebrow },
   ]
+  const [active, setActive] = useState(sections[0].id)
+
+  // Resalta en el índice la sección que se está leyendo
+  useEffect(() => {
+    const ids = ['problem', 'solution', 'results']
+    const elements = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => !!el)
+    if (!elements.length) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        if (visible.length) setActive(visible[0].target.id)
+      },
+      { rootMargin: '-20% 0px -65% 0px' },
+    )
+    elements.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [index])
 
   return (
     <article className="mx-auto max-w-6xl px-5 pt-10 pb-20 md:px-8 md:pt-14 md:pb-28">
@@ -41,45 +59,35 @@ export function CaseStudy({ index }: { index: number }) {
       </Link>
 
       <div className="mt-10 grid gap-12 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16">
-        {/* Barra lateral: índice de todos los proyectos y de las secciones de esta página */}
+        {/* Barra lateral: índice para navegar por las secciones de esta página */}
         <aside className="hidden lg:block">
           <div className="sticky top-28">
             <p className="border-t border-border pt-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {cs.label}
+              {code}
             </p>
-            <nav aria-label={cs.label} className="mt-4">
+            <nav aria-label={project.title} className="mt-4">
               <ol className="flex flex-col">
-                {t.projects.items.map((item, i) => {
-                  const current = i === index
+                {sections.map((section, i) => {
+                  const current = section.id === active
                   return (
-                    <li key={i}>
-                      <Link
-                        href={`/projects/${projectSlug(i)}`}
-                        aria-current={current ? 'page' : undefined}
-                        className={`flex gap-3 border-l py-1.5 pl-3 text-sm leading-snug transition-colors ${
+                    <li key={section.id}>
+                      <a
+                        href={`#${section.id}`}
+                        aria-current={current ? 'location' : undefined}
+                        className={`flex gap-3 border-l py-2 pl-3 text-sm leading-snug transition-colors ${
                           current
                             ? 'border-accent font-medium text-foreground'
                             : 'border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground'
                         }`}
                       >
                         <span className="font-mono text-xs leading-snug text-muted-foreground">{pad(i + 1)}</span>
-                        <span>{item.title}</span>
-                      </Link>
+                        <span>{section.label}</span>
+                      </a>
                     </li>
                   )
                 })}
               </ol>
             </nav>
-
-            <ul className="mt-8 flex flex-col gap-2 border-t border-border pt-4 font-mono text-xs uppercase tracking-widest">
-              {sections.map((s) => (
-                <li key={s.id}>
-                  <a href={`#${s.id}`} className="text-muted-foreground transition-colors hover:text-foreground">
-                    {s.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
         </aside>
 
