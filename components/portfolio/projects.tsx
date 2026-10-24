@@ -64,37 +64,36 @@ export function Projects() {
             return (
               <article
                 key={i}
-                className="group relative flex flex-col overflow-hidden bg-background p-6 text-foreground transition-colors duration-200 hover:bg-muted md:p-8"
+                className="group relative flex flex-col overflow-hidden bg-background p-6 text-foreground transition-colors duration-200 hover:bg-muted md:p-8 lg:min-h-[22rem]"
               >
-                <div className="mb-6 flex items-center justify-between border-b border-border pb-4">
-                  <span className="font-mono text-xs text-muted-foreground">{`project_0${i + 1}`}</span>
+                <div className="mb-6 flex items-center justify-start border-b border-border pb-4">
                   <Icon className="size-4 text-muted-foreground transition-colors group-hover:text-brand" aria-hidden="true" />
                 </div>
 
                 <div className="flex flex-1 flex-col">
-                  <h3 className="text-xl leading-snug font-semibold tracking-tight text-balance transition-colors group-hover:text-brand md:text-2xl">
+                  <h3 className="text-lg leading-snug font-semibold tracking-tight text-balance transition-colors group-hover:text-brand md:text-xl">
                     {title}
                   </h3>
-                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">{description}</p>
+                  <p className="mt-3 max-w-xl text-[13px] leading-relaxed text-muted-foreground md:text-sm">{description}</p>
 
                   <ul className="mt-6 flex flex-wrap gap-1.5" aria-label={p.stackLabel}>
                     {stack.map((tag) => (
                       <li
                         key={tag}
-                        className="rounded-none bg-brand-soft px-2.5 py-0.5 font-mono text-[11px] font-medium text-brand"
+                        className="rounded-none bg-brand-soft px-2.5 py-0.5 font-mono text-[10px] font-medium text-brand"
                       >
                         {tag}
                       </li>
                     ))}
                   </ul>
 
-                  <div className="mt-auto flex items-center gap-2 pt-8">
+                  <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
                     {repo ? (
                       <a
                         href={repo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative z-10 inline-flex h-10 flex-1 items-center justify-center rounded-none bg-accent px-5 font-mono text-xs font-medium uppercase tracking-widest text-foreground transition-opacity hover:opacity-90"
+                        className="relative z-10 inline-flex h-10 items-center justify-center rounded-none bg-accent px-5 font-mono text-[11px] font-medium uppercase tracking-widest text-foreground transition-opacity hover:opacity-90"
                       >
                         {p.viewCode}
                         <span className="sr-only">{p.viewCodeSr(title)}</span>
@@ -102,7 +101,7 @@ export function Projects() {
                     ) : null}
                     <Link
                       href={`/projects/${projectSlug(i)}`}
-                      className="inline-flex h-10 flex-1 items-center justify-center rounded-none border border-border bg-card px-5 font-mono text-xs font-medium uppercase tracking-widest transition-colors after:absolute after:inset-0 hover:border-foreground/30"
+                      className="inline-flex h-10 items-center justify-center rounded-none border border-border bg-card px-5 font-mono text-[11px] font-medium uppercase tracking-widest transition-colors after:absolute after:inset-0 hover:border-foreground/30"
                     >
                       {p.caseStudy}
                       <span className="sr-only">{`: ${title}`}</span>
