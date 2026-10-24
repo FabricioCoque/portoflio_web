@@ -4,6 +4,7 @@ import { SiPython } from "react-icons/si"
 import { MdBarChart } from "react-icons/md"
 import { Database } from "lucide-react"
 import { useLanguage } from './language-provider'
+import DarkVeil from './DarkVeil'
 
 const technologies = [
   {
@@ -27,10 +28,15 @@ export function TechStack() {
     <section
       id="tecnologias"
       aria-label={t.techStack.eyebrow}
-      className="theme-dark bg-background px-5 pt-6 pb-16 text-foreground md:px-8"
+      className="theme-dark relative overflow-hidden bg-background px-5 pt-6 pb-16 text-foreground md:px-8"
     >
+      {/* Fondo animado (WebGL) detrás de la sección. Solo en pantallas medianas o más grandes; no intercepta clics */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden opacity-50 md:block">
+        <DarkVeil color="#1D9BF0" quality={0.5} fade={0.2} dpr={1} />
+      </div>
+
       {/* Dos líneas (arriba y abajo) al ancho del contenido, con la fila en medio */}
-      <div className="mx-auto max-w-6xl border-y border-border">
+      <div className="relative mx-auto max-w-6xl border-y border-border">
         <div className="grid gap-4 py-10 md:grid-cols-[1fr_2fr] md:items-center md:gap-10 lg:gap-16">
           <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground md:text-right">
             {t.techStack.eyebrow}
