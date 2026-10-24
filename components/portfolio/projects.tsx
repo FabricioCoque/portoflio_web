@@ -13,6 +13,7 @@ import {
 import { projectLinks, projectSlug } from '@/lib/projects'
 import { useLanguage } from './language-provider'
 import { SectionHeading } from './section-heading'
+import GhostFibers from './GhostFibers'
 
 const icons = [GitMerge, ShoppingCart, FileSearch, Landmark, BarChart3, Wallet]
 
@@ -21,18 +22,42 @@ export function Projects() {
   const p = t.projects
 
   return (
-    <section id="projects" aria-labelledby="projects-title" className="border-t border-border bg-card">
-      <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+    <section
+      id="projects"
+      aria-labelledby="projects-title"
+      className="relative overflow-hidden bg-foreground text-background"
+    >
+      {/* Fondo animado (WebGL) detrás de la sección. Solo en pantallas medianas o más grandes; no intercepta clics */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden opacity-50 md:block">
+        <GhostFibers
+          glowColor="#1D9BF0"
+          secondaryColor="#5aa3ea"
+          layers={2}
+          threads={44}
+          density={0.7}
+          particles={0.25}
+          fiberStyle="dots"
+          depthOfField={0.6}
+          hoverEffect="focus"
+          glow={0.7}
+          brightness={0.9}
+          pulseOnClick={false}
+          dpr={1}
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
         <SectionHeading
           id="projects-title"
           index="02"
           eyebrow={p.eyebrow}
           title={p.title}
           description={p.description}
+          tone="dark"
         />
 
         {/* Rejilla limpia: sin bordes laterales exteriores, usando separación de 1px con el color del borde */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-border bg-border gap-[1px]">
+        <div className="grid grid-cols-1 gap-[1px] border-y border-background/15 bg-background/15 lg:grid-cols-2">
           {p.items.map(({ title, description, stack }, i) => {
             const Icon = icons[i] ?? FolderOpen
             const repo = projectLinks[i]?.repo
