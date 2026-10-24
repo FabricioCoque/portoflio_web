@@ -12,8 +12,7 @@ import {
 } from 'lucide-react'
 import { projectLinks, projectSlug } from '@/lib/projects'
 import { useLanguage } from './language-provider'
-import { SectionHeading } from './section-heading'
-import DarkVeil from './DarkVeil'
+import GhostFibers from './GhostFibers'
 
 const icons = [GitMerge, ShoppingCart, FileSearch, Landmark, BarChart3, Wallet]
 
@@ -29,18 +28,39 @@ export function Projects() {
     >
       {/* Fondo animado (WebGL) detrás de la sección. Solo en pantallas medianas o más grandes; no intercepta clics */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden opacity-50 md:block">
-        <DarkVeil color="#1D9BF0" quality={0.5} fade={0.2} dpr={1} />
+        <GhostFibers
+          glowColor="#1D9BF0"
+          secondaryColor="#5aa3ea"
+          layers={2}
+          threads={44}
+          density={0.7}
+          particles={0.25}
+          fiberStyle="dots"
+          depthOfField={0.6}
+          hoverEffect="focus"
+          glow={0.7}
+          brightness={0.9}
+          pulseOnClick={false}
+          dpr={1}
+        />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
-        <SectionHeading
-          id="projects-title"
-          index="02"
-          eyebrow={p.eyebrow}
-          title={p.title}
-          description={p.description}
-          tone="dark"
-        />
+        {/* Encabezado: título grande y descripción arriba; debajo, la línea con la etiqueta */}
+        <div className="mb-10 md:mb-14">
+          <h2
+            id="projects-title"
+            className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-balance text-background md:text-5xl"
+          >
+            {p.title}
+          </h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-pretty text-background/60 md:text-base">
+            {p.description}
+          </p>
+          <div className="mt-8 border-t border-background/15 pt-3 md:mt-10">
+            <span className="font-mono text-xs uppercase tracking-widest text-background/60">{p.eyebrow}</span>
+          </div>
+        </div>
 
         {/* Rejilla limpia: sin bordes laterales exteriores, usando separación de 1px con el color del borde */}
         <div className="grid grid-cols-1 gap-[1px] bg-[#D5DBDF] lg:grid-cols-2">
