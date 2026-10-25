@@ -47,8 +47,8 @@ const esPlaceholderStudy: typeof enPlaceholderStudy = {
 const en = {
   nav: {
     links: [
-      { href: '/#expertise', label: 'Solutions' },
       { href: '/#projects', label: 'Projects' },
+      { href: '/#expertise', label: 'Solutions' },
       { href: '/#about', label: 'About' },
       { href: '#contact', label: 'Contact' },
     ],
@@ -60,7 +60,7 @@ const en = {
     badge: 'Open to data & BI roles and freelance projects',
     subtitle: 'Finance, automation, and Business Intelligence',
     intro:
-      "I help turn **manual** reports into **automated** reporting and **data models** that get your business answers **faster.**",
+      "I help you turn manual reports into **automated** ones and build **data models** that get your business answers **faster**.",
     titleLead: 'Finance, Automation, and',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
@@ -76,7 +76,7 @@ const en = {
     slides: [
       { title: 'Payment gateway reconciliation' },
       { title: 'P&L and Balance Sheet' },
-      { title: 'Accounts receivable and collection risk' },
+      { title: 'Receivables and late-payment risk' },
     ],
     code: {
       comment: '# → push exceptions to Power BI',
@@ -90,25 +90,26 @@ const en = {
   },
   expertise: {
     eyebrow: 'Solutions',
-    title: 'Three areas of work.',
+    title: '',
     description:
       '',
     skillsSuffix: 'skills',
     categories: [
       {
-        title: 'Automation & Python Scripting',
-        description: 'Python scripts that ingest, clean, and validate data from ERPs, banks, and flat files.',
-        skills: ['Python', 'Pandas', 'NumPy', 'Regex', 'RapidFuzz', 'SQLite', 'GitHub Actions'],
+        title: 'Automation & Optimization',
+        description:
+          'Automating data processing and consolidation: pulling together multiple sources, cleaning data, and flagging anomalies. Large-scale matching of transactional records and automated report generation.',
+        skills: ['Python', 'Pandas', 'SQL', 'ETL Automation'],
       },
       {
         title: 'Business Intelligence',
         description:
-          'Power BI reports built on star-schema models: P&L and balance sheet variances, receivables aging, and payment reconciliations.',
-        skills: ['Power BI', 'DAX', 'Power Query', 'Star Schema', 'IBCS', 'Figma'],
+          'Analysis, modeling, and visualization: building dashboards and reports that give clear visibility into key metrics, working closely with business and technology teams.',
+        skills: ['Power BI', 'DAX', 'Power Query', 'Data Modeling', 'IBCS', 'SQL'],
       },
       {
         title: 'Financial Analysis',
-        description: 'Month-end close, bank and gateway reconciliations, receivables control, and tax withholdings.',
+        description: 'Month-end close, bank and payment gateway reconciliations, receivables control, and tax withholdings.',
         skills: ['Reconciliations', 'Receivables Aging', 'P&L Analysis', 'Balance Sheet Analysis', 'Month-end Close', 'Tax Withholdings'],
       },
     ],
@@ -120,12 +121,12 @@ const en = {
     stackLabel: 'Tech stack',
     viewCode: 'View Code',
     viewCodeSr: (title: string) => `for ${title} (opens in new tab)`,
-    caseStudy: 'Case Study',
+    caseStudy: 'View project',
     items: [
       {
         title: 'Automated Payment Gateway Reconciliation',
         description:
-          'Python pipeline that cross-checks the ERP, the payment gateway, and the bank, applies gateway commissions and tax withholdings to separate expected differences from genuine errors, and publishes the results to a historical database and a Power BI dashboard. Inspired by a real-world problem; built and tested with synthetic data.',
+          'Python pipeline that cross-checks the ERP, the payment gateway, and the bank, applies gateway fees and tax withholdings to separate expected differences from real errors, and publishes the results to a historical database and a Power BI dashboard. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '3,024', label: 'synthetic transactions classified' },
         stack: ['Python', 'Pandas', 'SQLite', 'Power BI'],
       },
@@ -139,26 +140,26 @@ const en = {
       {
         title: 'Automated PDF Invoice Extraction to Excel',
         description:
-          'Python workflow that reads electronic PDF invoices, extracts their data using supplier-specific templates with an AI model as a fallback, validates the amounts, and delivers an Excel report ready for tax reporting and accounting entry. Inspired by a real-world problem; built and tested with synthetic data.',
+          'Python workflow that reads electronic PDF invoices, extracts the data using supplier-specific templates (with an AI model as a fallback), validates the amounts, and produces an Excel file ready for tax filing and bookkeeping. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '12', label: 'synthetic invoices processed' },
         stack: ['Python', 'Regex', 'Gemini API', 'Excel'],
       },
       {
         title: 'Bank Reconciliation with Exact and Fuzzy Matching',
         description:
-          'Reconciles the general ledger against the bank statement and finds the transactions that an exact match leaves pending because of formatting differences in the reference, flagging every approximate match for review. Inspired by a real-world problem; built and tested with synthetic data.',
+          'Reconciles the general ledger against the bank statement and catches the transactions that an exact match leaves pending because of formatting differences in the reference, flagging every approximate match for review. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '356/466', label: 'ledger records reconciled (synthetic data)' },
         stack: ['Python', 'RapidFuzz', 'Pandas', 'Openpyxl'],
       },
       {
         title: 'P&L and Balance Sheet in Power BI',
         description:
-          'Power BI report that turns the Income Statement and Balance Sheet into a dynamic narrative: it explains variances against the prior year and monitors solvency with liquidity and leverage indicators, following IBCS standards. Inspired by a real-world problem; built and tested with synthetic data.',
+          'Power BI report that turns the Income Statement and Balance Sheet into a dynamic narrative: it explains variances against the prior year and tracks solvency with liquidity and leverage indicators, following IBCS standards. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '3', label: 'analyses combined in one report' },
         stack: ['Power Query', 'Power BI', 'DAX', 'Financial Modeling'],
       },
       {
-        title: 'Accounts Receivable and Collection Risk',
+        title: 'Accounts Receivable Control and Late-Payment Risk',
         description:
           'Power BI dashboard built on a star schema that calculates days-past-due aging, a risk score, and balance variances. It shows the gap between billed and collected amounts in a waterfall chart, with customer-level detail. Inspired by a real-world problem; built and tested with synthetic data.',
         metric: { value: '3', label: 'analyses combined in one dashboard' },
@@ -185,29 +186,29 @@ const en = {
     items: [
       {
         problem:
-          'At month-end, the ERP, the payment gateway (Datafast, Medianet, PayPhone), and the bank have to agree, but they are not connected to each other. The ERP bills the gross amount, the gateway deducts its commission, and the bank deposits the net amount after tax withholdings, so no two figures match at first glance. The accounting team ends up cross-checking the reports by hand, and errors slip through along the way. This is a real and common problem for businesses that accept card payments; to develop the solution I used synthetic data that simulates that scenario.',
+          'At month-end close, the ERP, the payment gateway (Datafast, Medianet, PayPhone), and the bank all have to agree, yet none of them talk to each other. The ERP bills the gross amount, the gateway deducts its fee, and the bank deposits the net amount after tax withholdings, so no two figures match at first glance. The accounting team ends up cross-checking the reports by hand, and errors slip through along the way. This is a real and common problem for businesses that accept card payments; to build the solution, I used synthetic data that simulates that scenario.',
         challenges: [
           'Three sources with different formats and no guaranteed common identifier',
-          'Normal differences (commission and withholdings) mixed in with real errors',
-          'Cumulative reports that repeat on every run without duplicating the history',
-          'A process that someone without programming knowledge must be able to run',
+          'Expected differences (fees and withholdings) mixed in with real errors',
+          'Cumulative reports that get re-run without duplicating the history',
+          'A process that someone with no programming background can run',
         ],
         solution:
-          'I built a three-stage pipeline. First, it cleans and normalizes the three reports, applying the tax withholdings and the commission rates of each payment gateway. Next, it cross-matches the transactions and classifies each one by status and type of exception. Finally, it loads the results into SQLite, updating by transaction ID, so a sale that was pending one week becomes reconciled the next without being duplicated. It runs with a single command or a .bat file, and Power BI reads the output.',
+          'I built a three-stage pipeline. First, it cleans and normalizes the three reports, applying the tax withholdings and the fee rates of each payment gateway. Next, it matches the transactions and classifies each one by status and exception type. Finally, it loads the results into SQLite, updating by transaction ID, so a sale that was pending one week shows up as reconciled the next, without being duplicated. It runs with a single command or a .bat file, and Power BI reads the output.',
         architecture: [
           { title: 'Source Reports', detail: 'bank · gateway · ERP' },
           { title: 'Cleaning (ETL)', detail: 'tax withholdings' },
           { title: 'Matching', detail: 'exception classification' },
-          { title: 'Historical Store', detail: 'SQLite · by tx_id' },
+          { title: 'Historical Database', detail: 'SQLite · by tx_id' },
           { title: 'Dashboard', detail: 'Power BI' },
         ],
         results: [
           { value: '3,024', label: 'Synthetic transactions classified' },
           { value: '99', label: 'Exceptions detected in the test data' },
-          { value: '3', label: 'Exception types: overcharged commission, unrecorded chargeback, missing from gateway' },
+          { value: '3', label: 'Exception types: overcharged fee, unrecorded chargeback, missing from gateway' },
         ],
         outcome:
-          'In the test with synthetic data that simulates a real operating scenario (3,024 transactions, July to December 2024), the system flagged 45 overcharged commissions ($100.70 recoverable), 24 chargebacks not recorded in the ERP ($5,060.69 at risk), and 30 sales with no gateway confirmation ($12,872.18 untraceable). The amounts come from test data and illustrate the kind of finding the system produces.',
+          'In a test with synthetic data simulating a real operating scenario (3,024 transactions, July through December 2024), the system flagged 45 overcharged fees ($100.70 recoverable), 24 chargebacks missing from the ERP ($5,060.69 at risk), and 30 sales with no gateway confirmation ($12,872.18 untraceable). The amounts come from test data and illustrate the kind of findings the system produces.',
       },
       {
         problem:
@@ -215,7 +216,7 @@ const en = {
         challenges: [
           'Over 2 million rows with duplicated product and store attributes',
           'Conflicting revenue definitions across teams',
-          'Report refreshes taking minutes and frequently failing',
+          'Refreshes that took minutes and often failed',
         ],
         solution:
           'I designed an ETL pipeline in Python and SQL that cleans raw transactions and reshapes them into a star schema — one sales fact table surrounded by date, product, store, and customer dimensions. A single DAX measure layer in Power BI now defines every KPI once.',
@@ -232,19 +233,19 @@ const en = {
           { value: '1', label: 'Single source of truth for KPIs' },
         ],
         outcome:
-          'Sales, finance, and operations now review the same numbers in weekly meetings, and category managers self-serve analysis without requesting ad-hoc extracts.',
+          'Sales, finance, and operations now review the same numbers in weekly meetings, and category managers run their own analysis without asking for ad hoc extracts.',
       },
       {
         problem:
-          'The accounting team spends many hours downloading invoices from recurring suppliers and manually typing 49-digit authorization numbers, taxpayer IDs (RUC), issue dates, and tax breakdowns. The volume delays the close, and manual entry increases the risk of errors. This is a real and recurring problem for accounting teams; to develop the solution I used synthetic invoices that follow the real structure of electronic invoices.',
+          'The accounting team spends hours downloading invoices from recurring suppliers and manually keying in 49-digit authorization numbers, taxpayer IDs (RUC), issue dates, and tax breakdowns. The volume delays the close, and manual entry raises the risk of errors. This is a real and recurring problem for accounting teams; to build the solution, I used synthetic invoices that follow the structure of real electronic invoices.',
         challenges: [
           'Invoice formats that differ by issuer',
-          'New suppliers that are not in the catalog',
-          'Inconsistent data that must not reach the accounting records',
-          'Corrupt PDFs or locked reports that must not stop the batch',
+          'New suppliers not yet in the catalog',
+          'Inconsistent data that must never reach the books',
+          'Corrupt PDFs or locked files that cannot be allowed to stop the batch',
         ],
         solution:
-          'I built a hybrid Python workflow. It converts each PDF to Markdown to preserve table structure. If the supplier is in the catalog, it applies a regular-expression template tailored to that format; if the supplier is new, it sends the text to an AI model with a strict JSON schema. Every record goes through an arithmetic check (taxable base + VAT = total), and the Excel report highlights rows with errors in red.',
+          'I built a hybrid Python workflow. It converts each PDF to Markdown to preserve table structure. If the supplier is in the catalog, it applies a regex template tailored to that format; if the supplier is new, it sends the text to an AI model with a strict JSON schema. Every record goes through an arithmetic check (taxable base + VAT = total), and the Excel report highlights rows with errors in red.',
         architecture: [
           { title: 'PDF Invoices', detail: 'input folder' },
           { title: 'Conversion', detail: 'PDF to Markdown' },
@@ -258,19 +259,19 @@ const en = {
           { value: '1', label: 'Template file to extend when adding a supplier' },
         ],
         outcome:
-          'The workflow lets reviewers focus on the rows flagged in red instead of typing every invoice, and adding a new supplier only takes a new template, with no changes to the main flow. Tested with 12 synthetic invoices that follow the real structure.',
+          'The workflow lets reviewers focus on the rows flagged in red instead of keying in every invoice, and adding a new supplier only takes a new template, with no changes to the main flow. Tested with 12 synthetic invoices that follow the real structure.',
       },
       {
         problem:
-          'At month-end, the accounting team has to confirm that every ledger entry has its matching bank credit and vice versa. When the references do not match exactly, because of a typo, a hyphen, or an extra zero, the system leaves them as pending even though the transaction exists, and someone has to review them one by one. This is a real and common problem in high-volume businesses; to develop the solution I used synthetic data that simulates that scenario.',
+          'At month-end, the accounting team has to confirm that every ledger entry has a matching bank credit, and vice versa. When the references do not match exactly (a typo, a hyphen, an extra zero), the system leaves the items pending even though the transaction exists, and someone has to review them one by one. This is a real and common problem in high-volume businesses; to build the solution, I used synthetic data that simulates that scenario.',
         challenges: [
-          'The same transaction written differently in the ledger and in the bank',
-          'False pending items that force row-by-row review',
+          'The same transaction recorded differently in the ledger and at the bank',
+          'False pending items that force a row-by-row review',
           'Knowing which approximate matches can be trusted',
           'Telling what is missing from the bank apart from what is missing from the books',
         ],
         solution:
-          'The process first matches what agrees exactly, then looks, only among the pending items, for transactions with the same amount and similar references. Each approximate match is flagged with its similarity percentage so the accountant can decide whether to accept it. Whatever remains unmatched is split into two lists: ledger items with no bank credit, and bank deposits with no accounting entry. Everything is delivered in a 6-sheet Excel workbook, with a summary of the reconciliation status.',
+          'The process first matches everything that lines up exactly, then searches only the pending items for transactions with the same amount and similar references. Each approximate match is flagged with its similarity score so the accountant can decide whether to accept it. Whatever is still unmatched is split into two lists: ledger items with no bank credit, and bank deposits with no accounting entry. Everything is delivered in a 6-sheet Excel workbook with a reconciliation status summary.',
         architecture: [
           { title: 'Ledger & Banks', detail: 'Excel' },
           { title: 'Exact Match', detail: 'reference + amount' },
@@ -284,19 +285,19 @@ const en = {
           { value: '128', label: 'Items for review: 110 unmatched ledger items and 18 unmatched bank deposits' },
         ],
         outcome:
-          'In the test with synthetic data that simulates a real operating scenario, 356 of 466 ledger records were reconciled: 350 by exact match and 6 that only fuzzy matching could identify ($8,694.63). 110 unmatched ledger items ($167,731.45) and 18 bank deposits with no accounting entry ($747,664.25) remained, separated into two sheets for review. The team reviews only what truly does not add up and validates approximate matches using their similarity score.',
+          'In a test with synthetic data simulating a real operating scenario, 356 of 466 ledger records were reconciled: 350 by exact match and 6 that only fuzzy matching could identify ($8,694.63). That left 110 unmatched ledger items ($167,731.45) and 18 bank deposits with no accounting entry ($747,664.25), split across two sheets for review. The team only reviews what genuinely does not add up and checks approximate matches against their similarity score.',
       },
       {
         problem:
-          'Traditional financial reports are static and dense. Connecting operating profitability (P&L) with the capital structure (Balance Sheet) is hard; knowing how much was earned or lost is easy, but understanding where it comes from takes hours of manual reconciliation, and liquidity or debt risks take a long time to spot among so much text. This is a real and common problem in financial management; to develop the solution I used synthetic data that simulates the financial statements of a company.',
+          'Traditional financial reports are static and dense. Linking operating profitability (P&L) to the capital structure (Balance Sheet) is hard: seeing how much was earned or lost is easy, but understanding where it came from takes hours of manual reconciliation, and liquidity or debt risks are slow to surface in all that text. This is a real and common problem in financial management; to build the solution, I used synthetic data that simulates a company’s financial statements.',
         challenges: [
-          'P&L and Balance Sheet kept apart, with no model connecting them',
+          'P&L and Balance Sheet in separate files, with no model linking them',
           'Explaining variances instead of just showing them',
           'Spotting liquidity and debt risks at a glance',
-          'Keeping the executive read clear with a consistent visual standard',
+          'Keeping the executive view clear with a consistent visual standard',
         ],
         solution:
-          'I built the report in three stages. First, I structured the chart of accounts and standardized the accounting records with Power Query to consolidate the financial statements. Then I modeled in DAX the accumulation matrices, the variances against the prior year, and the liquidity and leverage indicators. Finally, I designed the interface in Figma following IBCS standards. The report includes a waterfall chart showing how the margin erodes from gross revenue to net income, a solvency panel with the capital structure and short- versus long-term debt, and a cross-statement view with ROA and net working capital.',
+          'I built the report in three stages. First, I structured the chart of accounts and standardized the accounting records with Power Query to consolidate the financial statements. Then I modeled the accumulation matrices, year-over-year variances, and liquidity and leverage indicators in DAX. Finally, I designed the interface in Figma following IBCS standards. The report includes a waterfall chart showing how margin erodes from gross revenue to net income, a solvency panel with the capital structure and short- versus long-term debt, and a cross-statement view with ROA and net working capital.',
         architecture: [
           { title: 'Financial Statements', detail: 'P&L and Balance Sheet' },
           { title: 'Power Query', detail: 'standardized chart of accounts' },
@@ -310,19 +311,19 @@ const en = {
           { value: 'IBCS', label: 'Standard applied to the report design' },
         ],
         outcome:
-          'Readers can go from net income to its causes with the waterfall chart and assess solvency without switching tools. The report was developed with synthetic data that simulates the financial statements of a company.',
+          'Readers can go from net income to its causes with the waterfall chart and assess solvency without switching tools. The report was developed with synthetic data that simulates a company’s financial statements.',
       },
       {
         problem:
-          'Traditional accounts receivable management does not give a structured view of the gap between what was billed and what was actually collected. It is hard to reconcile billed, collected, and outstanding balances in real time; collection is reactive because the portfolio is not classified by risk of late payment, and continuous payment delays erode cash flow and working capital. This is a real and common problem in accounts receivable management; to develop the solution I used synthetic data that simulates a customer receivables portfolio.',
+          'Traditional accounts receivable management gives no structured view of the gap between what was billed and what was actually collected. Reconciling billed, collected, and outstanding balances in real time is hard; collection is reactive because the portfolio is not classified by risk of late payment, and ongoing payment delays erode cash flow and working capital. This is a real and common problem in accounts receivable management; to build the solution, I used synthetic data that simulates a customer receivables portfolio.',
         challenges: [
           'Reconciling billed, collected, and outstanding balances in one place',
           'Classifying receivables by risk of late payment, based on days past due',
-          'Moving from the overall state of the portfolio to each customer without losing context',
+          'Drilling down from the overall portfolio to each customer without losing context',
           'Designing a dashboard that reduces cognitive load and speeds up decisions',
         ],
         solution:
-          'I built the dashboard in three stages. First, I cleaned and standardized the transactional billing and payments data with Power Query. Then I designed a star-schema dimensional model and wrote the aging, risk scoring, and balance variance calculations in DAX. Finally, I laid out the dashboard in Figma with a fast analytical read in mind. The dashboard includes a waterfall chart with the gap between billed, collected, and outstanding amounts; a risk segmentation by days-past-due bucket; and a customer view with the pending invoices, due dates, and credit status of each account.',
+          'I built the dashboard in three stages. First, I cleaned and standardized the transactional billing and payments data with Power Query. Then I designed a star-schema dimensional model and wrote the aging, risk scoring, and balance variance calculations in DAX. Finally, I laid out the dashboard in Figma with quick analytical reading in mind. The dashboard includes a waterfall chart with the gap between billed, collected, and outstanding amounts; a risk segmentation by days-past-due bucket; and a customer view with the pending invoices, due dates, and credit status of each account.',
         architecture: [
           { title: 'Billing & Payments', detail: 'transactional data' },
           { title: 'Power Query', detail: 'cleaning and standardization' },
@@ -336,7 +337,7 @@ const en = {
           { value: '2', label: 'Reading levels: overall portfolio and customer or invoice detail' },
         ],
         outcome:
-          'The dashboard helps direct collection efforts to the accounts with the greatest financial impact and supports decisions on credit policies and provisions for uncollectible accounts. Developed with synthetic data that simulates a customer receivables portfolio.',
+          'The dashboard helps focus collection efforts on the accounts with the biggest financial impact and supports decisions on credit policies and bad-debt provisions. Developed with synthetic data that simulates a customer receivables portfolio.',
       },
     ],
   },
@@ -344,8 +345,8 @@ const en = {
     eyebrow: 'Professional Background',
     title: '',
     paragraphs: [
-      'Most of my career has been in accounting and reconciliations. Working daily with Excel, ERP reports, and scattered data sources showed me how much these areas depend on manual, repetitive processes that consume time that should go to analyzing information.',
-      'That experience led me to build my own solutions, particularly around workflow automation and data analysis.',
+      'I have spent most of my career in accounting and reconciliations. Working with Excel, ERP reports, and scattered data sources every day showed me how much these areas rely on manual, repetitive processes that eat up time better spent analyzing information.',
+      'That experience pushed me to build my own solutions, especially around workflow automation and data analysis.',
     ],
     principles: [
       { k: 'accuracy', v: 'Every number traceable to its source' },
@@ -356,17 +357,17 @@ const en = {
       {
         period: 'Foundation',
         title: 'Accounting & Financial Control',
-        body: 'Experience across the accounting cycle, month-end closes, balance sheet reconciliations, and operational control under strict audit standards.',
+        body: 'Hands-on experience across the accounting cycle: month-end closes, balance sheet reconciliations, and operational controls under strict audit standards.',
       },
       {
         period: 'Transition',
         title: 'Financial Reporting Automation',
-        body: 'Introduced Python scripts and Power Query to replace manual spreadsheet processes, shortening reporting times and eliminating operational errors.',
+        body: 'Brought in Python scripts and Power Query to replace manual spreadsheet processes, cutting reporting time and eliminating operational errors.',
       },
       {
         period: 'Today',
         title: 'Data Analysis & Automation',
-        body: 'Data analysis and automated workflows that management teams use to streamline their day-to-day operations.',
+        body: 'Data analysis and automated workflows that management teams rely on to run their day-to-day operations more efficiently.',
       },
     ],
   },
@@ -374,7 +375,7 @@ const en = {
     eyebrow: 'Contact',
     title: 'Online presence',
     description:
-      "If you'd like to exchange ideas on automation and data analysis, or explore a professional collaboration, feel free to write to me directly.",
+      "If you’d like to talk automation and data analysis, or explore working together, feel free to reach out directly.",
     newTab: '(opens in new tab)',
     rights: 'All rights reserved.',
     built: '',
@@ -386,8 +387,8 @@ export type Dictionary = typeof en
 const es: Dictionary = {
   nav: {
     links: [
-      { href: '/#expertise', label: 'Soluciones' },
       { href: '/#projects', label: 'Proyectos' },
+      { href: '/#expertise', label: 'Soluciones' },
       { href: '/#about', label: 'Perfil' },
       { href: '#contact', label: 'Contacto' },
     ],
@@ -400,7 +401,7 @@ const es: Dictionary = {
     subtitle: 'Finanzas, automatización y Business Intelligence',
     intro:
       'Te ayudo a convertir reportes manuales en informes **automatizados** y en **modelos de datos** que **aceleran** las respuestas del negocio.',
-    titleLead: 'Finanzas, automatizacion y ',
+    titleLead: 'Finanzas, automatización y ',
     titleAccent: 'Business Intelligence.',
     bio: (name: string) =>
       `Soy ${name}. Optimizo la elaboración de reportes contables y financieros mediante la automatización de flujos de trabajo, la integración de datos de múltiples fuentes, la creación de informes y paneles de control que sustituyen el trabajo manual.`,
@@ -435,15 +436,15 @@ const es: Dictionary = {
     skillsSuffix: 'habilidades',
     categories: [
       {
-        title: 'Automatización y Scripts en Python',
-        description: 'Integración, limpieza y validación de datos de ERP, bancos y archivos planos. Cruce masivo y automático de transacciones contables.',
-        skills: ['Python', 'Pandas', 'SQL', 'Automatizacion de ETL'],
+        title: 'Automatización y Optimización',
+        description: 'Automatización de procesamiento y consolidación de datos: integración de múltiples fuentes, limpieza y detección de anomalías. Cruce masivo de información transaccional y generación de reportería automatizada.',
+        skills: ['Python', 'Pandas', 'SQL', 'Automatización de ETL'],
       },
       {
         title: 'Inteligencia de Negocios',
         description:
-          'Reportes en Power BI sobre modelos en estrella: variaciones de P&L y balance, antigüedad de cartera y conciliaciones de pagos.',
-        skills: ['Power BI', 'DAX', 'Power Query', 'Modelo Estrella', 'IBCS', 'Figma'],
+          'Análisis, modelado y visualización: desarrollo de dashboards e informes que proporcionan visibilidad sobre indicadores clave. Colaboración con áreas de negocio y tecnología.',
+        skills: ['Power BI', 'DAX', 'Power Query', 'Modelo de datos', 'IBCS','SQL'],
       },
       {
         title: 'Análisis Financiero',
@@ -466,7 +467,7 @@ const es: Dictionary = {
     stackLabel: 'Stack tecnológico',
     viewCode: 'Ver código',
     viewCodeSr: (title: string) => `de ${title} (se abre en una pestaña nueva)`,
-    caseStudy: 'Caso de estudio',
+    caseStudy: 'Ver proyecto',
     items: [
       {
         title: 'Conciliación Automatizada de Pasarelas de Pago',
@@ -706,7 +707,7 @@ const es: Dictionary = {
       },
       {
         period: 'Transición',
-        title: 'Automatización de reporteria financiera',
+        title: 'Automatización de reportería financiera',
         body: 'Incorporación de scripts en Python y Power Query para reemplazar procesos manuales en hojas de cálculo, reduciendo tiempos de reportería y eliminando errores operativos.',
       },
       {

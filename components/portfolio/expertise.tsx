@@ -28,7 +28,7 @@ export function Expertise() {
 
         {/* Lista de áreas: la línea bajo el título se resalta en la fila abierta y el contenido se despliega debajo */}
         <ul>
-          {e.categories.map(({ title, description, skills }, i) => {
+          {e.categories.slice(0, 2).map(({ title, description, skills }, i) => {
             const isOpen = open === i
             return (
               <li key={i} onMouseEnter={() => setOpen(i)}>
@@ -43,7 +43,7 @@ export function Expertise() {
                     aria-controls={`expertise-panel-${i}`}
                     onClick={() => setOpen(i)}
                     onFocus={() => setOpen(i)}
-                    className="block w-full py-3 text-left text-xl font-bold tracking-tight text-background uppercase md:py-4 md:text-3xl"
+                    className="block w-full py-3 text-left text-[17px] font-bold tracking-tight text-background uppercase md:py-4 md:text-[25px]"
                   >
                     {title}
                   </button>

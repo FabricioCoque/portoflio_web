@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import logo from '@/public/images/navbar.svg'
+import logo from '@/public/images/Logo.png'
 import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
 import { LanguageToggle } from './language-toggle'
@@ -22,7 +22,17 @@ export function SiteHeader() {
 
         {/* Izquierda: logotipo y marca */}
         <div className="flex items-center justify-start">
-          <Link href="/" className="flex items-center gap-2.5">
+          <Link
+            href="/"
+            onClick={(e) => {
+              // En la home, subir suavemente al inicio sin recargar; en otras páginas, ir a la home
+              if (isHome) {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }
+            }}
+            className="flex items-center gap-2.5"
+          >
             <Image src={logo} alt="" className="h-6 w-auto shrink-0 object-contain" />
             <span className="text-base font-medium tracking-tight text-black">{site.name}</span>
           </Link>
