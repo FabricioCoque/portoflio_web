@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import logo from '@/public/images/Logo.png'
+import logo from '@/public/images/navbar.svg'
 import { site } from '@/lib/site'
 import { useLanguage } from './language-provider'
 import { LanguageToggle } from './language-toggle'
