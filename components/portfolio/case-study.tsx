@@ -101,7 +101,7 @@ export function CaseStudy({ index }: { index: number }) {
             <h1 className="mt-4 max-w-3xl text-3xl leading-tight font-semibold tracking-tight text-balance md:text-5xl">
               {project.title}
             </h1>
-            <p className="mt-5 max-w-2xl leading-relaxed text-pretty text-muted-foreground md:text-lg">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-pretty text-foreground/75 md:text-xl">
               {study.summary ?? project.description}
             </p>
 
@@ -134,7 +134,7 @@ export function CaseStudy({ index }: { index: number }) {
             <h2 id="problem-title" className="text-2xl font-semibold tracking-tight md:text-3xl">
               {cs.problemTitle}
             </h2>
-            <p className="mt-5 max-w-2xl leading-relaxed text-pretty text-muted-foreground md:text-lg">{study.problem}</p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-pretty text-foreground/80 md:text-[17px]">{study.problem}</p>
             <ul className="mt-8 max-w-2xl border-y border-accent/50">
               {study.challenges.map((challenge, i) => (
                 <li
@@ -142,7 +142,7 @@ export function CaseStudy({ index }: { index: number }) {
                   className="flex items-center gap-4 border-b border-dashed border-accent/50 py-4 last:border-b-0"
                 >
                   <Plus className="size-4 shrink-0 text-accent" aria-hidden="true" />
-                  <span className="text-sm leading-6">{challenge}</span>
+                  <span className="text-[15px] leading-6">{challenge}</span>
                 </li>
               ))}
             </ul>
@@ -153,7 +153,7 @@ export function CaseStudy({ index }: { index: number }) {
             <h2 id="solution-title" className="text-2xl font-semibold tracking-tight md:text-3xl">
               {cs.solutionTitle}
             </h2>
-            <p className="mt-5 max-w-2xl leading-relaxed text-pretty text-muted-foreground md:text-lg">{study.solution}</p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-pretty text-foreground/80 md:text-[17px]">{study.solution}</p>
 
             <figure className="mt-10">
               <figcaption className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
@@ -163,8 +163,8 @@ export function CaseStudy({ index }: { index: number }) {
                 {study.architecture.map((step, i) => (
                   <li key={i} className="flex flex-col xl:flex-1 xl:flex-row xl:items-center">
                     <div className="group flex flex-1 flex-col border border-border bg-card px-4 py-4 transition-colors hover:border-accent">
-                      <span className="font-mono text-[11px] text-muted-foreground">{`step_${i + 1}`}</span>
-                      <span className="mt-2 text-sm font-semibold tracking-tight">{step.title}</span>
+                      <span className="font-mono text-xs text-muted-foreground">{`step_${i + 1}`}</span>
+                      <span className="mt-2 text-[15px] font-semibold tracking-tight">{step.title}</span>
                       <span className="mt-1 font-mono text-xs text-accent">{step.detail}</span>
                     </div>
                     {i < study.architecture.length - 1 ? (
@@ -184,11 +184,11 @@ export function CaseStudy({ index }: { index: number }) {
                 {study.details.map((detail, i) => (
                   <div key={i} className="max-w-2xl border-t border-border pt-6">
                     <h3 className="text-lg font-semibold tracking-tight md:text-xl">{detail.title}</h3>
-                    <p className="mt-3 leading-relaxed text-pretty text-muted-foreground">{detail.body}</p>
+                    <p className="mt-3 text-base leading-7 text-pretty text-foreground/80 md:text-[17px]">{detail.body}</p>
                     {detail.bullets && detail.bullets.length > 0 ? (
                       <ul className="mt-4 flex flex-col gap-2.5">
                         {detail.bullets.map((bullet, j) => (
-                          <li key={j} className="flex gap-3 text-sm leading-relaxed">
+                          <li key={j} className="flex gap-3 text-[15px] leading-relaxed">
                             <span aria-hidden="true" className="mt-[0.45rem] size-1.5 shrink-0 bg-accent" />
                             <span>{bullet}</span>
                           </li>
@@ -230,7 +230,7 @@ export function CaseStudy({ index }: { index: number }) {
               <figure className="mt-10 border border-foreground bg-foreground text-background">
                 <figcaption className="flex items-center justify-between border-b border-background/10 px-5 py-3">
                   <span className="font-mono text-xs text-background/60">{snippet.file}</span>
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-background/40">
+                  <span className="font-mono text-xs uppercase tracking-widest text-background/40">
                     {cs.codeLabel}
                   </span>
                 </figcaption>
@@ -253,11 +253,11 @@ export function CaseStudy({ index }: { index: number }) {
                   className="flex flex-col-reverse border border-border bg-card p-6 transition-colors duration-300 hover:border-accent"
                 >
                   <dt className="mt-2 text-sm text-muted-foreground">{result.label}</dt>
-                  <dd className="font-mono text-4xl font-medium tracking-tight text-accent">{result.value}</dd>
+                  <dd className="font-mono text-4xl font-medium tracking-tight text-accent tabular-nums">{result.value}</dd>
                 </div>
               ))}
             </dl>
-            <p className="mt-8 flex max-w-2xl gap-3 leading-relaxed text-pretty">
+            <p className="mt-8 flex max-w-2xl gap-3 text-base leading-7 text-pretty md:text-[17px]">
               <Check className="mt-1 size-4 shrink-0 text-accent" aria-hidden="true" />
               {study.outcome}
             </p>
