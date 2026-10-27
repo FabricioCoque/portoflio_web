@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Plus } from 'lucide-react'
 import { PROJECT_COUNT, projectLinks, projectSlug, projectSnippets } from '@/lib/projects'
 import { useLanguage } from './language-provider'
 
@@ -135,10 +135,13 @@ export function CaseStudy({ index }: { index: number }) {
               {cs.problemTitle}
             </h2>
             <p className="mt-5 max-w-2xl leading-relaxed text-pretty text-muted-foreground md:text-lg">{study.problem}</p>
-            <ul className="mt-8 flex max-w-2xl flex-col border border-border bg-card">
+            <ul className="mt-8 max-w-2xl border-y border-accent/50">
               {study.challenges.map((challenge, i) => (
-                <li key={i} className="flex gap-4 border-b border-border px-5 py-4 last:border-b-0">
-                  <span className="font-mono text-xs leading-6 text-accent">{pad(i + 1)}</span>
+                <li
+                  key={i}
+                  className="flex items-center gap-4 border-b border-dashed border-accent/50 py-4 last:border-b-0"
+                >
+                  <Plus className="size-4 shrink-0 text-accent" aria-hidden="true" />
                   <span className="text-sm leading-6">{challenge}</span>
                 </li>
               ))}
