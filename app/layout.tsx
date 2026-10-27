@@ -22,7 +22,7 @@ const plexMono = IBM_Plex_Mono({
 const languageScript = `(function(){try{var d=document.documentElement;var p=new URLSearchParams(location.search).get('lang');var s=null;try{s=localStorage.getItem('portfolio-locale')}catch(e){}var l=(p==='es'||p==='en')?p:(s==='es'||s==='en')?s:null;if(!l){var n=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();l=(n&&n.indexOf('es')!==0)?'en':'es'}d.lang=l;if(l==='en'){d.classList.add('lang-pending');setTimeout(function(){d.classList.remove('lang-pending')},2500)}}catch(e){}})();`
 
 export const metadata: Metadata = {
-  title: 'Fabricio Coque|Financial Data Analyst · BI & Automation',
+  title: 'Fabricio Coque | Financial Data Analyst · BI & Automation',
   description:
     'Analista de datos financieros: conciliaciones automatizadas y reportes en Power BI para equipos de contabilidad y finanzas.',
 }

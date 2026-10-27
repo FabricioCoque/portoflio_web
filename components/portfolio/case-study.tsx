@@ -103,7 +103,7 @@ export function CaseStudy({ index }: { index: number }) {
               {project.title}
             </h1>
             <p className="mt-5 max-w-2xl leading-relaxed text-pretty text-muted-foreground md:text-lg">
-              {project.description}
+              {study.summary ?? project.description}
             </p>
 
             <ul className="mt-8 flex flex-wrap gap-1.5" aria-label={t.projects.stackLabel}>
@@ -181,6 +181,28 @@ export function CaseStudy({ index }: { index: number }) {
                 ))}
               </ol>
             </figure>
+
+            {/* Subsecciones de la solución (opcionales): título, texto y lista de puntos */}
+            {study.details && study.details.length > 0 ? (
+              <div className="mt-12 flex flex-col gap-10">
+                {study.details.map((detail, i) => (
+                  <div key={i} className="max-w-2xl border-t border-border pt-6">
+                    <h3 className="text-lg font-semibold tracking-tight md:text-xl">{detail.title}</h3>
+                    <p className="mt-3 leading-relaxed text-pretty text-muted-foreground">{detail.body}</p>
+                    {detail.bullets && detail.bullets.length > 0 ? (
+                      <ul className="mt-4 flex flex-col gap-2.5">
+                        {detail.bullets.map((bullet, j) => (
+                          <li key={j} className="flex gap-3 text-sm leading-relaxed">
+                            <span aria-hidden="true" className="mt-[0.45rem] size-1.5 shrink-0 bg-accent" />
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            ) : null}
 
             {links.video ? (
               <figure className="mt-10 border border-border bg-card">

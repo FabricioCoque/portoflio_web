@@ -262,30 +262,55 @@ const en = {
           'The workflow lets reviewers focus on the rows flagged in red instead of keying in every invoice, and adding a new supplier only takes a new template, with no changes to the main flow. Tested with 12 synthetic invoices that follow the real structure.',
       },
       {
+        summary:
+          'This project reconciles the general ledger against the bank statement, with the main goal of finding inconsistencies, clearing out pending items, and producing a detailed report of the findings, replacing manual matching and Excel formulas. It was built in Python using exact matching and fuzzy matching. End users can run it without opening a console or a code editor, and it can be scheduled to run automatically to fit their needs.',
         problem:
-          'At month-end, the accounting team has to confirm that every ledger entry has a matching bank credit, and vice versa. When the references do not match exactly (a typo, a hyphen, an extra zero), the system leaves the items pending even though the transaction exists, and someone has to review them one by one. This is a real and common problem in high-volume businesses; to build the solution, I used synthetic data that simulates that scenario.',
+          'Delayed month-end closes, the workload of manual reconciliation, and late follow-up on pending items are the problems this project solves. Through a reconciliation, the accounting team has to make sure that every ledger entry has a matching bank credit, and vice versa. The process runs in Excel, cross-matching the data from those reports with formulas: items that match on reference and amount are marked as reconciled, and those with no match are left as pending. When the matching fields, such as amount and reference, do not match exactly because of a typo, a different digit, a hyphen, or an extra zero, the system leaves the items pending even though the transaction exists, and someone has to review them one by one.',
         challenges: [
-          'The same transaction recorded differently in the ledger and at the bank',
-          'False pending items that force a row-by-row review',
-          'Knowing which approximate matches can be trusted',
-          'Telling what is missing from the bank apart from what is missing from the books',
+          'Delayed month-end closes',
+          'Workload of manual reconciliation',
+          'Late follow-up on pending items',
+          'Near-identical references that an exact match leaves unmatched',
         ],
         solution:
-          'The process first matches everything that lines up exactly, then searches only the pending items for transactions with the same amount and similar references. Each approximate match is flagged with its similarity score so the accountant can decide whether to accept it. Whatever is still unmatched is split into two lists: ledger items with no bank credit, and bank deposits with no accounting entry. Everything is delivered in a 6-sheet Excel workbook with a reconciliation status summary.',
+          'The solution was designed for a non-technical end user, so it could not be limited to a script run with commands in a terminal. But before getting to how it runs, I should explain how it was built. The architecture starts with data cleaning, then runs an exact match using two parameters, and finally applies a fuzzy-logic match (approximate values, using a set similarity threshold). Once every match has run, it generates a report with separate tabs detailing the transactions, in a format the accounting team can use for their analysis.',
         architecture: [
           { title: 'Ledger & Banks', detail: 'Excel' },
+          { title: 'Cleaning', detail: 'data normalization' },
           { title: 'Exact Match', detail: 'reference + amount' },
           { title: 'Fuzzy Match', detail: 'similarity ≥ 80' },
-          { title: 'Exceptions', detail: 'unmatched items' },
-          { title: 'Excel Report', detail: '6 sheets' },
+          { title: 'Excel Report', detail: '6 tabs' },
+        ],
+        details: [
+          {
+            title: 'Exact matching logic (Layer 1)',
+            body: 'Matching uses the reference from both the ledger file and the bank statement. The reference is a number that the company’s system assigns to every transaction made at the point of sale. The second parameter is the amount. Using both parameters improves precision.',
+          },
+          {
+            title: 'Fuzzy matching logic (Layer 2)',
+            body: 'Fuzzy matching is done with a Python library called RapidFuzz, specifically fuzz.partial_ratio, which is well suited to bank references for the following reasons:',
+            bullets: [
+              'It detects whether one string is contained within another.',
+              'It handles different prefixes or suffixes well.',
+              'It tolerates hyphens, spaces, and zeros that the bank and the ledger record differently.',
+            ],
+          },
+          {
+            title: 'Result: output Excel file structure',
+            body: 'The file conciliacion_resultado.xlsx contains 6 tabs, designed to cover each stage of the accounting review process.',
+          },
+          {
+            title: 'How it runs',
+            body: 'Back to how it runs: I will mention a couple of technical terms, but they are easy to follow. Since the solution was designed for a user who does not run terminal commands, the pipeline runs from a .bat file with a double click, or on a schedule through Windows Task Scheduler. On a Linux server, a cron job needs to be set up. The technical details for that last point are in the GitHub repository.',
+          },
         ],
         results: [
-          { value: '356/466', label: 'Ledger records reconciled (350 exact and 6 by fuzzy matching)' },
-          { value: '6', label: 'Matches found only by fuzzy matching ($8,694.63)' },
-          { value: '128', label: 'Items for review: 110 unmatched ledger items and 18 unmatched bank deposits' },
+          { value: '76.39%', label: 'Total transaction reconciliation coverage' },
+          { value: '+1.71%', label: 'Increase in reconciled transactions through fuzzy matching' },
+          { value: '-5.17%', label: 'Reduction in manual review workload' },
         ],
         outcome:
-          'In a test with synthetic data simulating a real operating scenario, 356 of 466 ledger records were reconciled: 350 by exact match and 6 that only fuzzy matching could identify ($8,694.63). That left 110 unmatched ledger items ($167,731.45) and 18 bank deposits with no accounting entry ($747,664.25), split across two sheets for review. The team only reviews what genuinely does not add up and checks approximate matches against their similarity score.',
+          'In a test with synthetic data simulating a real operating scenario, 356 of 466 ledger records were reconciled, for a total reconciliation coverage of 76.39%: 350 by exact match and 6 that only fuzzy matching could identify (a 1.71% increase in reconciled transactions, worth $8,694.63). That cut the manual review workload by 5.17%, leaving just 110 pending items ($167,731.45) and 18 bank deposits with no accounting entry ($747,664.25), split across two sheets for analysis.',
       },
       {
         problem:
@@ -608,30 +633,55 @@ const es: Dictionary = {
           'El flujo permite concentrar la revisión en las filas marcadas en rojo en lugar de digitar cada factura, y sumar un proveedor nuevo solo requiere agregar una plantilla, sin modificar el flujo principal. Probado con 12 facturas sintéticas que siguen la estructura real.',
       },
       {
+        summary:
+          'El proyecto desarrolla una conciliación bancaria mediante el cruce de los registros contables y el extracto bancario, teniendo como principal objetivo detectar inconsistencias, depurar partidas y generar un informe detallado sobre los hallazgos, dejando de lado el cruce manual y las fórmulas en Excel. El proyecto fue desarrollado en Python utilizando cruces exactos y coincidencias difusas. El proceso puede ser ejecutado por el usuario final sin necesidad de abrir consolas o editores de código, y puede ser programado para su ejecución automatizada de acuerdo con las necesidades del usuario.',
         problem:
-          'Al cerrar el mes, el equipo contable debe confirmar que cada movimiento del mayor tenga su acreditación en el banco y viceversa. Cuando las referencias no coinciden exactamente, por una digitación errónea, un guion o un cero de más, el sistema las deja como pendientes aunque el movimiento exista, y alguien debe revisarlas una por una. Es un problema real y frecuente en empresas con alta transaccionalidad; para desarrollar la solución usé datos sintéticos que simulan ese escenario.',
+          'Retraso en cierres mensuales, carga operativa por conciliación manual y gestiones tardías por partidas pendientes constituyen el problema que el proyecto resuelve. El equipo contable debe, a través de una conciliación, asegurarse de que cada movimiento del mayor tenga su acreditación en el banco y viceversa. El proceso de conciliación usa Excel mediante cruces con fórmulas de la información contenida en los reportes antes mencionados, marcando como conciliados los que cruzan por referencias y montos, y dejando como partidas pendientes aquellos que no encuentran coincidencia. Cuando los parámetros usados para el cruce como el monto y referencias no coinciden exactamente por una digitación errónea, un número diferente, un guion o un cero de más, el sistema las deja como pendientes aunque el movimiento exista, y alguien debe revisarlas una por una.',
         challenges: [
-          'Referencias escritas distinto en el mayor y en el banco para el mismo movimiento',
-          'Falsos pendientes que obligan a revisar fila por fila',
-          'Saber en qué coincidencias aproximadas se puede confiar',
-          'Distinguir lo que falta en el banco de lo que falta en la contabilidad',
+          'Retraso en cierres mensuales',
+          'Carga operativa por conciliación manual',
+          'Gestiones tardías por partidas pendientes',
+          'Referencias casi idénticas que un cruce exacto deja sin conciliar',
         ],
         solution:
-          'El proceso cruza primero lo que coincide de forma exacta y luego busca, solo entre lo pendiente, movimientos con el mismo importe y referencias parecidas. Cada coincidencia aproximada queda marcada y con su porcentaje de similitud, para que el contador decida si la acepta. Lo que sigue sin cruzar se separa en dos listas: partidas del mayor sin acreditación en el banco y depósitos del banco sin registro contable. Todo se entrega en un Excel de 6 hojas, con un resumen del estado de la conciliación.',
+          'La solución fue pensada para un usuario final no técnico, por lo cual no se podía limitar a un script que se tenga que ejecutar con comandos en una terminal. Pero antes de llegar a la ejecución, debo detallar cómo se llegó ahí. La arquitectura del proyecto contempla la limpieza de los datos, luego pasa por un cruce exacto utilizando dos parámetros para el cruce para finalmente aplicar un cruce mediante lógica difusa (valores aproximados fijando un porcentaje de coincidencia). Una vez ejecutados todos los cruces, se genera un reporte con pestañas separadas con el detalle de las transacciones en un formato que puede ser usado por el equipo contable para su análisis.',
         architecture: [
           { title: 'Mayor y bancos', detail: 'Excel' },
+          { title: 'Limpieza', detail: 'normalización de datos' },
           { title: 'Cruce exacto', detail: 'referencia + importe' },
           { title: 'Cruce difuso', detail: 'similitud ≥ 80' },
-          { title: 'Excepciones', detail: 'pendientes y sobrantes' },
-          { title: 'Reporte Excel', detail: '6 hojas' },
+          { title: 'Reporte Excel', detail: '6 pestañas' },
+        ],
+        details: [
+          {
+            title: 'Lógica de la conciliación exacta (Capa 1)',
+            body: 'La conciliación se realiza tomando la referencia tanto del archivo del mayor como del estado de cuenta. La referencia corresponde a un número que el sistema usado por la empresa le asigna a cada transacción que se produce en el punto de venta. El segundo parámetro que se usa es el importe. Para mayor precisión se usan ambos parámetros.',
+          },
+          {
+            title: 'Lógica del Fuzzy Matching (Capa 2)',
+            body: 'El fuzzy matching (coincidencia difusa) se realiza mediante una librería de Python llamada RapidFuzz, específicamente usando fuzz.partial_ratio, que es ideal para referencias bancarias por los siguientes motivos:',
+            bullets: [
+              'Detecta si una cadena está contenida dentro de otra.',
+              'Maneja bien prefijos o sufijos distintos.',
+              'Tolera guiones, espacios y ceros que el banco y el mayor registran diferente.',
+            ],
+          },
+          {
+            title: 'Resultado: Estructura del Excel de salida',
+            body: 'El archivo conciliacion_resultado.xlsx contiene 6 pestañas diseñadas para cubrir cada etapa del proceso de revisión contable.',
+          },
+          {
+            title: 'Ejecución',
+            body: 'Es momento de volver a la ejecución; para ello mencionaré un par de términos técnicos que son de fácil comprensión. Como la solución fue pensada para un usuario que no ejecuta comandos en terminal, el pipeline se ejecuta a través de un archivo .bat haciendo un doble clic sobre él o programando su ejecución a través del Programador de Tareas de Windows (Task Scheduler). Si se ejecuta en un servidor Linux, se deberá configurar un cron. En el repositorio de GitHub se pueden encontrar los detalles técnicos sobre este último punto.',
+          },
         ],
         results: [
-          { value: '356/466', label: 'Registros del mayor conciliados (350 exactos y 6 por cruce difuso)' },
-          { value: '6', label: 'Coincidencias que solo detectó el cruce difuso ($8,694.63)' },
-          { value: '128', label: 'Movimientos para revisión: 110 partidas pendientes y 18 depósitos sobrantes' },
+          { value: '76.39%', label: 'Cobertura total de conciliación de transacciones' },
+          { value: '+1.71%', label: 'Incremento de transacciones conciliadas mediante cruce difuso' },
+          { value: '-5.17%', label: 'Reducción de carga de revisión manual' },
         ],
         outcome:
-          'En la prueba con datos sintéticos que simulan un escenario operativo real, de 466 registros del mayor se conciliaron 356: 350 por cruce exacto y 6 que solo el cruce difuso pudo identificar ($8,694.63). Quedaron 110 partidas pendientes ($167,731.45) y 18 depósitos del banco sin registro contable ($747,664.25), separados en dos hojas para su revisión. El equipo revisa solo lo que realmente no cuadra y valida las coincidencias aproximadas con su puntaje.',
+          'En la prueba con datos sintéticos que simulan un escenario operativo real, de 466 registros del mayor se conciliaron 356, logrando una cobertura total de conciliación del 76.39%: 350 por cruce exacto y 6 que solo el cruce difuso pudo identificar (+1.71% de incremento en transacciones conciliadas por $8,694.63). Esto permitió una reducción del 5.17% en la carga de revisión manual, dejando únicamente 110 partidas pendientes ($167,731.45) y 18 depósitos del banco sin registro contable ($747,664.25), separados en dos hojas para su análisis.',
       },
       {
         problem:
