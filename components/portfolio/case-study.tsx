@@ -59,34 +59,33 @@ export function CaseStudy({ index }: { index: number }) {
       </Link>
 
       <div className="mt-10 grid gap-12 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16">
-        {/* Barra lateral: índice para navegar por las secciones de esta página */}
+        {/* Barra lateral: índice "En esta página" para navegar por las secciones */}
         <aside className="hidden lg:block">
           <div className="sticky top-28">
-            <p className="border-t border-border pt-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {code}
+            <p className="border-y border-border px-4 py-3 font-mono text-xs font-bold uppercase tracking-widest text-foreground">
+              {cs.onThisPage}
             </p>
-            <nav aria-label={project.title} className="mt-4">
-              <ol className="flex flex-col">
-                {sections.map((section, i) => {
+            <nav aria-label={cs.onThisPage} className="mt-2">
+              <ul className="flex flex-col gap-1">
+                {sections.map((section) => {
                   const current = section.id === active
                   return (
                     <li key={section.id}>
                       <a
                         href={`#${section.id}`}
                         aria-current={current ? 'location' : undefined}
-                        className={`flex gap-3 border-l py-2 pl-3 text-sm leading-snug transition-colors ${
+                        className={`block px-4 py-2.5 text-sm leading-snug transition-colors ${
                           current
-                            ? 'border-accent font-medium text-foreground'
-                            : 'border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground'
+                            ? 'bg-accent/10 font-medium text-accent'
+                            : 'text-muted-foreground hover:text-foreground'
                         }`}
                       >
-                        <span className="font-mono text-xs leading-snug text-muted-foreground">{pad(i + 1)}</span>
-                        <span>{section.label}</span>
+                        {section.label}
                       </a>
                     </li>
                   )
                 })}
-              </ol>
+              </ul>
             </nav>
           </div>
         </aside>
@@ -132,10 +131,7 @@ export function CaseStudy({ index }: { index: number }) {
 
           {/* 01 · Problema */}
           <section id="problem" aria-labelledby="problem-title" className="mt-16 scroll-mt-28 border-t border-border pt-10">
-            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              <span className="text-accent">01</span> <span aria-hidden="true">—</span> {cs.problemEyebrow}
-            </p>
-            <h2 id="problem-title" className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
+            <h2 id="problem-title" className="text-2xl font-semibold tracking-tight md:text-3xl">
               {cs.problemTitle}
             </h2>
             <p className="mt-5 max-w-2xl leading-relaxed text-pretty text-muted-foreground md:text-lg">{study.problem}</p>
@@ -151,10 +147,7 @@ export function CaseStudy({ index }: { index: number }) {
 
           {/* 02 · Solución */}
           <section id="solution" aria-labelledby="solution-title" className="mt-16 scroll-mt-28 border-t border-border pt-10">
-            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              <span className="text-accent">02</span> <span aria-hidden="true">—</span> {cs.solutionEyebrow}
-            </p>
-            <h2 id="solution-title" className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
+            <h2 id="solution-title" className="text-2xl font-semibold tracking-tight md:text-3xl">
               {cs.solutionTitle}
             </h2>
             <p className="mt-5 max-w-2xl leading-relaxed text-pretty text-muted-foreground md:text-lg">{study.solution}</p>
@@ -247,10 +240,7 @@ export function CaseStudy({ index }: { index: number }) {
 
           {/* 03 · Resultados */}
           <section id="results" aria-labelledby="results-title" className="mt-16 scroll-mt-28 border-t border-border pt-10">
-            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              <span className="text-accent">03</span> <span aria-hidden="true">—</span> {cs.resultsEyebrow}
-            </p>
-            <h2 id="results-title" className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
+            <h2 id="results-title" className="text-2xl font-semibold tracking-tight md:text-3xl">
               {cs.resultsTitle}
             </h2>
             <dl className="mt-8 grid gap-4 sm:grid-cols-3">

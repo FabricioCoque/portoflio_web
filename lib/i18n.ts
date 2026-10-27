@@ -170,6 +170,7 @@ const en = {
   caseStudy: {
     back: 'Back to Portfolio',
     label: 'Case Study',
+    onThisPage: 'On this page',
     problemEyebrow: 'The Challenge',
     problemTitle: 'Business problem',
     solutionEyebrow: 'The Solution',
@@ -541,6 +542,7 @@ const es: Dictionary = {
   caseStudy: {
     back: 'Volver al portafolio',
     label: 'Caso de estudio',
+    onThisPage: 'En esta página',
     problemEyebrow: 'El desafío',
     problemTitle: 'Problema de negocio',
     solutionEyebrow: 'La solución',
